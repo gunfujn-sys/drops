@@ -10,10 +10,9 @@
   "ad_disclosure": "当サイトはアフィリエイト広告（楽天アフィリエイト等）を利用しています。",
   "extra_head": "",
   "operator": {
-    "name": "（運営者名またはハンドルネーム）",
-    "contact": "（連絡用メールアドレス）",
-    "opened": "2026-09",
-    "note": "ここを埋めないままだとASPの審査で落ちやすい項目です。"
+    "name": "野上 飛翼",
+    "contact": "gunfujn@gmail.com",
+    "opened": "2026-09"
   },
   "analytics_id": "",
   "index_max_items": 800
