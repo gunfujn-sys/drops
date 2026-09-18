@@ -301,8 +301,8 @@ def main():
                     % "".join(rank_html(x, i) for i, x in enumerate(ranked, 1))) if ranked else "",
         "PICKS": ('<section class="picks" id="picks"><h3>PICKS</h3>'
                   '<p class="lead">人気ブランドの新着から</p><div class="row grid">%s</div></section>'
-                  '<div class="sectionhead">NEW DROP 新着</div>'
                   % "".join(card_html(x) for x in picks)) if picks else "",
+        "GRIDHEAD": '<div class="sectionhead">NEW DROP 新着</div>',
         "DATA": payload(subset=top_items, brand_list=top_brands, cat_list=top_cat_list),
         "JSONLD": jsonld(top_items, site["title"], base or ""),
     })
@@ -332,6 +332,7 @@ def main():
             "INTRO": ('<p class="intro">%s</p>' % esc(copy.get(b["id"], ""))) if copy.get(b["id"]) else "",
             "NEWS": news_block([n for n in news if b["id"] in n.get("brands", [])][:6],
                                "%s 関連の最新記事" % b["name"]),
+            "GRIDHEAD": "",
             "RANKING": "",
             "PICKS": "",
             "DATA": payload(fixed_brand=b["id"], subset=subset),
@@ -353,6 +354,7 @@ def main():
             "HEADING": '<h2 class="pagetitle">%s<span>NEW ARRIVALS</span></h2>' % esc(c["label"]),
             "INTRO": "",
             "NEWS": "",
+            "GRIDHEAD": "",
             "RANKING": "",
             "PICKS": "",
             "DATA": payload(fixed_cat=c["id"], subset=subset),
@@ -381,6 +383,7 @@ def main():
             "INTRO": '<p class="intro">各ブランドの高額なアイテムだけを集めた棚です。'
                      '新着かどうかに関わらず、在庫がある限り掲載しています。</p>',
             "NEWS": "",
+            "GRIDHEAD": "",
             "RANKING": "",
             "PICKS": "",
             "DATA": payload(subset=sel, brand_list=sel_brands, cat_list=sel_catlist),
@@ -411,7 +414,8 @@ def main():
             "HEADING": '<h2 class="pagetitle">ARCHIVE<span>%d日以上前のもの</span></h2>' % arch_days,
             "INTRO": '<p class="intro">新着の期間を過ぎたアイテムです。'
                      '毎回の取得で在庫が確認できたものだけを残しているので、いま買えるものだけが並びます。</p>',
-            "NEWS": "", "RANKING": "",
+            "NEWS": "", "GRIDHEAD": "",
+            "RANKING": "",
             "PICKS": "",
             "DATA": payload(subset=arch, brand_list=ar_brands, cat_list=ar_catlist),
             "JSONLD": jsonld(arch, "ARCHIVE", ""),
