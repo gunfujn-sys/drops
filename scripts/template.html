@@ -33,8 +33,8 @@ a{color:inherit;text-decoration:none}
 .side::-webkit-scrollbar-thumb{background:#ddd;border-radius:3px}
 .mark h1{font-size:21px;letter-spacing:.24em;margin:0;font-weight:800}
 .mark p{margin:5px 0 0;font-size:10.5px;letter-spacing:.1em;color:var(--sub)}
-.disclosure{margin:14px 0 0;font-size:9.5px;line-height:1.6;color:#8d8d8d;background:var(--soft);
-  padding:7px 9px;border-radius:2px}
+.disclosure{margin:24px 0 0;padding-top:14px;border-top:1px solid var(--line);
+  font-size:9.5px;line-height:1.65;color:#9a9a9a}
 .group{margin-top:22px}
 .group h2{font-size:9.5px;letter-spacing:.2em;color:#a0a0a0;margin:0 0 7px;font-weight:700}
 .chip{display:flex;width:100%;align-items:baseline;gap:6px;border:none;background:none;cursor:pointer;
@@ -44,7 +44,7 @@ a{color:inherit;text-decoration:none}
 .chip[aria-pressed="true"]{background:var(--ink);color:#fff;font-weight:700}
 .chip.scene[aria-pressed="true"]{background:var(--accent)}
 .chip small{margin-left:auto;font-size:10px;opacity:.5;font-variant-numeric:tabular-nums}
-.sidefoot{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);
+.sidefoot{margin-top:14px;padding-top:0;
   display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--sub)}
 .sidefoot a:hover{color:var(--ink)}
 .sidefoot .upd{margin-top:8px;font-size:10px;color:#adadad}
@@ -132,10 +132,10 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
       <h1><a href="{{HOME}}">{{SITENAME}}</a></h1>
       <p>{{TAGLINE}}</p>
     </div>
-    <p class="disclosure">{{DISCLOSURE}}</p>
     <div class="group" id="scenes"><h2>SCENE</h2></div>
     <div class="group" id="brands"><h2>BRAND</h2></div>
     <div class="group" id="cats"><h2>CATEGORY</h2></div>
+    <p class="disclosure">{{DISCLOSURE}}</p>
     <div class="sidefoot">
       <a href="{{HOME}}">新着</a>
       <a href="{{SELECTHREF}}">SELECT 高額の棚</a>
