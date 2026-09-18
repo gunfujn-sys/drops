@@ -263,6 +263,13 @@ def main():
         return {
             "TABS": tab_html,
             "TABSFLAT": tab_flat,
+            "RELATED": "",
+            "PICKS": "",
+            "RANKING": "",
+            "GRIDHEAD": "",
+            "INTRO": "",
+            "NEWS": "",
+            "HEADING": "",
             "SITENAME": esc(site["title"]),
             "TAGLINE": esc(site["tagline"]),
             "UPDATED": esc(updated),
