@@ -1,13 +1,13 @@
 {
   "title": "DROPS",
-  "tagline": "人気ブランドの新着だけ。",
-  "description": "ストリート・モード・スニーカーの人気ブランドの新着アイテムだけを毎日自動で集めています。",
+  "tagline": "",
+  "description": "ストリート、モード、アウトドア、スニーカーのブランドの新着を毎日更新。",
   "base_url": "https://dropsjp.jp",
   "locale": "ja",
   "new_days": 7,
   "retention_days": 21,
   "max_items": 2000,
-  "ad_disclosure": "当サイトはアフィリエイト広告（楽天アフィリエイト等）を利用しています。",
+  "ad_disclosure": "広告（アフィリエイト）を含みます",
   "extra_head": "",
   "operator": {
     "name": "野上 飛翼",
@@ -68,5 +68,6 @@
   ],
   "ranking_min_reviews": 3,
   "ranking_count": 8,
-  "_ranking_note": "楽天のレビュー数を根拠にした並び。ランキングAPIは提供されておらず、レビューのある商品も1割ほどしかないため、件数を明示して『レビューが多い順』として出す。"
+  "_ranking_note": "楽天のレビュー数を根拠にした並び。ランキングAPIは提供されておらず、レビューのある商品も1割ほどしかないため、件数を明示して『レビューが多い順』として出す。",
+  "seo_title": "DROPS｜ブランド新着まとめ"
 }

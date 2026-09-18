@@ -165,16 +165,17 @@ def main():
     def link(prefix, path):
         return prefix + path
 
-    TABDEF = [("index.html", "NEW DROP", "新着"),
-              ("select.html", "SELECT", "高額の棚"),
-              ("archive.html", "ARCHIVE", "過去の掲載")]
+    TABDEF = [("index.html", "NEW DROP", ""),
+              ("select.html", "SELECT", ""),
+              ("archive.html", "ARCHIVE", "")]
 
     def tabs(prefix, active=""):
         out = []
         flat = []
         for path, big, sub in TABDEF:
             on = ' class="on"' if path == active else ""
-            out.append('<a href="%s"%s>%s<span>%s</span></a>' % (link(prefix, path), on, big, sub))
+            label = '%s<span>%s</span>' % (big, sub) if sub else big
+            out.append('<a href="%s"%s>%s</a>' % (link(prefix, path), on, label))
             flat.append('<a href="%s"%s>%s</a>' % (link(prefix, path), on, big))
         return ('<nav class="tabs">%s</nav>' % "".join(out)), "".join(flat)
 
@@ -298,18 +299,18 @@ def main():
     # ---- トップ ----
     m = common("", "index.html")
     m.update({
-        "TITLE": esc("%s｜%s" % (site["title"], site["tagline"])),
+        "TITLE": esc(site.get("seo_title") or site["title"]),
         "DESC": esc(site["description"]),
         "CANONICAL": (base + "/") if base else "index.html",
         "HEADING": "",
         "INTRO": "",
         "NEWS": "",
-        "RANKING": ('<section class="strip"><h3>レビューが多い順</h3><div class="row grid">%s</div></section>'
+        "RANKING": ('<section class="strip"><h3>REVIEWS</h3><div class="row grid">%s</div></section>'
                     % "".join(rank_html(x, i) for i, x in enumerate(ranked, 1))) if ranked else "",
         "PICKS": ('<section class="picks" id="picks"><h3>PICKS</h3>'
                   '<p class="lead">人気ブランドの新着から</p><div class="row grid">%s</div></section>'
                   % "".join(card_html(x) for x in picks)) if picks else "",
-        "GRIDHEAD": '<div class="sectionhead">NEW DROP 新着</div>',
+        "GRIDHEAD": '<div class="sectionhead">NEW DROP</div>',
         "DATA": payload(subset=top_items, brand_list=top_brands, cat_list=top_cat_list),
         "JSONLD": jsonld(top_items, site["title"], base or ""),
     })
@@ -335,7 +336,7 @@ def main():
             "TITLE": esc(title),
             "DESC": esc("%s の新着アイテムを毎日自動更新で掲載。現在%d点。" % (b["name"], len(subset))),
             "CANONICAL": "%s/b/%s.html" % (base, b["id"]) if base else "%s.html" % b["id"],
-            "HEADING": '<h2 class="pagetitle">%s<span>NEW ARRIVALS</span></h2>' % esc(b["name"]),
+            "HEADING": '<h2 class="pagetitle">%s</h2>' % esc(b["name"]),
             "INTRO": ('<p class="intro">%s</p>' % esc(copy.get(b["id"], ""))) if copy.get(b["id"]) else "",
             "NEWS": news_block([n for n in news if b["id"] in n.get("brands", [])][:6],
                                "%s 関連の最新記事" % b["name"]),
@@ -358,7 +359,7 @@ def main():
             "TITLE": esc(title),
             "DESC": esc("人気ブランドの%sの新着だけを毎日自動更新で掲載。現在%d点。" % (c["label"], len(subset))),
             "CANONICAL": "%s/c/%s.html" % (base, c["id"]) if base else "%s.html" % c["id"],
-            "HEADING": '<h2 class="pagetitle">%s<span>NEW ARRIVALS</span></h2>' % esc(c["label"]),
+            "HEADING": '<h2 class="pagetitle">%s</h2>' % esc(c["label"]),
             "INTRO": "",
             "NEWS": "",
             "GRIDHEAD": "",
@@ -386,9 +387,7 @@ def main():
             "TITLE": esc("SELECT｜%s" % site["title"]),
             "DESC": esc("人気ブランドの中から価格の高い定番・名品だけを集めた常設の棚。%d点。" % len(sel)),
             "CANONICAL": "%s/select.html" % base if base else "select.html",
-            "HEADING": '<h2 class="pagetitle">SELECT<span>価格の高い順</span></h2>',
-            "INTRO": '<p class="intro">各ブランドの高額なアイテムだけを集めた棚です。'
-                     '新着かどうかに関わらず、在庫がある限り掲載しています。</p>',
+            "HEADING": '<h2 class="pagetitle">SELECT</h2>',
             "NEWS": "",
             "GRIDHEAD": "",
             "RANKING": "",
@@ -418,9 +417,7 @@ def main():
             "TITLE": esc("ARCHIVE｜%s" % site["title"]),
             "DESC": esc("新着からは外れたが、まだ買えるアイテム。%d点。" % len(arch)),
             "CANONICAL": "%s/archive.html" % base if base else "archive.html",
-            "HEADING": '<h2 class="pagetitle">ARCHIVE<span>%d日以上前のもの</span></h2>' % arch_days,
-            "INTRO": '<p class="intro">新着の期間を過ぎたアイテムです。'
-                     '毎回の取得で在庫が確認できたものだけを残しているので、いま買えるものだけが並びます。</p>',
+            "HEADING": '<h2 class="pagetitle">ARCHIVE</h2>',
             "NEWS": "", "GRIDHEAD": "",
             "RANKING": "",
             "PICKS": "",
@@ -435,13 +432,13 @@ def main():
     scene_counts = collections.Counter(x["s"] for x in items)
     links_body = '<div class="links">'
     links_body += ('<a href="index.html"><span class="big">新着</span>'
-                   '<span class="sub">%d点・毎日6時と18時に更新</span></a>' % len(items))
+                   '<span class="sub">%d点</span></a>' % len(items))
     links_body += ('<a href="select.html"><span class="big">SELECT</span>'
-                   '<span class="sub">高額な定番だけの棚</span></a>')
+                   '<span class="sub">高いものから</span></a>')
     links_body += ('<a href="archive.html"><span class="big">ARCHIVE</span>'
-                   '<span class="sub">過去に掲載したもの</span></a>')
+                   '<span class="sub">30日以上前</span></a>')
     links_body += ('<a href="news.html"><span class="big">NEWS</span>'
-                   '<span class="sub">ブランド関連の最新記事</span></a>')
+                   '<span class="sub">ニュース</span></a>')
     links_body += '</div><div class="scenes">'
     for sid, slabel in SCENES:
         if scene_counts.get(sid):
@@ -529,7 +526,7 @@ Cookieを使用することがあります。</p>
                   "見出しと媒体名のみを掲載し、記事本文は転載していません。</p>")
 
     for fname, heading, lead, body in [
-        ("news.html", "NEWS", "掲載ブランドに関係する最新記事", news_body),
+        ("news.html", "NEWS", "", news_body),
         ("about.html", "運営者情報", "このサイトについて／掲載方法／免責事項", about_body),
         ("privacy.html", "プライバシーポリシー", "Cookie・アクセス解析・個人情報の取り扱い", privacy_body),
     ]:
