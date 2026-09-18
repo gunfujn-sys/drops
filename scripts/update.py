@@ -7,6 +7,7 @@
 """
 import json
 import os
+import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -53,29 +54,30 @@ def from_shopify(brand_by_id, only):
     return out
 
 
-def from_rakuten(brands, conf, only, app_id, access_key, aff_id):
-    genres = conf["rakuten_genres"]
+def from_rakuten(brands, conf, only, app_id, access_key, aff_id, origin):
     ng_words = conf["ng_words"]
     ng_shop = conf["ng_shop_words"]
     ng_keyword = " ".join(ng_words[:10])
+    trusted = [lib.normalize(t) for t in conf.get("trusted_shops", [])]
     out = []
     for b in brands:
         if only and b["id"] != only:
             continue
-        got = kept = 0
-        for gname in b.get("genres", ["mens"]):
-            gid = genres.get(gname)
-            if not gid:
+        raw = rakuten.search(b, "", app_id, aff_id, ng_keyword=ng_keyword,
+                             access_key=access_key, origin=origin,
+                             pages=conf.get("rakuten_pages", 4))
+        got = len(raw)
+        kept = untrusted = 0
+        for it in raw:
+            shop = lib.normalize(it.get("shop", ""))
+            if trusted and not any(t in shop for t in trusted):
+                untrusted += 1
                 continue
-            raw = rakuten.search(b, gid, app_id, aff_id, ng_keyword=ng_keyword,
-                                 access_key=access_key)
-            got += len(raw)
-            for it in raw:
-                if lib.is_noise(it, b, ng_words, ng_shop):
-                    continue
-                out.append(decorate(it, b))
-                kept += 1
-        print("  %-16s %3d/%3d 件  （楽天）" % (b["id"], kept, got))
+            if lib.is_noise(it, b, ng_words, ng_shop):
+                continue
+            out.append(decorate(it, b))
+            kept += 1
+        print("  %-16s %3d/%3d 件  （楽天・店舗で除外%d）" % (b["id"], kept, got, untrusted))
     return out
 
 
@@ -99,7 +101,16 @@ def main():
     collected += from_shopify(brand_by_id, only)
 
     app_id, access_key, aff_id = rakuten.credentials()
-    if skip_rakuten or not app_id or not access_key:
+    # 楽天APIは登録ドメインと一致する Origin ヘッダーを要求する
+    origin = os.environ.get("RAKUTEN_ORIGIN", "").strip()
+    if not origin:
+        base = site.get("base_url", "")
+        m = re.match(r"^(https?://[^/]+)", base)
+        origin = m.group(1) if m else ""
+    if app_id and access_key and not origin:
+        print("! config/site.json の base_url が空です。楽天APIは Origin を要求するので設定が要ります。",
+              file=sys.stderr)
+    if skip_rakuten or not app_id or not access_key or not origin:
         missing = " と ".join([n for n, v in
                               (("RAKUTEN_APP_ID", app_id), ("RAKUTEN_ACCESS_KEY", access_key)) if not v])
         print("[2] 楽天市場API … %s が無いので省略" % (missing or "認証情報"))
@@ -109,7 +120,7 @@ def main():
             print("! RAKUTEN_AFFILIATE_ID が未設定です。楽天のリンクは通常URLになり報酬は発生しません。",
                   file=sys.stderr)
         print("[2] 楽天市場API")
-        collected += from_rakuten(brands, conf, only, app_id, access_key, aff_id)
+        collected += from_rakuten(brands, conf, only, app_id, access_key, aff_id, origin)
 
     if not collected:
         sys.exit("1件も取得できませんでした。ネットワークか設定を確認してください。")

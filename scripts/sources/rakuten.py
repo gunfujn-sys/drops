@@ -15,10 +15,11 @@ SLEEP = 1.2  # 楽天は1秒1リクエストが目安
 name = "rakuten"
 
 
-def _get(params, retries=4):
+def _get(params, origin, retries=4):
+    """Origin ヘッダーが必須。アプリに登録した Allowed websites と一致しないと403になる。"""
     url = API + "?" + urllib.parse.urlencode(params)
     for attempt in range(retries):
-        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        req = urllib.request.Request(url, headers={"User-Agent": UA, "Origin": origin})
         try:
             with urllib.request.urlopen(req, timeout=30) as res:
                 return json.loads(res.read().decode("utf-8"))
@@ -29,6 +30,9 @@ def _get(params, retries=4):
                 print("    retry %ss (HTTP %s)" % (round(wait, 1), e.code), file=sys.stderr)
                 time.sleep(wait)
                 continue
+            if e.code == 403:
+                raise RuntimeError(
+                    "楽天APIに403で拒否されました。Originが許可一覧にありません: %s / %s" % (origin, body))
             if e.code == 400:
                 if "applicationId" in body or "accessKey" in body or "access key" in body.lower():
                     raise RuntimeError(
@@ -52,7 +56,8 @@ def big_image(url):
     return url + "?_ex=600x600"
 
 
-def search(brand, genre_id, app_id, affiliate_id, ng_keyword="", pages=2, access_key=""):
+def search(brand, genre_id, app_id, affiliate_id, ng_keyword="", pages=2,
+           access_key="", origin=""):
     """1ブランド×1ジャンルぶんの生アイテムを返す。"""
     out = []
     for page in range(1, pages + 1):
@@ -61,7 +66,6 @@ def search(brand, genre_id, app_id, affiliate_id, ng_keyword="", pages=2, access
             "format": "json",
             "formatVersion": 2,
             "keyword": brand["keyword"],
-            "genreId": genre_id,
             "hits": 30,
             "page": page,
             "sort": "-updateTimestamp",
@@ -69,6 +73,10 @@ def search(brand, genre_id, app_id, affiliate_id, ng_keyword="", pages=2, access
             "availability": 1,
             "minPrice": brand.get("min_price", 3000),
         }
+        if genre_id:
+            # 新APIのgenreIdは下位ジャンルを含まない。上位ID指定は上位に雑登録した
+            # 転売業者ばかりを拾ってしまうので、通常は指定しない。
+            params["genreId"] = genre_id
         if access_key:
             params["accessKey"] = access_key
         if affiliate_id:
@@ -76,12 +84,12 @@ def search(brand, genre_id, app_id, affiliate_id, ng_keyword="", pages=2, access
         if ng_keyword:
             params["NGKeyword"] = ng_keyword
         time.sleep(SLEEP)
-        data = _get(params)
+        data = _get(params, origin)
         if not data and ng_keyword:
             # NGKeywordが受け付けられない場合があるので外して一度だけ再試行
             params.pop("NGKeyword", None)
             time.sleep(SLEEP)
-            data = _get(params)
+            data = _get(params, origin)
         if not data:
             break
         items = data.get("Items") or []

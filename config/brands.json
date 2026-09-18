@@ -1,49 +1,545 @@
 {
-  "_comment": "keyword=楽天に投げる検索語 / match=商品名にこの語のどれかが含まれないと捨てる / genres=楽天ジャンルID / min_price=これ未満は捨てる(ステッカー等のノイズ除去)",
-  "rakuten_genres": {
-    "mens": "551177",
-    "womens": "100371",
-    "shoes": "558929",
-    "bag": "558885"
+ "_comment": "keyword=楽天に投げる検索語 / match=商品名にこの語のどれかが含まれないと捨てる / genres=楽天ジャンルID / min_price=これ未満は捨てる(ステッカー等のノイズ除去)",
+ "rakuten_genres": {
+  "mens": "551177",
+  "womens": "100371",
+  "shoes": "558929",
+  "bag": "558885"
+ },
+ "brands": [
+  {
+   "id": "supreme",
+   "name": "Supreme",
+   "scene": "street",
+   "keyword": "Supreme シュプリーム",
+   "match": [
+    "supreme",
+    "シュプリーム"
+   ],
+   "genres": [
+    "mens",
+    "bag"
+   ],
+   "min_price": 6000
   },
-  "brands": [
-    {"id":"supreme","name":"Supreme","scene":"street","keyword":"Supreme シュプリーム","match":["supreme","シュプリーム"],"genres":["mens","bag"],"min_price":6000},
-    {"id":"wtaps","name":"WTAPS","scene":"street","keyword":"WTAPS ダブルタップス","match":["wtaps","ダブルタップス"],"genres":["mens"],"min_price":8000},
-    {"id":"neighborhood","name":"NEIGHBORHOOD","scene":"street","keyword":"NEIGHBORHOOD ネイバーフッド","match":["neighborhood","ネイバーフッド"],"genres":["mens"],"min_price":8000},
-    {"id":"humanmade","name":"HUMAN MADE","scene":"street","keyword":"HUMAN MADE ヒューマンメイド","match":["human made","humanmade","ヒューマンメイド"],"genres":["mens","bag"],"min_price":6000},
-    {"id":"sacai","name":"sacai","scene":"street","keyword":"sacai サカイ","match":["sacai","サカイ"],"genres":["mens","womens"],"min_price":20000},
-    {"id":"undercover","name":"UNDERCOVER","scene":"street","keyword":"UNDERCOVER アンダーカバー","match":["undercover","アンダーカバー"],"genres":["mens","womens"],"min_price":10000},
-    {"id":"needles","name":"NEEDLES","scene":"street","keyword":"NEEDLES ニードルズ","match":["needles","ニードルズ"],"genres":["mens"],"min_price":8000},
-    {"id":"stussy","name":"Stüssy","scene":"street","keyword":"STUSSY ステューシー","match":["stussy","stüssy","ステューシー"],"genres":["mens"],"min_price":5000},
-    {"id":"bape","name":"A BATHING APE","scene":"street","keyword":"A BATHING APE ア ベイシング エイプ","match":["bathing ape","bape","エイプ"],"genres":["mens"],"min_price":8000},
-    {"id":"cootie","name":"COOTIE","scene":"street","keyword":"COOTIE PRODUCTIONS クーティー","match":["cootie","クーティー"],"genres":["mens"],"min_price":8000},
-    {"id":"challenger","name":"CHALLENGER","scene":"street","keyword":"CHALLENGER チャレンジャー ウェア","match":["challenger","チャレンジャー"],"genres":["mens"],"min_price":8000},
-    {"id":"cdg","name":"COMME des GARÇONS","scene":"mode","keyword":"COMME des GARCONS コムデギャルソン","match":["comme des","コムデギャルソン","ギャルソン"],"genres":["mens","womens","bag"],"min_price":10000},
-    {"id":"yohji","name":"Yohji Yamamoto","scene":"mode","keyword":"Yohji Yamamoto ヨウジヤマモト","match":["yohji","ヨウジヤマモト"],"genres":["mens","womens"],"min_price":20000},
-    {"id":"y3","name":"Y-3","scene":"mode","keyword":"Y-3 ワイスリー","match":["y-3","y3","ワイスリー"],"genres":["mens","shoes"],"min_price":15000},
-    {"id":"auralee","name":"AURALEE","scene":"mode","keyword":"AURALEE オーラリー","match":["auralee","オーラリー"],"genres":["mens","womens"],"min_price":15000},
-    {"id":"comoli","name":"COMOLI","scene":"mode","keyword":"COMOLI コモリ","match":["comoli","コモリ"],"genres":["mens"],"min_price":15000},
-    {"id":"graphpaper","name":"Graphpaper","scene":"mode","keyword":"Graphpaper グラフペーパー","match":["graphpaper","グラフペーパー"],"genres":["mens","womens"],"min_price":12000},
-    {"id":"stein","name":"stein","scene":"mode","keyword":"stein シュタイン 服","match":["stein","シュタイン"],"genres":["mens"],"min_price":15000},
-    {"id":"toga","name":"TOGA","scene":"mode","keyword":"TOGA トーガ","match":["toga","トーガ"],"genres":["womens","mens","shoes"],"min_price":15000},
-    {"id":"kolor","name":"kolor","scene":"mode","keyword":"kolor カラー 服","match":["kolor"],"genres":["mens","womens"],"min_price":20000},
-    {"id":"attachment","name":"ATTACHMENT","scene":"mode","keyword":"ATTACHMENT アタッチメント","match":["attachment","アタッチメント"],"genres":["mens"],"min_price":15000},
-    {"id":"nike","name":"Nike","scene":"sneaker","keyword":"NIKE ナイキ スニーカー","match":["nike","ナイキ"],"genres":["shoes"],"min_price":8000},
-    {"id":"newbalance","name":"New Balance","scene":"sneaker","keyword":"New Balance ニューバランス スニーカー","match":["new balance","ニューバランス"],"genres":["shoes"],"min_price":8000},
-    {"id":"adidas","name":"adidas Originals","scene":"sneaker","keyword":"adidas Originals アディダス オリジナルス スニーカー","match":["adidas","アディダス"],"genres":["shoes"],"min_price":7000},
-    {"id":"asics","name":"ASICS","scene":"sneaker","keyword":"ASICS アシックス スニーカー","match":["asics","アシックス"],"genres":["shoes"],"min_price":7000},
-    {"id":"salomon","name":"Salomon","scene":"sneaker","keyword":"SALOMON サロモン スニーカー","match":["salomon","サロモン"],"genres":["shoes"],"min_price":10000},
-    {"id":"hoka","name":"HOKA","scene":"sneaker","keyword":"HOKA ONE ONE ホカオネオネ","match":["hoka","ホカ"],"genres":["shoes"],"min_price":10000},
-    {"id":"on","name":"On","scene":"sneaker","keyword":"On Running オン クラウド スニーカー","match":["on running","オン ","cloud"],"news_match":["on running","オンランニング","クラウドモンスター","クラウドサーファー","クラウドティルト"],"genres":["shoes"],"min_price":12000},
-    {"id":"converse","name":"CONVERSE","scene":"sneaker","keyword":"CONVERSE コンバース スニーカー","match":["converse","コンバース"],"genres":["shoes"],"min_price":6000}
-  ],
-  "ng_words": [
-    "中古","USED","ユーズド","古着","訳あり","ジャンク","難あり","B級",
-    "ノベルティ","非売品","ステッカー","シール","空箱","箱のみ","紙袋","ショッパー",
-    "福袋","レプリカ","コピー","風","互換","詰め合わせ","まとめ売り","セット売り",
-    "買取","査定","修理","クリーニング","リペア","カスタム","ハンガー",
-    "ケース","フィルム","キーホルダー","ガチャ","シューレース","靴紐","インソール",
-    "防水スプレー","シューキーパー","お直し","代行","予約","抽選"
-  ],
-  "ng_shop_words": ["買取","質","リサイクル","リユース","古着"]
+  {
+   "id": "wtaps",
+   "name": "WTAPS",
+   "scene": "street",
+   "keyword": "WTAPS ダブルタップス",
+   "match": [
+    "wtaps",
+    "ダブルタップス"
+   ],
+   "genres": [
+    "mens"
+   ],
+   "min_price": 8000
+  },
+  {
+   "id": "neighborhood",
+   "name": "NEIGHBORHOOD",
+   "scene": "street",
+   "keyword": "NEIGHBORHOOD ネイバーフッド",
+   "match": [
+    "neighborhood",
+    "ネイバーフッド"
+   ],
+   "genres": [
+    "mens"
+   ],
+   "min_price": 8000
+  },
+  {
+   "id": "humanmade",
+   "name": "HUMAN MADE",
+   "scene": "street",
+   "keyword": "HUMAN MADE ヒューマンメイド",
+   "match": [
+    "human made",
+    "humanmade",
+    "ヒューマンメイド"
+   ],
+   "genres": [
+    "mens",
+    "bag"
+   ],
+   "min_price": 6000
+  },
+  {
+   "id": "sacai",
+   "name": "sacai",
+   "scene": "street",
+   "keyword": "sacai サカイ",
+   "match": [
+    "sacai",
+    "サカイ"
+   ],
+   "genres": [
+    "mens",
+    "womens"
+   ],
+   "min_price": 20000
+  },
+  {
+   "id": "undercover",
+   "name": "UNDERCOVER",
+   "scene": "street",
+   "keyword": "UNDERCOVER アンダーカバー",
+   "match": [
+    "undercover",
+    "アンダーカバー"
+   ],
+   "genres": [
+    "mens",
+    "womens"
+   ],
+   "min_price": 10000
+  },
+  {
+   "id": "needles",
+   "name": "NEEDLES",
+   "scene": "street",
+   "keyword": "NEEDLES ニードルズ",
+   "match": [
+    "needles",
+    "ニードルズ"
+   ],
+   "genres": [
+    "mens"
+   ],
+   "min_price": 8000
+  },
+  {
+   "id": "stussy",
+   "name": "Stüssy",
+   "scene": "street",
+   "keyword": "STUSSY ステューシー",
+   "match": [
+    "stussy",
+    "stüssy",
+    "ステューシー"
+   ],
+   "genres": [
+    "mens"
+   ],
+   "min_price": 5000
+  },
+  {
+   "id": "bape",
+   "name": "A BATHING APE",
+   "scene": "street",
+   "keyword": "A BATHING APE ア ベイシング エイプ",
+   "match": [
+    "bathing ape",
+    "bape",
+    "エイプ"
+   ],
+   "genres": [
+    "mens"
+   ],
+   "min_price": 8000
+  },
+  {
+   "id": "cootie",
+   "name": "COOTIE",
+   "scene": "street",
+   "keyword": "COOTIE PRODUCTIONS クーティー",
+   "match": [
+    "cootie",
+    "クーティー"
+   ],
+   "genres": [
+    "mens"
+   ],
+   "min_price": 8000
+  },
+  {
+   "id": "challenger",
+   "name": "CHALLENGER",
+   "scene": "street",
+   "keyword": "CHALLENGER チャレンジャー ウェア",
+   "match": [
+    "challenger",
+    "チャレンジャー"
+   ],
+   "genres": [
+    "mens"
+   ],
+   "min_price": 8000
+  },
+  {
+   "id": "cdg",
+   "name": "COMME des GARÇONS",
+   "scene": "mode",
+   "keyword": "COMME des GARCONS コムデギャルソン",
+   "match": [
+    "comme des",
+    "コムデギャルソン",
+    "ギャルソン"
+   ],
+   "genres": [
+    "mens",
+    "womens",
+    "bag"
+   ],
+   "min_price": 10000
+  },
+  {
+   "id": "yohji",
+   "name": "Yohji Yamamoto",
+   "scene": "mode",
+   "keyword": "Yohji Yamamoto ヨウジヤマモト",
+   "match": [
+    "yohji",
+    "ヨウジヤマモト"
+   ],
+   "genres": [
+    "mens",
+    "womens"
+   ],
+   "min_price": 20000
+  },
+  {
+   "id": "y3",
+   "name": "Y-3",
+   "scene": "mode",
+   "keyword": "Y-3 ワイスリー",
+   "match": [
+    "y-3",
+    "y3",
+    "ワイスリー"
+   ],
+   "genres": [
+    "mens",
+    "shoes"
+   ],
+   "min_price": 15000
+  },
+  {
+   "id": "auralee",
+   "name": "AURALEE",
+   "scene": "mode",
+   "keyword": "AURALEE オーラリー",
+   "match": [
+    "auralee",
+    "オーラリー"
+   ],
+   "genres": [
+    "mens",
+    "womens"
+   ],
+   "min_price": 15000
+  },
+  {
+   "id": "comoli",
+   "name": "COMOLI",
+   "scene": "mode",
+   "keyword": "COMOLI コモリ",
+   "match": [
+    "comoli",
+    "コモリ"
+   ],
+   "genres": [
+    "mens"
+   ],
+   "min_price": 15000
+  },
+  {
+   "id": "graphpaper",
+   "name": "Graphpaper",
+   "scene": "mode",
+   "keyword": "Graphpaper グラフペーパー",
+   "match": [
+    "graphpaper",
+    "グラフペーパー"
+   ],
+   "genres": [
+    "mens",
+    "womens"
+   ],
+   "min_price": 12000
+  },
+  {
+   "id": "stein",
+   "name": "stein",
+   "scene": "mode",
+   "keyword": "stein シュタイン 服",
+   "match": [
+    "stein",
+    "シュタイン"
+   ],
+   "genres": [
+    "mens"
+   ],
+   "min_price": 15000
+  },
+  {
+   "id": "toga",
+   "name": "TOGA",
+   "scene": "mode",
+   "keyword": "TOGA トーガ",
+   "match": [
+    "toga",
+    "トーガ"
+   ],
+   "genres": [
+    "womens",
+    "mens",
+    "shoes"
+   ],
+   "min_price": 15000
+  },
+  {
+   "id": "kolor",
+   "name": "kolor",
+   "scene": "mode",
+   "keyword": "kolor カラー 服",
+   "match": [
+    "kolor"
+   ],
+   "genres": [
+    "mens",
+    "womens"
+   ],
+   "min_price": 20000
+  },
+  {
+   "id": "attachment",
+   "name": "ATTACHMENT",
+   "scene": "mode",
+   "keyword": "ATTACHMENT アタッチメント",
+   "match": [
+    "attachment",
+    "アタッチメント"
+   ],
+   "genres": [
+    "mens"
+   ],
+   "min_price": 15000
+  },
+  {
+   "id": "nike",
+   "name": "Nike",
+   "scene": "sneaker",
+   "keyword": "NIKE ナイキ スニーカー",
+   "match": [
+    "nike",
+    "ナイキ"
+   ],
+   "genres": [
+    "shoes"
+   ],
+   "min_price": 8000
+  },
+  {
+   "id": "newbalance",
+   "name": "New Balance",
+   "scene": "sneaker",
+   "keyword": "New Balance ニューバランス スニーカー",
+   "match": [
+    "new balance",
+    "ニューバランス"
+   ],
+   "genres": [
+    "shoes"
+   ],
+   "min_price": 8000
+  },
+  {
+   "id": "adidas",
+   "name": "adidas Originals",
+   "scene": "sneaker",
+   "keyword": "adidas Originals アディダス オリジナルス スニーカー",
+   "match": [
+    "adidas",
+    "アディダス"
+   ],
+   "genres": [
+    "shoes"
+   ],
+   "min_price": 7000
+  },
+  {
+   "id": "asics",
+   "name": "ASICS",
+   "scene": "sneaker",
+   "keyword": "ASICS アシックス スニーカー",
+   "match": [
+    "asics",
+    "アシックス"
+   ],
+   "genres": [
+    "shoes"
+   ],
+   "min_price": 7000
+  },
+  {
+   "id": "salomon",
+   "name": "Salomon",
+   "scene": "sneaker",
+   "keyword": "SALOMON サロモン スニーカー",
+   "match": [
+    "salomon",
+    "サロモン"
+   ],
+   "genres": [
+    "shoes"
+   ],
+   "min_price": 10000
+  },
+  {
+   "id": "hoka",
+   "name": "HOKA",
+   "scene": "sneaker",
+   "keyword": "HOKA ONE ONE ホカオネオネ",
+   "match": [
+    "hoka",
+    "ホカ"
+   ],
+   "genres": [
+    "shoes"
+   ],
+   "min_price": 10000
+  },
+  {
+   "id": "on",
+   "name": "On",
+   "scene": "sneaker",
+   "keyword": "On Running オン クラウド スニーカー",
+   "match": [
+    "on running",
+    "オン ",
+    "cloud"
+   ],
+   "news_match": [
+    "on running",
+    "オンランニング",
+    "クラウドモンスター",
+    "クラウドサーファー",
+    "クラウドティルト"
+   ],
+   "genres": [
+    "shoes"
+   ],
+   "min_price": 12000
+  },
+  {
+   "id": "converse",
+   "name": "CONVERSE",
+   "scene": "sneaker",
+   "keyword": "CONVERSE コンバース スニーカー",
+   "match": [
+    "converse",
+    "コンバース"
+   ],
+   "genres": [
+    "shoes"
+   ],
+   "min_price": 6000
+  }
+ ],
+ "ng_words": [
+  "中古",
+  "USED",
+  "ユーズド",
+  "古着",
+  "訳あり",
+  "ジャンク",
+  "難あり",
+  "B級",
+  "ノベルティ",
+  "非売品",
+  "ステッカー",
+  "シール",
+  "空箱",
+  "箱のみ",
+  "紙袋",
+  "ショッパー",
+  "福袋",
+  "レプリカ",
+  "コピー",
+  "風",
+  "互換",
+  "詰め合わせ",
+  "まとめ売り",
+  "セット売り",
+  "買取",
+  "査定",
+  "修理",
+  "クリーニング",
+  "リペア",
+  "カスタム",
+  "ハンガー",
+  "ケース",
+  "フィルム",
+  "キーホルダー",
+  "ガチャ",
+  "シューレース",
+  "靴紐",
+  "インソール",
+  "防水スプレー",
+  "シューキーパー",
+  "お直し",
+  "代行",
+  "予約",
+  "抽選"
+ ],
+ "ng_shop_words": [
+  "買取",
+  "質",
+  "リサイクル",
+  "リユース",
+  "古着"
+ ],
+ "rakuten_pages": 4,
+ "trusted_shops": [
+  "Rakuten Fashion",
+  "LOCOMALL",
+  "ロコンド",
+  "UNITED ARROWS",
+  "BEAMS",
+  "SHIPS",
+  "nano・universe",
+  "nano universe",
+  "URBAN RESEARCH",
+  "JOURNAL STANDARD",
+  "BAYCREW",
+  "EDIFICE",
+  "IENA",
+  "SLOBE",
+  "aranciato",
+  "ARKnets",
+  "1LDK",
+  "GARDEN",
+  "LOFTMAN",
+  "HINOYA",
+  "ALLSPORTS",
+  "メガスポーツ",
+  "SPOPIA",
+  "ゼビオ",
+  "ヒマラヤ",
+  "アルペン",
+  "ムラサキスポーツ",
+  "ABC-MART",
+  "エービーシー・マート",
+  "atmos",
+  "アトモス",
+  "BILLY'S",
+  "ビリーズ",
+  "スニーカーショップ SKIT",
+  "スニークオンラインショップ",
+  "チャップリン",
+  "Chapter World",
+  "asics公式",
+  "アシックス公式",
+  "NIKE公式",
+  "adidas公式",
+  "アディダス公式",
+  "Reebok",
+  "PUMA公式",
+  "New Balance公式",
+  "ニューバランス公式"
+ ],
+ "_trusted_note": "楽天は転売・二次流通が非常に多いため、店名がこの一覧のどれかを含む店だけ採用する。正規取扱が無いブランドは自動的に0件になる。増やすときは実際に店を見て判断すること。"
 }
