@@ -106,6 +106,7 @@ def fetch_store(store, now, max_age_days, per_store):
         src = images[0].get("src", "") if images else ""
         if not src:
             continue
+        src2 = images[1].get("src", "") if len(images) > 1 else ""
         out.append({
             "id": "shopify:%s:%s" % (host, p.get("id")),
             "source": "shopify",
@@ -114,6 +115,7 @@ def fetch_store(store, now, max_age_days, per_store):
             "url": "%s/products/%s" % (domain, p.get("handle", "")),
             "raw_url": "%s/products/%s" % (domain, p.get("handle", "")),
             "image": big_image(src),
+            "image2": big_image(src2) if src2 else "",
             "shop": store.get("shop", host),
             "shop_code": host,
             "genre_id": (p.get("product_type") or "").strip(),

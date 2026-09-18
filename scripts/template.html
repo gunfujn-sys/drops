@@ -79,6 +79,9 @@ a{color:inherit;text-decoration:none}
 .thumb{position:relative;aspect-ratio:4/5;background:var(--soft);overflow:hidden}
 .thumb img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;transition:transform .5s ease}
 .card:hover .thumb img{transform:scale(1.045)}
+.thumb .alt{position:absolute;inset:0;opacity:0;transition:opacity .35s ease}
+@media(hover:hover){.card:hover .thumb .alt[src]{opacity:1}}
+@media(hover:none){.thumb .alt{display:none}}
 .thumb.dead::after{content:"NO IMAGE";position:absolute;inset:0;display:flex;align-items:center;
   justify-content:center;font-size:10px;letter-spacing:.16em;color:#b5b5b5}
 .badge{position:absolute;top:0;left:0;background:var(--accent);color:#fff;font-size:9px;font-weight:800;
@@ -108,6 +111,12 @@ h2.pagetitle span{font-size:10px;color:var(--sub);letter-spacing:.16em;margin-le
 .news .src{flex:0 0 auto;font-size:9.5px;letter-spacing:.06em;color:#fff;background:#bdbdbd;padding:1px 5px;border-radius:2px}
 .news .nt{line-height:1.5}
 
+.related{border-top:1px solid var(--line);padding:22px 0 8px;margin-bottom:26px}
+.related h3{font-size:10px;letter-spacing:.2em;color:var(--sub);margin:0 0 11px;font-weight:700}
+.related .row{display:flex;flex-wrap:wrap;gap:8px}
+.related a{border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:12.5px}
+.related a:hover{border-color:var(--ink);background:var(--soft)}
+.related a small{color:var(--sub);margin-left:6px;font-size:10px}
 footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:10.5px;color:#a0a0a0;line-height:1.9}
 
 /* ---- モバイル ---- */
@@ -150,6 +159,7 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
     <div class="group" id="scenes"><h2>SCENE</h2></div>
     <div class="group" id="brands"><h2>BRAND</h2></div>
     <div class="group" id="cats"><h2>CATEGORY</h2></div>
+    <div class="group" id="prices"><h2>PRICE</h2></div>
     <p class="disclosure">{{DISCLOSURE}}</p>
     <div class="sidefoot">
       <a href="{{HOME}}">新着</a>
@@ -177,6 +187,7 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
     </div>
     <div class="grid" id="grid"></div>
     <button class="more" id="more" hidden>MORE</button>
+    {{RELATED}}
     <footer class="pagefoot">{{DISCLOSURE}} 価格・在庫は取得時点のものです。<br>&copy; {{YEAR}} {{SITENAME}}</footer>
   </main>
 </div>
@@ -188,8 +199,10 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
 (function(){
   var DATA = JSON.parse(document.getElementById('data').textContent);
   var items = DATA.items, brands = DATA.brands, cats = DATA.cats, scenes = DATA.scenes;
+  var prices = DATA.prices || [];
   var PAGE = 48, shown = PAGE;
-  var state = {scene:'all', brand:DATA.fixedBrand||'all', cat:DATA.fixedCat||'all', sort:'new'};
+  var state = {scene:'all', brand:DATA.fixedBrand||'all', cat:DATA.fixedCat||'all',
+               price:'all', sort:'new'};
 
   // URLの ?b= ?s= ?c= ?sort= で、開いた瞬間の絞り込みを決める。
   // 例) ?b=nike  … ナイキだけが並んだ状態で開く（SNSの投稿ごとに貼り分ける用途）
@@ -198,6 +211,7 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
     var ok = {
       b: brands.map(function(x){return x.id;}),
       c: cats.map(function(x){return x.id;}),
+      p: prices.map(function(x){return x.id;}),
       s: scenes.map(function(x){return x.id;}),
       sort: ['new','low','high']
     };
@@ -207,6 +221,7 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
     }
     if(!DATA.fixedBrand) { take('b','brand'); take('s','scene'); }
     if(!DATA.fixedCat) take('c','cat');
+    take('p','price');
     take('sort','sort');
     // ブランド指定があればシーンは自動で合わせる
     if(state.brand !== 'all'){
@@ -222,6 +237,7 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
     if(state.scene !== 'all') q.set('s', state.scene);
     if(state.brand !== 'all') q.set('b', state.brand);
     if(state.cat   !== 'all') q.set('c', state.cat);
+    if(state.price !== 'all') q.set('p', state.price);
     if(state.sort  !== 'new') q.set('sort', state.sort);
     var qs = q.toString();
     history.replaceState(null, '', qs ? ('?' + qs) : location.pathname);
@@ -257,6 +273,14 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
       c.appendChild(chip('ALL','all','cat'));
       cats.forEach(function(x){ c.appendChild(chip(x.label,x.id,'cat')); });
     }
+    var pb = document.getElementById('prices');
+    if(pb){
+      if(!prices.length){ pb.remove(); }
+      else {
+        pb.appendChild(chip('ALL','all','price'));
+        prices.forEach(function(x){ pb.appendChild(chip(x.label,x.id,'price')); });
+      }
+    }
     renderBrandChips();
   }
 
@@ -284,6 +308,14 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
       if(state.scene!=='all' && it.s!==state.scene) return false;
       if(state.brand!=='all' && it.b!==state.brand) return false;
       if(state.cat!=='all' && it.c!==state.cat) return false;
+      if(state.price!=='all'){
+        var r = null;
+        for(var i=0;i<prices.length;i++){ if(prices[i].id===state.price){ r=prices[i]; break; } }
+        if(r){
+          if(r.min!=null && it.p < r.min) return false;
+          if(r.max!=null && it.p >= r.max) return false;
+        }
+      }
       return true;
     });
     if(state.sort==='low') out.sort(function(a,b){return a.p-b.p;});
@@ -296,7 +328,8 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
   function render(){
     var picks = document.getElementById('picks');
     if(picks){
-      var plain = (state.scene==='all' && state.brand==='all' && state.cat==='all');
+      var plain = (state.scene==='all' && state.brand==='all' && state.cat==='all'
+                   && state.price==='all');
       picks.hidden = !plain;
     }
     var list = filtered();
@@ -310,7 +343,9 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
       return '<a class="card" href="'+it.u+'" target="_blank" rel="nofollow sponsored noopener">'
         + '<div class="thumb">' + (it.n ? '<span class="badge">NEW</span>' : '')
         + '<img src="'+it.i+'" alt="'+it.t.replace(/"/g,'&quot;')+'" loading="lazy" decoding="async"'
-        + ' onerror="this.closest(\'.thumb\').classList.add(\'dead\');this.remove()"></div>'
+        + ' onerror="this.closest(\'.thumb\').classList.add(\'dead\');this.remove()">'
+        + (it.i2 ? '<img class="alt" data-src="'+it.i2+'" alt="" decoding="async">' : '')
+        + '</div>'
         + '<div class="info"><div class="bname">'+it.bn+'</div>'
         + '<div class="tname">'+it.t+'</div>'
         + '<div class="price">'+yen(it.p)+'</div>'
@@ -318,6 +353,14 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
     }).join('');
     more.hidden = list.length <= shown;
   }
+
+  // 2枚目の画像は、マウスが乗ったときに初めて読み込む（スマホでは読まない）
+  document.addEventListener('mouseover', function(e){
+    var card = e.target.closest && e.target.closest('.card');
+    if(!card) return;
+    var alt = card.querySelector('.thumb .alt');
+    if(alt && !alt.getAttribute('src')) alt.setAttribute('src', alt.dataset.src);
+  });
 
   more.addEventListener('click', function(){ shown += PAGE; render(); });
   document.querySelectorAll('.sort button').forEach(function(n){

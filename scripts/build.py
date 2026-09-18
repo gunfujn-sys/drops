@@ -72,6 +72,7 @@ def main():
         cat_counts[cid] = cat_counts.get(cid, 0) + 1
         items.append({
             "i": it.get("image", ""),
+            "i2": it.get("image2", ""),
             "t": esc(it.get("title", "")),
             "p": int(it.get("price") or 0),
             "u": it.get("url", ""),
@@ -184,6 +185,7 @@ def main():
             "brands": brand_list if brand_list is not None else brands,
             "cats": cat_list if cat_list is not None else cats,
             "scenes": scenes,
+            "prices": site.get("price_ranges") or [],
             "fixedBrand": fixed_brand, "fixedCat": fixed_cat,
         }, ensure_ascii=False, separators=(",", ":"))
 
@@ -203,11 +205,14 @@ def main():
 
     def card_html(it):
         return ('<a class="card" href="%s" target="_blank" rel="nofollow sponsored noopener">'
-                '<div class="thumb">%s<img src="%s" alt="%s" loading="lazy" decoding="async"></div>'
+                '<div class="thumb">%s<img src="%s" alt="%s" loading="lazy" decoding="async">%s</div>'
                 '<div class="info"><div class="bname">%s</div><div class="tname">%s</div>'
                 '<div class="price">¥%s</div><div class="shop">%s</div></div></a>'
                 % (it["u"], '<span class="badge">NEW</span>' if it["n"] else "",
-                   it["i"], it["t"], it["bn"], it["t"], format(it["p"], ","), it["sh"]))
+                   it["i"], it["t"],
+                   ('<img class="alt" data-src="%s" alt="" decoding="async">' % it["i2"])
+                   if it.get("i2") else "",
+                   it["bn"], it["t"], format(it["p"], ","), it["sh"]))
 
     def news_block(subset, label="ブランド関連の最新記事"):
         if not subset:
@@ -269,6 +274,17 @@ def main():
     })
     write("index.html", render(tpl, m))
 
+    def related_block(b):
+        same = [x for x in brands if x["scene"] == b["scene"] and x["id"] != b["id"]]
+        if not same:
+            return ""
+        same.sort(key=lambda x: -x["count"])
+        rows = "".join('<a href="%s.html">%s<small>%d</small></a>' % (x["id"], esc(x["name"]), x["count"])
+                       for x in same[:12])
+        label = dict(SCENES).get(b["scene"], "")
+        return ('<section class="related"><h3>%s の他のブランド</h3><div class="row">%s</div></section>'
+                % (esc(label), rows))
+
     # ---- ブランド別 ----
     for b in brands:
         subset = [x for x in items if x["b"] == b["id"]]
@@ -286,6 +302,7 @@ def main():
             "DATA": payload(fixed_brand=b["id"], subset=subset),
             "JSONLD": jsonld(subset, title, ""),
             "OGIMAGE": subset[0]["i"] if subset else og,
+            "RELATED": related_block(b),
         })
         write("b/%s.html" % b["id"], render(tpl, mb))
 

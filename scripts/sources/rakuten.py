@@ -95,9 +95,12 @@ def search(brand, genre_id, app_id, affiliate_id, ng_keyword="", pages=2,
         items = data.get("Items") or []
         for it in items:
             imgs = it.get("mediumImageUrls") or it.get("smallImageUrls") or []
-            first = imgs[0] if imgs else ""
-            if isinstance(first, dict):
-                first = first.get("imageUrl", "")
+
+            def _url(x):
+                return x.get("imageUrl", "") if isinstance(x, dict) else x
+
+            first = _url(imgs[0]) if imgs else ""
+            second = _url(imgs[1]) if len(imgs) > 1 else ""
             out.append({
                 "id": "rakuten:" + it.get("itemCode", ""),
                 "source": "rakuten",
@@ -106,6 +109,7 @@ def search(brand, genre_id, app_id, affiliate_id, ng_keyword="", pages=2,
                 "url": it.get("affiliateUrl") or it.get("itemUrl", ""),
                 "raw_url": it.get("itemUrl", ""),
                 "image": big_image(first),
+                "image2": big_image(second) if second else "",
                 "shop": it.get("shopName", ""),
                 "shop_code": it.get("shopCode", ""),
                 "genre_id": str(it.get("genreId", "")),
