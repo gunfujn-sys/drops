@@ -171,6 +171,42 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
   var items = DATA.items, brands = DATA.brands, cats = DATA.cats, scenes = DATA.scenes;
   var PAGE = 48, shown = PAGE;
   var state = {scene:'all', brand:DATA.fixedBrand||'all', cat:DATA.fixedCat||'all', sort:'new'};
+
+  // URLの ?b= ?s= ?c= ?sort= で、開いた瞬間の絞り込みを決める。
+  // 例) ?b=nike  … ナイキだけが並んだ状態で開く（SNSの投稿ごとに貼り分ける用途）
+  (function(){
+    var q = new URLSearchParams(location.search);
+    var ok = {
+      b: brands.map(function(x){return x.id;}),
+      c: cats.map(function(x){return x.id;}),
+      s: scenes.map(function(x){return x.id;}),
+      sort: ['new','low','high']
+    };
+    function take(key, field){
+      var v = (q.get(key)||'').trim().toLowerCase();
+      if(v && ok[key].indexOf(v) >= 0) state[field] = v;
+    }
+    if(!DATA.fixedBrand) { take('b','brand'); take('s','scene'); }
+    if(!DATA.fixedCat) take('c','cat');
+    take('sort','sort');
+    // ブランド指定があればシーンは自動で合わせる
+    if(state.brand !== 'all'){
+      var hit = brands.filter(function(x){ return x.id === state.brand; })[0];
+      if(hit) state.scene = hit.scene;
+    }
+  })();
+
+  // 絞り込みを変えたらURLにも反映する（そのまま人に送れるように）
+  function syncUrl(){
+    if(DATA.fixedBrand || DATA.fixedCat) return;
+    var q = new URLSearchParams();
+    if(state.scene !== 'all') q.set('s', state.scene);
+    if(state.brand !== 'all') q.set('b', state.brand);
+    if(state.cat   !== 'all') q.set('c', state.cat);
+    if(state.sort  !== 'new') q.set('sort', state.sort);
+    var qs = q.toString();
+    history.replaceState(null, '', qs ? ('?' + qs) : location.pathname);
+  }
   var grid = document.getElementById('grid'), more = document.getElementById('more');
 
   function chip(label, val, kind, count){
@@ -182,7 +218,7 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
     b.addEventListener('click', function(){
       state[kind] = val;
       if(kind==='scene'){ state.brand='all'; }
-      shown = PAGE; render(); syncChips();
+      shown = PAGE; render(); syncChips(); syncUrl();
       document.body.classList.remove('navopen');
       window.scrollTo({top:0});
     });
@@ -261,7 +297,7 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
 
   more.addEventListener('click', function(){ shown += PAGE; render(); });
   document.querySelectorAll('.sort button').forEach(function(n){
-    n.addEventListener('click', function(){ state.sort = n.dataset.sort; shown = PAGE; render(); syncChips(); });
+    n.addEventListener('click', function(){ state.sort = n.dataset.sort; shown = PAGE; render(); syncChips(); syncUrl(); });
   });
   var sceneRow = document.getElementById('scenes');
   if(sceneRow) sceneRow.addEventListener('click', function(){ renderBrandChips(); syncChips(); });
