@@ -85,6 +85,8 @@ def main():
             "a": 1 if lib.is_paid(it) else 0,
             "k": it.get("id", ""),
             "f": it.get("first_seen", ""),
+            "rv": int(it.get("reviews") or 0),
+            "ra": str(it.get("rating") or ""),
         })
 
     # 報酬の出ないブランドは各ブランドの高額な上位だけを新着・カテゴリに載せる
@@ -123,6 +125,10 @@ def main():
                     break
         if len(picks) >= int(site.get("featured_count", 8)):
             break
+
+    # レビューの多い順。楽天のレビュー数を根拠にする（無い商品は対象外）
+    ranked = sorted([x for x in items if x["rv"] >= int(site.get("ranking_min_reviews", 3))],
+                    key=lambda x: (-x["rv"], -x["p"]))[:int(site.get("ranking_count", 8))]
 
     # トップは新着ぶんだけ載せる（全件はブランド別ページに出る）
     top_items = [x for x in browse if x["k"] not in used][:site.get("index_max_items", 800)]
@@ -188,6 +194,8 @@ def main():
             y = dict(x)
             y.pop("k", None)
             y.pop("f", None)
+            y.pop("rv", None)
+            y.pop("ra", None)
             out.append(y)
         return out
 
@@ -225,6 +233,15 @@ def main():
                    ('<img class="alt" data-src="%s" alt="" decoding="async">' % it["i2"])
                    if it.get("i2") else "",
                    it["bn"], it["t"], format(it["p"], ","), it["sh"]))
+
+    def rank_html(it, n):
+        return ('<a class="card" href="%s" target="_blank" rel="nofollow sponsored noopener">'
+                '<div class="thumb"><img src="%s" alt="%s" loading="lazy" decoding="async">'
+                '<span class="rank">%d</span></div>'
+                '<div class="info"><div class="bname">%s</div><div class="tname">%s</div>'
+                '<div class="price">¥%s</div><div class="rv">レビュー%d件 ★%s</div></div></a>'
+                % (it["u"], it["i"], it["t"], n, it["bn"], it["t"],
+                   format(it["p"], ","), it["rv"], it["ra"]))
 
     def news_block(subset, label="ブランド関連の最新記事"):
         if not subset:
@@ -280,6 +297,8 @@ def main():
         "HEADING": "",
         "INTRO": "",
         "NEWS": "",
+        "RANKING": ('<section class="strip"><h3>レビューが多い順</h3><div class="row grid">%s</div></section>'
+                    % "".join(rank_html(x, i) for i, x in enumerate(ranked, 1))) if ranked else "",
         "PICKS": ('<section class="picks" id="picks"><h3>PICKS</h3>'
                   '<p class="lead">人気ブランドの新着から</p><div class="row grid">%s</div></section>'
                   '<div class="sectionhead">NEW DROP 新着</div>'
@@ -313,6 +332,7 @@ def main():
             "INTRO": ('<p class="intro">%s</p>' % esc(copy.get(b["id"], ""))) if copy.get(b["id"]) else "",
             "NEWS": news_block([n for n in news if b["id"] in n.get("brands", [])][:6],
                                "%s 関連の最新記事" % b["name"]),
+            "RANKING": "",
             "PICKS": "",
             "DATA": payload(fixed_brand=b["id"], subset=subset),
             "JSONLD": jsonld(subset, title, ""),
@@ -333,6 +353,7 @@ def main():
             "HEADING": '<h2 class="pagetitle">%s<span>NEW ARRIVALS</span></h2>' % esc(c["label"]),
             "INTRO": "",
             "NEWS": "",
+            "RANKING": "",
             "PICKS": "",
             "DATA": payload(fixed_cat=c["id"], subset=subset),
             "JSONLD": jsonld(subset, title, ""),
@@ -360,6 +381,7 @@ def main():
             "INTRO": '<p class="intro">各ブランドの高額なアイテムだけを集めた棚です。'
                      '新着かどうかに関わらず、在庫がある限り掲載しています。</p>',
             "NEWS": "",
+            "RANKING": "",
             "PICKS": "",
             "DATA": payload(subset=sel, brand_list=sel_brands, cat_list=sel_catlist),
             "JSONLD": jsonld(sel, "SELECT", ""),
@@ -389,7 +411,8 @@ def main():
             "HEADING": '<h2 class="pagetitle">ARCHIVE<span>%d日以上前のもの</span></h2>' % arch_days,
             "INTRO": '<p class="intro">新着の期間を過ぎたアイテムです。'
                      '毎回の取得で在庫が確認できたものだけを残しているので、いま買えるものだけが並びます。</p>',
-            "NEWS": "", "PICKS": "",
+            "NEWS": "", "RANKING": "",
+            "PICKS": "",
             "DATA": payload(subset=arch, brand_list=ar_brands, cat_list=ar_catlist),
             "JSONLD": jsonld(arch, "ARCHIVE", ""),
             "OGIMAGE": arch[0]["i"],

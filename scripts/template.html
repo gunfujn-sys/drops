@@ -78,6 +78,21 @@ a{color:inherit;text-decoration:none}
 .picks .tname{-webkit-line-clamp:1;min-height:0}
 .picks .info{padding:9px 2px 0}
 .picks .price{font-size:13px;margin-top:4px}
+.strip{margin:0 0 30px}
+.strip h3{font-size:10px;letter-spacing:.2em;color:var(--sub);margin:0 0 12px;font-weight:700}
+.strip .row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:20px 14px}
+.strip .thumb{aspect-ratio:1/1}
+.strip .tname{-webkit-line-clamp:1;min-height:0;font-size:11.5px}
+.strip .info{padding:8px 2px 0}
+.strip .price{font-size:12px;margin-top:3px}
+.strip .bname{font-size:9px;margin-bottom:2px}
+.strip .shop{display:none}
+.rank{position:absolute;left:0;bottom:0;background:var(--ink);color:#fff;font-size:11px;
+  font-weight:800;padding:3px 8px;letter-spacing:.04em}
+.rv{font-size:10px;color:#a5a5a5;margin-top:2px}
+@media(max-width:900px){.strip .row{grid-template-columns:repeat(3,1fr);gap:14px 8px}}
+@media(max-width:480px){.strip .row{grid-template-columns:repeat(2,1fr)}}
+
 .sectionhead{font-size:10px;letter-spacing:.2em;color:var(--sub);font-weight:700;margin:0 0 10px}
 @media(max-width:900px){
   .picks .row{grid-template-columns:repeat(2,1fr);gap:20px 10px}
@@ -189,6 +204,10 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
     {{INTRO}}
     {{NEWS}}
     {{PICKS}}
+    <section class="strip" id="recent" hidden>
+      <h3>最近見た商品</h3><div class="row grid"></div>
+    </section>
+    {{RANKING}}
     <div class="bar">
       <span class="count"><b id="count">0</b> items</span>
       <div class="sort">
@@ -352,7 +371,7 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
       more.hidden = true; return;
     }
     grid.innerHTML = slice.map(function(it){
-      return '<a class="card" href="'+it.u+'" target="_blank" rel="nofollow sponsored noopener">'
+      return '<a class="card" data-k="1" href="'+it.u+'" target="_blank" rel="nofollow sponsored noopener">'
         + '<div class="thumb">' + (it.n ? '<span class="badge">NEW</span>' : '')
         + '<img src="'+it.i+'" alt="'+it.t.replace(/"/g,'&quot;')+'" loading="lazy" decoding="async"'
         + ' onerror="this.closest(\'.thumb\').classList.add(\'dead\');this.remove()">'
@@ -374,7 +393,19 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
     if(alt && !alt.getAttribute('src')) alt.setAttribute('src', alt.dataset.src);
   });
 
-  more.addEventListener('click', function(){ shown += PAGE; render(); });
+  // 最初の数回はスクロールで自動読み込み、その後は MORE ボタンに切り替える
+  var AUTO = 2, autoUsed = 0, loading = false;
+  function maybeAuto(){
+    if(loading || autoUsed >= AUTO || more.hidden) return;
+    var r = more.getBoundingClientRect();
+    if(r.top < window.innerHeight + 400){
+      loading = true; autoUsed++; shown += PAGE; render();
+      setTimeout(function(){ loading = false; }, 120);
+    }
+  }
+  window.addEventListener('scroll', maybeAuto, {passive:true});
+
+  more.addEventListener('click', function(){ shown += PAGE; render(); autoUsed = 0; });
   document.querySelectorAll('.sort button').forEach(function(n){
     n.addEventListener('click', function(){ state.sort = n.dataset.sort; shown = PAGE; render(); syncChips(); syncUrl(); });
   });
@@ -388,7 +419,41 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
     }
   });
 
-  buildChips(); render(); syncChips();
+  // 最近見た商品。保存先はその人のブラウザ内だけで、こちらには送られない
+  var RKEY = 'drops.recent';
+  function readRecent(){
+    try { return JSON.parse(localStorage.getItem(RKEY) || '[]'); } catch(e){ return []; }
+  }
+  function pushRecent(it){
+    try {
+      var a = readRecent().filter(function(x){ return x.u !== it.u; });
+      a.unshift({i:it.i, t:it.t, p:it.p, u:it.u, bn:it.bn});
+      localStorage.setItem(RKEY, JSON.stringify(a.slice(0, 12)));
+    } catch(e){}
+  }
+  document.addEventListener('click', function(e){
+    var card = e.target.closest && e.target.closest('.card');
+    if(!card || !card.dataset.k) return;
+    var it = null;
+    for(var i=0;i<items.length;i++){ if(items[i].u === card.href){ it = items[i]; break; } }
+    if(it) pushRecent(it);
+  });
+  function renderRecent(){
+    var box = document.getElementById('recent');
+    if(!box) return;
+    var a = readRecent();
+    if(a.length < 2){ box.hidden = true; return; }
+    box.querySelector('.row').innerHTML = a.map(function(it){
+      return '<a class="card" data-k="1" href="'+it.u+'" target="_blank" rel="nofollow sponsored noopener">'
+        + '<div class="thumb"><img src="'+it.i+'" alt="" loading="lazy" decoding="async"></div>'
+        + '<div class="info"><div class="bname">'+it.bn+'</div>'
+        + '<div class="tname">'+it.t+'</div>'
+        + '<div class="price">¥'+it.p.toLocaleString('ja-JP')+'</div></div></a>';
+    }).join('');
+    box.hidden = false;
+  }
+
+  buildChips(); render(); syncChips(); renderRecent();
 })();
 </script>
 {{JSONLD}}
