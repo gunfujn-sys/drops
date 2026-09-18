@@ -58,7 +58,8 @@ def main():
     brand_by_id = dict((b["id"], b) for b in conf["brands"])
     cutoff = (lib.now_jst() - lib.timedelta(days=site["new_days"])).strftime("%Y-%m-%d")
     raw.sort(key=lambda x: (x.get("first_seen", ""), x.get("id", "")), reverse=True)
-    raw = lib.interleave(raw)  # 同じ日の中で1ブランドが連続しないようにする
+    # 同じ日の中で、ブランドが連続しないように並べつつ、報酬の出るリンクを厚めに混ぜる
+    raw = lib.interleave_weighted(raw, ratio=int(site.get("affiliate_boost", 2)))
 
     items = []
     counts = {}

@@ -165,6 +165,59 @@ def dedupe(items):
     return list(best.values())
 
 
+def is_paid(item):
+    """報酬が発生するリンクか（楽天アフィリエイトURLかどうか）。"""
+    return "hb.afl.rakuten.co.jp" in (item.get("url") or "")
+
+
+def interleave_weighted(items, ratio=2, key=lambda x: x.get("brand")):
+    """新着順を保ったまま、同じ初出日の中で『報酬ありを ratio 件：報酬なし 1 件』で混ぜる。
+    ratio=1 なら従来どおり均等。報酬なしを消すのではなく、出る位置を下げるだけ。"""
+    out = []
+    bucket = []
+    current = None
+
+    def rr(rows):
+        """ブランドが連続しないよう順番に取り出す。"""
+        groups, order, res = {}, [], []
+        for r in rows:
+            k = key(r)
+            if k not in groups:
+                groups[k] = []
+                order.append(k)
+            groups[k].append(r)
+        while order:
+            for k in list(order):
+                if groups[k]:
+                    res.append(groups[k].pop(0))
+                if not groups[k]:
+                    order.remove(k)
+        return res
+
+    def flush(rows):
+        paid = rr([r for r in rows if is_paid(r)])
+        free = rr([r for r in rows if not is_paid(r)])
+        i = j = 0
+        while i < len(paid) or j < len(free):
+            for _ in range(ratio):
+                if i < len(paid):
+                    out.append(paid[i]); i += 1
+            if j < len(free):
+                out.append(free[j]); j += 1
+            elif i >= len(paid):
+                break
+
+    for it in items:
+        day = it.get("first_seen", "")
+        if day != current:
+            flush(bucket)
+            bucket = []
+            current = day
+        bucket.append(it)
+    flush(bucket)
+    return out
+
+
 def interleave(items, key=lambda x: x.get("brand")):
     """同じ初出日の中でブランドを順番に回して、1ブランドの塊が続かないようにする。"""
     out = []
