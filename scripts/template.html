@@ -35,6 +35,14 @@ a{color:inherit;text-decoration:none}
 .mark p{margin:5px 0 0;font-size:10.5px;letter-spacing:.1em;color:var(--sub)}
 .disclosure{margin:24px 0 0;padding-top:14px;border-top:1px solid var(--line);
   font-size:9.5px;line-height:1.65;color:#9a9a9a}
+.tabs{display:grid;gap:2px;margin:18px 0 4px}
+.tabs a{display:block;padding:11px 12px;border-left:3px solid transparent;
+  font-size:13px;font-weight:800;letter-spacing:.08em;line-height:1.3}
+.tabs a span{display:block;font-size:10px;font-weight:400;letter-spacing:.02em;color:#a5a5a5;margin-top:3px}
+.tabs a:hover{background:var(--soft)}
+.tabs a.on{background:var(--ink);color:#fff;border-left-color:var(--accent)}
+.tabs a.on span{color:#b9b9b9}
+
 .group{margin-top:22px}
 .group h2{font-size:9.5px;letter-spacing:.2em;color:#a0a0a0;margin:0 0 7px;font-weight:700}
 .chip{display:flex;width:100%;align-items:baseline;gap:6px;border:none;background:none;cursor:pointer;
@@ -134,12 +142,17 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
   .topbar h1{font-size:18px;letter-spacing:.22em;margin:0;font-weight:800}
   .topbar p{margin:0;font-size:9.5px;letter-spacing:.08em;color:var(--sub)}
   .topbar .d{width:100%;font-size:9px;color:#9a9a9a;margin-top:2px}
+  .toptabs{display:flex;width:100%;gap:6px;margin-top:9px}
+  .toptabs a{flex:1;text-align:center;border:1px solid var(--line);padding:9px 4px;
+    font-size:11px;font-weight:800;letter-spacing:.06em}
+  .toptabs a.on{background:var(--ink);color:#fff;border-color:var(--ink)}
   .main{padding:14px 16px 0}
   .grid{grid-template-columns:repeat(2,1fr);gap:26px 12px}
   .tname{font-size:12px;min-height:2.9em}
   .price{font-size:13px}
 }
 @media(min-width:901px){.topbar{display:none}}
+.toptabs{display:none}
 @media(max-width:400px){.grid{gap:22px 10px}}
 </style>
 </head>
@@ -148,6 +161,7 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
 <div class="topbar">
   <h1><a href="{{HOME}}">{{SITENAME}}</a></h1><p>{{TAGLINE}}</p>
   <span class="d">{{DISCLOSURE}}</span>
+  <nav class="toptabs">{{TABSFLAT}}</nav>
 </div>
 
 <div class="layout">
@@ -156,15 +170,13 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
       <h1><a href="{{HOME}}">{{SITENAME}}</a></h1>
       <p>{{TAGLINE}}</p>
     </div>
+    {{TABS}}
     <div class="group" id="scenes"><h2>SCENE</h2></div>
     <div class="group" id="brands"><h2>BRAND</h2></div>
     <div class="group" id="cats"><h2>CATEGORY</h2></div>
     <div class="group" id="prices"><h2>PRICE</h2></div>
     <p class="disclosure">{{DISCLOSURE}}</p>
     <div class="sidefoot">
-      <a href="{{HOME}}">新着</a>
-      <a href="{{SELECTHREF}}">SELECT 高額の棚</a>
-      <a href="{{ARCHIVEHREF}}">ARCHIVE 過去の掲載</a>
       <a href="{{NEWSHREF}}">NEWS ニュース</a>
       <a href="{{ABOUTHREF}}">運営者情報</a>
       <a href="{{PRIVACYHREF}}">プライバシーポリシー</a>

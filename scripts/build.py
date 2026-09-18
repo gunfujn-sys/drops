@@ -159,10 +159,22 @@ def main():
     def link(prefix, path):
         return prefix + path
 
+    TABDEF = [("index.html", "NEW DROP", "新着"),
+              ("select.html", "SELECT", "高額の棚"),
+              ("archive.html", "ARCHIVE", "過去の掲載")]
+
+    def tabs(prefix, active=""):
+        out = []
+        flat = []
+        for path, big, sub in TABDEF:
+            on = ' class="on"' if path == active else ""
+            out.append('<a href="%s"%s>%s<span>%s</span></a>' % (link(prefix, path), on, big, sub))
+            flat.append('<a href="%s"%s>%s</a>' % (link(prefix, path), on, big))
+        return ('<nav class="tabs">%s</nav>' % "".join(out)), "".join(flat)
+
     def footnav(prefix):
-        pairs = [("新着", "index.html"), ("SELECT", "select.html"), ("ARCHIVE", "archive.html"),
-                 ("NEWS", "news.html"),
-                 ("運営者情報", "about.html"),
+        pairs = [("NEW DROP", "index.html"), ("SELECT", "select.html"), ("ARCHIVE", "archive.html"),
+                 ("NEWS", "news.html"), ("運営者情報", "about.html"),
                  ("プライバシーポリシー", "privacy.html")]
         return " ".join('<a href="%s">%s</a>' % (link(prefix, p), t) for t, p in pairs)
 
@@ -229,8 +241,11 @@ def main():
         return ('<section class="news"><h3>NEWS<span>%s</span></h3><ul>%s</ul></section>'
                 % (esc(label), "".join(li)))
 
-    def common(prefix):
+    def common(prefix, active=""):
+        tab_html, tab_flat = tabs(prefix, active)
         return {
+            "TABS": tab_html,
+            "TABSFLAT": tab_flat,
             "SITENAME": esc(site["title"]),
             "TAGLINE": esc(site["tagline"]),
             "UPDATED": esc(updated),
@@ -257,7 +272,7 @@ def main():
         urls.append(base + "/" + relpath if base else "/" + relpath)
 
     # ---- トップ ----
-    m = common("")
+    m = common("", "index.html")
     m.update({
         "TITLE": esc("%s｜%s" % (site["title"], site["tagline"])),
         "DESC": esc(site["description"]),
@@ -267,7 +282,7 @@ def main():
         "NEWS": "",
         "PICKS": ('<section class="picks" id="picks"><h3>PICKS</h3>'
                   '<p class="lead">人気ブランドの新着から</p><div class="row grid">%s</div></section>'
-                  '<div class="sectionhead">NEW ARRIVALS 新着</div>'
+                  '<div class="sectionhead">NEW DROP 新着</div>'
                   % "".join(card_html(x) for x in picks)) if picks else "",
         "DATA": payload(subset=top_items, brand_list=top_brands, cat_list=top_cat_list),
         "JSONLD": jsonld(top_items, site["title"], base or ""),
@@ -336,7 +351,7 @@ def main():
                        "count": sel_counts.get(b["id"], 0)}
                       for b in conf["brands"] if sel_counts.get(b["id"])]
         sel_catlist = [{"id": c, "label": label} for c, label, _ in lib.CATEGORIES if c in sel_cats]
-        ms = common("")
+        ms = common("", "select.html")
         ms.update({
             "TITLE": esc("SELECT｜%s" % site["title"]),
             "DESC": esc("人気ブランドの中から価格の高い定番・名品だけを集めた常設の棚。%d点。" % len(sel)),
@@ -366,7 +381,7 @@ def main():
                       "count": ar_counts.get(b["id"], 0)}
                      for b in conf["brands"] if ar_counts.get(b["id"])]
         ar_catlist = [{"id": c, "label": label} for c, label, _ in lib.CATEGORIES if c in ar_cats]
-        ma = common("")
+        ma = common("", "archive.html")
         ma.update({
             "TITLE": esc("ARCHIVE｜%s" % site["title"]),
             "DESC": esc("新着からは外れたが、まだ買えるアイテム。%d点。" % len(arch)),
