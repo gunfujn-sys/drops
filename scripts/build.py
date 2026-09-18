@@ -15,7 +15,7 @@ ROOT = lib.ROOT
 SITE = os.path.join(ROOT, "site")
 DB_PATH = os.path.join(ROOT, "data", "items.json")
 
-SCENES = [("street", "STREET"), ("mode", "MODE"), ("sneaker", "SNEAKER")]
+SCENES = [("street", "STREET"), ("mode", "MODE"), ("outdoor", "OUTDOOR"), ("sneaker", "SNEAKER")]
 
 
 def load(name):

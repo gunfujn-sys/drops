@@ -8,6 +8,7 @@
 import json
 import os
 import re
+import statistics
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -36,9 +37,13 @@ def decorate(it, brand):
     return it
 
 
+STATS_PATH = os.path.join(ROOT, "data", "store_stats.json")
+
+
 def from_shopify(brand_by_id, only):
     conf = load("stores.json")
     now = lib.now_jst()
+    stats = lib.load_db(STATS_PATH).get("median", {})
     out = []
     for st in conf["stores"]:
         b = brand_by_id.get(st["brand"])
@@ -48,9 +53,19 @@ def from_shopify(brand_by_id, only):
             print("  %-16s skip（%s建て）" % (b["id"], st.get("currency")))
             continue
         got = shopify.fetch_store(st, now, conf["max_age_days"], conf["per_store"])
-        for it in got:
-            out.append(decorate(it, b))
+        if got:
+            med = statistics.median([x["price"] for x in got])
+            prev = stats.get(st["domain"])
+            # 通貨が切り替わると価格が一桁以上変わる。前回より大きく下がったら採用しない。
+            if prev and med < prev * 0.2:
+                print("  %-16s 中止：価格が前回の中央値 %d → %d に急落（通貨違いの疑い）"
+                      % (b["id"], prev, med))
+                continue
+            stats[st["domain"]] = int(med)
+            for it in got:
+                out.append(decorate(it, b))
         print("  %-16s %3d件  （公式）" % (b["id"], len(got)))
+    lib.save_db(STATS_PATH, {"median": stats, "updated_at": lib.now_jst().strftime("%Y-%m-%d %H:%M")})
     return out
 
 

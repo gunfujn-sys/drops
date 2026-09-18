@@ -437,6 +437,118 @@
     "shoes"
    ],
    "min_price": 6000
+  },
+  {
+   "id": "nanamica",
+   "name": "nanamica",
+   "scene": "mode",
+   "keyword": "nanamica ナナミカ",
+   "match": [
+    "nanamica",
+    "ナナミカ"
+   ],
+   "min_price": 12000
+  },
+  {
+   "id": "orslow",
+   "name": "orSlow",
+   "scene": "mode",
+   "keyword": "orSlow オアスロウ",
+   "match": [
+    "orslow",
+    "オアスロウ"
+   ],
+   "min_price": 12000
+  },
+  {
+   "id": "engineeredgarments",
+   "name": "ENGINEERED GARMENTS",
+   "scene": "mode",
+   "keyword": "ENGINEERED GARMENTS エンジニアドガーメンツ",
+   "match": [
+    "engineered garments",
+    "エンジニアドガーメンツ"
+   ],
+   "min_price": 12000
+  },
+  {
+   "id": "thenorthface",
+   "name": "THE NORTH FACE",
+   "scene": "outdoor",
+   "keyword": "THE NORTH FACE ノースフェイス",
+   "match": [
+    "north face",
+    "ノースフェイス"
+   ],
+   "min_price": 8000
+  },
+  {
+   "id": "andwander",
+   "name": "and wander",
+   "scene": "outdoor",
+   "keyword": "and wander アンドワンダー",
+   "match": [
+    "and wander",
+    "アンドワンダー"
+   ],
+   "min_price": 10000
+  },
+  {
+   "id": "arcteryx",
+   "name": "ARC'TERYX",
+   "scene": "outdoor",
+   "keyword": "ARC'TERYX アークテリクス",
+   "match": [
+    "arc'teryx",
+    "arcteryx",
+    "アークテリクス"
+   ],
+   "min_price": 15000
+  },
+  {
+   "id": "gramicci",
+   "name": "GRAMICCI",
+   "scene": "outdoor",
+   "keyword": "GRAMICCI グラミチ",
+   "match": [
+    "gramicci",
+    "グラミチ"
+   ],
+   "min_price": 6000
+  },
+  {
+   "id": "veja",
+   "name": "VEJA",
+   "scene": "sneaker",
+   "keyword": "VEJA ヴェジャ スニーカー",
+   "match": [
+    "veja",
+    "ヴェジャ"
+   ],
+   "min_price": 10000
+  },
+  {
+   "id": "vans",
+   "name": "VANS",
+   "scene": "sneaker",
+   "keyword": "VANS ヴァンズ スニーカー",
+   "match": [
+    "vans",
+    "ヴァンズ",
+    "バンズ"
+   ],
+   "min_price": 6000
+  },
+  {
+   "id": "reebok",
+   "name": "Reebok",
+   "scene": "sneaker",
+   "keyword": "Reebok リーボック スニーカー",
+   "match": [
+    "reebok",
+    "リーボック"
+   ],
+   "min_price": 6000
   }
  ],
  "ng_words": [
@@ -492,54 +604,57 @@
   "リユース",
   "古着"
  ],
- "rakuten_pages": 4,
+ "rakuten_pages": 8,
  "trusted_shops": [
-  "Rakuten Fashion",
-  "LOCOMALL",
-  "ロコンド",
-  "UNITED ARROWS",
-  "BEAMS",
-  "SHIPS",
-  "nano・universe",
-  "nano universe",
-  "URBAN RESEARCH",
-  "JOURNAL STANDARD",
-  "BAYCREW",
-  "EDIFICE",
-  "IENA",
-  "SLOBE",
-  "aranciato",
-  "ARKnets",
   "1LDK",
-  "GARDEN",
-  "LOFTMAN",
-  "HINOYA",
-  "ALLSPORTS",
-  "メガスポーツ",
-  "SPOPIA",
-  "ゼビオ",
-  "ヒマラヤ",
-  "アルペン",
-  "ムラサキスポーツ",
   "ABC-MART",
-  "エービーシー・マート",
-  "atmos",
-  "アトモス",
+  "ABC-MART SPORTS",
+  "ALLSPORTS",
+  "ARKnets",
+  "BAYCREW",
+  "BEAMS",
   "BILLY'S",
-  "ビリーズ",
+  "Chapter World",
+  "EDIFICE",
+  "HINOYA",
+  "IENA",
+  "JOURNAL STANDARD",
+  "LOCOMALL",
+  "LOFTMAN",
+  "NIKE公式",
+  "New Balance公式",
+  "PUMA公式",
+  "Rakuten Fashion",
+  "Reebok",
+  "Reebok Online Shop",
+  "SHIPS",
+  "SLOBE",
+  "SPOPIA",
+  "THE NORTH FACE",
+  "UNITED ARROWS",
+  "URBAN RESEARCH",
+  "VANS STORE",
+  "adidas公式",
+  "aranciato",
+  "asics公式",
+  "atmos",
+  "nano universe",
+  "nano・universe",
+  "アシックス公式",
+  "アディダス公式",
+  "アトモス",
+  "アルペン",
+  "エービーシー・マート",
   "スニーカーショップ SKIT",
   "スニークオンラインショップ",
+  "ゼビオ",
   "チャップリン",
-  "Chapter World",
-  "asics公式",
-  "アシックス公式",
-  "NIKE公式",
-  "adidas公式",
-  "アディダス公式",
-  "Reebok",
-  "PUMA公式",
-  "New Balance公式",
-  "ニューバランス公式"
+  "ニューバランス公式",
+  "ヒマラヤ",
+  "ビリーズ",
+  "ムラサキスポーツ",
+  "メガスポーツ",
+  "ロコンド"
  ],
  "_trusted_note": "楽天は転売・二次流通が非常に多いため、店名がこの一覧のどれかを含む店だけ採用する。正規取扱が無いブランドは自動的に0件になる。増やすときは実際に店を見て判断すること。"
 }

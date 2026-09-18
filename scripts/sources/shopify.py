@@ -73,7 +73,10 @@ def fetch_store(store, now, max_age_days, per_store):
     products = []
     for page in range(1, MAX_PAGES + 1):
         time.sleep(SLEEP)
-        data = _get("%s/products.json?limit=250&page=%d" % (domain, page))
+        # country=JP を必ず付ける。付けないとアクセス元の国で通貨が変わり、
+        # 米国のGitHub Actionsから叩いたときにドル価格が返ってくる。
+        data = _get("%s/products.json?limit=250&page=%d&country=%s"
+                    % (domain, page, store.get("country", "JP")))
         if not data or not data.get("products"):
             break
         chunk = data["products"]
@@ -84,8 +87,13 @@ def fetch_store(store, now, max_age_days, per_store):
     if not products:
         return []
 
+    vendors = [v.lower() for v in store.get("vendor_match", [])]
     out = []
     for p in products:
+        if vendors:
+            v = (p.get("vendor") or "").lower()
+            if not any(t in v for t in vendors):
+                continue
         pub = (p.get("published_at") or p.get("created_at") or "")[:10]
         if pub and pub < limit_date:
             continue

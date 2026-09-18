@@ -13,7 +13,10 @@
       "brand": "neighborhood",
       "shop": "NEIGHBORHOOD OFFICIAL",
       "domain": "https://neighborhood.jp",
-      "currency": "JPY"
+      "currency": "JPY",
+      "vendor_match": [
+        "neighborhood"
+      ]
     },
     {
       "brand": "sacai",
@@ -31,19 +34,31 @@
       "brand": "bape",
       "shop": "BAPE STORE",
       "domain": "https://jp.bape.com",
-      "currency": "JPY"
+      "currency": "JPY",
+      "vendor_match": [
+        "a bathing ape",
+        "bape",
+        "baby milo",
+        "apee"
+      ]
     },
     {
       "brand": "kolor",
       "shop": "kolor OFFICIAL",
       "domain": "https://www.kolor.jp",
-      "currency": "JPY"
+      "currency": "JPY",
+      "vendor_match": [
+        "kolor"
+      ]
     },
     {
       "brand": "graphpaper",
       "shop": "Graphpaper",
       "domain": "https://www.graphpaper-tokyo.com",
-      "currency": "JPY"
+      "currency": "JPY",
+      "vendor_match": [
+        "graphpaper"
+      ]
     },
     {
       "brand": "challenger",
@@ -57,5 +72,6 @@
       "domain": "https://www.converse.co.jp",
       "currency": "JPY"
     }
-  ]
+  ],
+  "_vendor_note": "vendor_match を書くと、Shopifyのvendor(ブランド名)が一致する商品だけを採る。セレクトも兼ねる公式店で他ブランドが混ざるのを防ぐ。converse.co.jp は vendor がカテゴリ名なので指定しない。"
 }
