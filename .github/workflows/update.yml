@@ -1,0 +1,70 @@
+name: update-and-deploy
+
+on:
+  schedule:
+    - cron: '0 21 * * *'   # 毎日 06:00 JST
+    - cron: '0 9 * * *'    # 毎日 18:00 JST
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: drops-update
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 新着を取得
+        if: github.event_name != 'push'
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+          RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+          RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+        run: python3 scripts/update.py
+
+      - name: ブランド関連ニュースを取得
+        if: github.event_name != 'push'
+        continue-on-error: true
+        run: python3 scripts/news.py
+
+      - name: サイトを生成
+        env:
+          SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
+        run: python3 scripts/build.py
+
+      - name: 取得結果をコミット
+        if: github.event_name != 'push'
+        run: |
+          git config user.name  "drops-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/items.json data/news.json
+          git diff --staged --quiet || git commit -m "update: $(date -u +%Y-%m-%d) の新着を反映"
+          git push
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,61 @@
+{
+  "_comment": "ブランド公式ストア（Shopify）の公開商品エンドポイントから新着を取得する。認証不要。件数ではなく期間で切る。",
+  "max_age_days": 60,
+  "per_store": 400,
+  "stores": [
+    {
+      "brand": "wtaps",
+      "shop": "WTAPS OFFICIAL",
+      "domain": "https://wtaps.com",
+      "currency": "JPY"
+    },
+    {
+      "brand": "neighborhood",
+      "shop": "NEIGHBORHOOD OFFICIAL",
+      "domain": "https://neighborhood.jp",
+      "currency": "JPY"
+    },
+    {
+      "brand": "sacai",
+      "shop": "sacai OFFICIAL",
+      "domain": "https://www.sacai.jp",
+      "currency": "JPY"
+    },
+    {
+      "brand": "stussy",
+      "shop": "Stüssy Japan",
+      "domain": "https://stussy.jp",
+      "currency": "JPY"
+    },
+    {
+      "brand": "bape",
+      "shop": "BAPE STORE",
+      "domain": "https://jp.bape.com",
+      "currency": "JPY"
+    },
+    {
+      "brand": "kolor",
+      "shop": "kolor OFFICIAL",
+      "domain": "https://www.kolor.jp",
+      "currency": "JPY"
+    },
+    {
+      "brand": "graphpaper",
+      "shop": "Graphpaper",
+      "domain": "https://www.graphpaper-tokyo.com",
+      "currency": "JPY"
+    },
+    {
+      "brand": "challenger",
+      "shop": "CHALLENGER",
+      "domain": "https://challengerworks.com",
+      "currency": "JPY"
+    },
+    {
+      "brand": "converse",
+      "shop": "CONVERSE JAPAN",
+      "domain": "https://www.converse.co.jp",
+      "currency": "JPY"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESC}}">
+<link rel="canonical" href="{{CANONICAL}}">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23111'/><text x='16' y='23' font-size='20' font-family='Helvetica' font-weight='bold' fill='%23fff' text-anchor='middle'>D</text></svg>">
+{{EXTRA_HEAD}}
+<style>
+*{box-sizing:border-box}
+:root{--ink:#111;--sub:#6b6b6b;--line:#e6e6e6;--soft:#f5f4f2;
+  --font:"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif}
+html,body{margin:0}
+body{background:#fff;color:var(--ink);font-family:var(--font);font-size:14px;line-height:1.9}
+a{color:inherit}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+header.top{background:var(--ink);color:#fff;padding:18px 0 16px}
+header.top .wrap{max-width:1400px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+header.top h1{font-size:26px;letter-spacing:.22em;margin:0;font-weight:800}
+header.top h1 a{text-decoration:none}
+header.top p{margin:0;font-size:11px;letter-spacing:.14em;color:#bdbdbd}
+.disclosure{background:var(--soft);font-size:11px;color:var(--sub);padding:9px 0;border-bottom:1px solid var(--line)}
+.disclosure .wrap{max-width:1400px}
+main{padding:34px 0 60px}
+main h2{font-size:21px;letter-spacing:.06em;margin:0 0 6px}
+main .lead{color:var(--sub);font-size:12px;margin:0 0 30px}
+main h3{font-size:14px;margin:30px 0 6px;padding-top:18px;border-top:1px solid var(--line)}
+main p,main li{font-size:13.5px}
+main ul{padding-left:1.2em}
+dl{margin:0}
+dt{font-size:11px;letter-spacing:.1em;color:var(--sub);margin-top:14px}
+dd{margin:0;font-size:13.5px}
+footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:11px;color:var(--sub);line-height:1.9}
+footer .wrap{max-width:1400px}
+footer .footnav{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+footer a{color:#8a8a8a}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap"><h1><a href="{{HOME}}">{{SITENAME}}</a></h1><p>{{TAGLINE}}</p></div>
+</header>
+<div class="disclosure"><div class="wrap">{{DISCLOSURE}}</div></div>
+<main><div class="wrap">
+  <h2>{{HEADING}}</h2>
+  <p class="lead">{{LEAD}}</p>
+  {{BODY}}
+</div></main>
+<footer><div class="wrap">
+  <div class="footnav">{{FOOTNAV}}</div>
+  <div>&copy; {{YEAR}} {{SITENAME}}</div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "title": "DROPS",
+  "tagline": "人気ブランドの新着だけ。",
+  "description": "ストリート・モード・スニーカーの人気ブランドの新着アイテムだけを毎日自動で集めています。",
+  "base_url": "https://gunfujn-sys.github.io/drops",
+  "locale": "ja",
+  "new_days": 7,
+  "retention_days": 21,
+  "max_items": 2000,
+  "ad_disclosure": "当サイトはアフィリエイト広告（楽天アフィリエイト等）を利用しています。",
+  "extra_head": "",
+  "operator": {
+    "name": "（運営者名またはハンドルネーム）",
+    "contact": "（連絡用メールアドレス）",
+    "opened": "2026-09",
+    "note": "ここを埋めないままだとASPの審査で落ちやすい項目です。"
+  },
+  "analytics_id": "",
+  "index_max_items": 800
+}

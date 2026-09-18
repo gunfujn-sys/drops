@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESC}}">
+<link rel="canonical" href="{{CANONICAL}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESC}}">
+<meta property="og:image" content="{{OGIMAGE}}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23111'/><text x='16' y='23' font-size='20' font-family='Helvetica' font-weight='bold' fill='%23fff' text-anchor='middle'>D</text></svg>">
+{{EXTRA_HEAD}}
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#fff; --ink:#111; --sub:#6b6b6b; --line:#e6e6e6; --soft:#f5f4f2;
+  --accent:#e0261d; --radius:2px;
+  --font:"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;
+}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1400px;margin:0 auto;padding:0 16px}
+
+header.top{background:var(--ink);color:#fff;padding:18px 0 16px}
+.brandmark{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.brandmark h1{font-size:26px;letter-spacing:.22em;margin:0;font-weight:800}
+.brandmark p{margin:0;font-size:11px;letter-spacing:.14em;color:#bdbdbd}
+.updated{margin-left:auto;font-size:11px;color:#9a9a9a;letter-spacing:.05em}
+
+nav.filters{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.row{display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;padding:9px 0}
+.row::-webkit-scrollbar{display:none}
+.row + .row{border-top:1px solid #f2f2f2}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;
+  padding:6px 13px;font-size:12px;letter-spacing:.04em;cursor:pointer;white-space:nowrap;transition:.12s}
+.chip:hover{border-color:#bbb}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip.scene[aria-pressed="true"]{background:var(--accent);border-color:var(--accent)}
+.chip small{opacity:.55;margin-left:5px;font-size:10px}
+.rowlabel{flex:0 0 auto;font-size:10px;letter-spacing:.16em;color:var(--sub);padding-right:6px;min-width:56px}
+
+.meta{display:flex;align-items:center;gap:12px;padding:16px 0 10px;flex-wrap:wrap}
+.count{font-size:12px;color:var(--sub);letter-spacing:.06em}
+.count b{color:var(--ink);font-size:15px}
+.sort{margin-left:auto;display:flex;gap:4px}
+.sort button{border:none;background:none;font-size:12px;color:var(--sub);cursor:pointer;padding:5px 8px;border-radius:999px}
+.sort button[aria-pressed="true"]{color:var(--ink);background:var(--soft);font-weight:700}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:30px 18px;padding:8px 0 48px}
+.card{display:block;position:relative}
+.thumb{position:relative;aspect-ratio:1/1;background:var(--soft);overflow:hidden;border-radius:var(--radius)}
+.thumb img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;transition:transform .4s ease}
+.thumb.dead::after{content:"NO IMAGE";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:10px;letter-spacing:.16em;color:#b5b5b5}
+.card:hover .thumb img{transform:scale(1.04)}
+.badge{position:absolute;top:0;left:0;background:var(--accent);color:#fff;font-size:9px;font-weight:800;
+  letter-spacing:.12em;padding:3px 7px}
+.info{padding:9px 2px 0}
+.bname{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);margin-bottom:3px}
+.tname{font-size:12.5px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.9em}
+.price{font-size:13px;font-weight:800;margin-top:5px;letter-spacing:.02em}
+.shop{font-size:10px;color:#9a9a9a;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.empty{padding:60px 0;text-align:center;color:var(--sub);font-size:13px}
+
+.intro{max-width:720px;margin:14px 0 0;font-size:13px;line-height:1.95;color:#3d3d3d}
+.news{border:1px solid var(--line);margin:22px 0 4px;padding:14px 16px 6px}
+.news h3{margin:0 0 10px;font-size:10px;letter-spacing:.2em;color:var(--sub);font-weight:700}
+.news h3 span{margin-left:10px;letter-spacing:.02em;font-weight:400;font-size:10.5px;color:#a5a5a5}
+.news ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:0 30px}
+.news li{border-bottom:1px solid #f2f2f2}
+.news a{display:flex;gap:9px;align-items:baseline;padding:7px 0;font-size:12.5px}
+.news a:hover .nt{border-bottom:1px solid var(--ink)}
+.news time{flex:0 0 auto;font-size:10.5px;color:#a5a5a5;font-variant-numeric:tabular-nums}
+.news .src{flex:0 0 auto;font-size:9.5px;letter-spacing:.06em;color:#fff;background:#bdbdbd;padding:1px 5px;border-radius:2px}
+.news .nt{line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:600px){.news{padding:12px 13px 4px}.news a{gap:7px;font-size:12px}}
+.more{display:block;width:100%;max-width:320px;margin:0 auto 60px;padding:14px;border:1px solid var(--ink);
+  background:#fff;font-size:12px;letter-spacing:.16em;cursor:pointer}
+.more:hover{background:var(--ink);color:#fff}
+
+.disclosure{background:var(--soft);font-size:11px;color:var(--sub);padding:9px 0;border-bottom:1px solid var(--line)}
+footer{border-top:1px solid var(--line);padding:28px 0 60px;font-size:11px;color:var(--sub);line-height:1.9}
+footer .cols{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:16px}
+footer .footnav{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+.brandlinks a,.footnav a{color:#8a8a8a}
+footer a{border-bottom:1px solid transparent}
+footer a:hover{border-color:var(--sub)}
+.brandlinks{display:flex;flex-wrap:wrap;gap:4px 12px;margin:6px 0 18px}
+@media(max-width:600px){
+  .grid{grid-template-columns:repeat(2,1fr);gap:20px 10px}
+  .brandmark h1{font-size:20px}
+  .updated{width:100%;margin-left:0}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap brandmark">
+    <h1><a href="{{HOME}}">{{SITENAME}}</a></h1>
+    <p>{{TAGLINE}}</p>
+    <span class="updated">最終更新 {{UPDATED}} JST</span>
+  </div>
+</header>
+<div class="disclosure"><div class="wrap">{{DISCLOSURE}}</div></div>
+
+<nav class="filters">
+  <div class="wrap">
+    <div class="row" id="scenes"><span class="rowlabel">SCENE</span></div>
+    <div class="row" id="brands"><span class="rowlabel">BRAND</span></div>
+    <div class="row" id="cats"><span class="rowlabel">CATEGORY</span></div>
+  </div>
+</nav>
+
+<main class="wrap">
+  {{HEADING}}
+  {{INTRO}}
+  {{NEWS}}
+  <div class="meta">
+    <span class="count"><b id="count">0</b> items</span>
+    <div class="sort">
+      <button data-sort="new" aria-pressed="true">新着順</button>
+      <button data-sort="low" aria-pressed="false">価格が安い</button>
+      <button data-sort="high" aria-pressed="false">価格が高い</button>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <button class="more" id="more" hidden>MORE</button>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brandlinks">{{BRANDLINKS}}</div>
+    <div class="cols">
+      <div>{{DISCLOSURE}}<br>掲載している価格・在庫は取得時点のものです。最新の情報は各販売ページをご確認ください。</div>
+    </div>
+    <div class="footnav">{{FOOTNAV}}</div>
+    <div>&copy; {{YEAR}} {{SITENAME}}</div>
+  </div>
+</footer>
+
+<script id="data" type="application/json">{{DATA}}</script>
+<script>
+(function(){
+  var DATA = JSON.parse(document.getElementById('data').textContent);
+  var items = DATA.items, brands = DATA.brands, cats = DATA.cats, scenes = DATA.scenes;
+  var PAGE = 60, shown = PAGE;
+  var state = {scene:'all', brand:DATA.fixedBrand||'all', cat:DATA.fixedCat||'all', sort:'new'};
+  var grid = document.getElementById('grid'), more = document.getElementById('more');
+
+  function chip(label, val, kind, count){
+    var b = document.createElement('button');
+    b.className = 'chip ' + kind;
+    b.dataset.kind = kind; b.dataset.val = val;
+    b.innerHTML = label + (count!=null ? ' <small>'+count+'</small>' : '');
+    b.setAttribute('aria-pressed', String(state[kind]===val));
+    b.addEventListener('click', function(){
+      state[kind] = val;
+      if(kind==='scene'){ state.brand='all'; }
+      shown = PAGE; render(); syncChips();
+    });
+    return b;
+  }
+
+  function buildChips(){
+    var s = document.getElementById('scenes');
+    if(!DATA.fixedBrand){
+      s.appendChild(chip('ALL','all','scene'));
+      scenes.forEach(function(x){ s.appendChild(chip(x.label,x.id,'scene')); });
+    }
+    var c = document.getElementById('cats');
+    if(DATA.fixedCat){ c.remove(); }
+    else {
+      c.appendChild(chip('ALL','all','cat'));
+      cats.forEach(function(x){ c.appendChild(chip(x.label,x.id,'cat')); });
+    }
+    renderBrandChips();
+  }
+
+  function renderBrandChips(){
+    var box = document.getElementById('brands');
+    box.querySelectorAll('.chip').forEach(function(n){n.remove();});
+    if(DATA.fixedBrand){ box.remove(); var sc=document.getElementById('scenes'); if(sc) sc.remove(); return; }
+    box.appendChild(chip('ALL','all','brand'));
+    brands.filter(function(b){ return state.scene==='all' || b.scene===state.scene; })
+          .forEach(function(b){ box.appendChild(chip(b.name,b.id,'brand',b.count)); });
+  }
+
+  function syncChips(){
+    document.querySelectorAll('.chip').forEach(function(n){
+      n.setAttribute('aria-pressed', String(state[n.dataset.kind]===n.dataset.val));
+    });
+    document.querySelectorAll('.sort button').forEach(function(n){
+      n.setAttribute('aria-pressed', String(state.sort===n.dataset.sort));
+    });
+  }
+
+  function filtered(){
+    var out = items.filter(function(it){
+      if(state.scene!=='all' && it.s!==state.scene) return false;
+      if(state.brand!=='all' && it.b!==state.brand) return false;
+      if(state.cat!=='all' && it.c!==state.cat) return false;
+      return true;
+    });
+    if(state.sort==='low') out.sort(function(a,b){return a.p-b.p;});
+    else if(state.sort==='high') out.sort(function(a,b){return b.p-a.p;});
+    return out;
+  }
+
+  function yen(n){ return '¥' + n.toLocaleString('ja-JP'); }
+
+  function render(){
+    var list = filtered();
+    document.getElementById('count').textContent = list.length.toLocaleString('ja-JP');
+    var slice = list.slice(0, shown);
+    if(!slice.length){
+      grid.innerHTML = '<div class="empty">該当するアイテムがありません</div>';
+      more.hidden = true; return;
+    }
+    var html = slice.map(function(it){
+      return '<a class="card" href="'+it.u+'" target="_blank" rel="nofollow sponsored noopener">'
+        + '<div class="thumb">' + (it.n ? '<span class="badge">NEW</span>' : '')
+        + '<img src="'+it.i+'" alt="'+it.t.replace(/"/g,'&quot;')+'" loading="lazy" decoding="async" onerror="this.closest(\'.thumb\').classList.add(\'dead\');this.remove()"></div>'
+        + '<div class="info"><div class="bname">'+it.bn+'</div>'
+        + '<div class="tname">'+it.t+'</div>'
+        + '<div class="price">'+yen(it.p)+'</div>'
+        + '<div class="shop">'+it.sh+'</div></div></a>';
+    }).join('');
+    grid.innerHTML = html;
+    more.hidden = list.length <= shown;
+  }
+
+  more.addEventListener('click', function(){ shown += PAGE; render(); });
+  document.querySelectorAll('.sort button').forEach(function(n){
+    n.addEventListener('click', function(){ state.sort = n.dataset.sort; shown = PAGE; render(); syncChips(); });
+  });
+  var sceneRow = document.getElementById('scenes');
+  if(sceneRow) sceneRow.addEventListener('click', function(){ renderBrandChips(); syncChips(); });
+
+  buildChips(); render(); syncChips();
+})();
+</script>
+{{JSONLD}}
+</body>
+</html>

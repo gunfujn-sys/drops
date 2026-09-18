@@ -1,0 +1,11 @@
+{
+  "_comment": "見出し・媒体名・日付・リンクだけを掲載します（本文と画像は転載しない）。",
+  "keep_days": 30,
+  "max_items": 150,
+  "feeds": [
+    {"name": "FASHIONSNAP", "url": "https://www.fashionsnap.com/rss.xml"},
+    {"name": "Hypebeast", "url": "https://hypebeast.com/jp/feed"},
+    {"name": "WWD JAPAN", "url": "https://www.wwdjapan.com/feed"},
+    {"name": "HOUYHNHNM", "url": "https://www.houyhnhnm.jp/feed/"}
+  ]
+}
