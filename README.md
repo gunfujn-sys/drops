@@ -21,18 +21,23 @@ scripts/build.py    data/items.json + data/news.json → site/ に静的HTMLを�
 
 ## 最初のセットアップ
 
-### 1. 楽天のIDを2つ取る（無料・審査なし・10分）
+### 1. 楽天のIDを3つ取る（無料・審査なし・10分）
 
-| 種類 | 取得先 | 用途 |
-|---|---|---|
-| アプリID | https://webservice.rakuten.co.jp/ | APIを叩くため |
-| アフィリエイトID | https://affiliate.rakuten.co.jp/ | 報酬を受け取るため |
+2026年の仕様変更で、APIの認証は **applicationId + accessKey の2つが必須**になりました。
+エンドポイントも `openapi.rakuten.co.jp/ichibams/api/...` に変わっています。
+
+| 種類 | 取得先 | 用途 | 秘密 |
+|---|---|---|---|
+| Application ID（UUID形式） | https://webservice.rakuten.co.jp/app/create | APIを叩くため | — |
+| Access Key（`pk_` で始まる） | 同上（アプリ詳細画面） | APIを叩くため | **秘密。公開しない** |
+| アフィリエイトID | https://affiliate.rakuten.co.jp/ | 報酬を受け取るため | — |
+
+アプリは**1年で期限切れ**になります（Your Applications に Expires が出ます）。
 
 ### 2. ローカルで試す
 
 ```bash
-export RAKUTEN_APP_ID=xxxxxxxxxxxxxxxx
-export RAKUTEN_AFFILIATE_ID=xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx
+source .env      # RAKUTEN_APP_ID / RAKUTEN_ACCESS_KEY / RAKUTEN_AFFILIATE_ID を入れておく
 python3 scripts/update.py      # 商品取得（全ブランドで5〜10分ほど。楽天は1秒1リクエスト）
 python3 scripts/news.py        # ニュース取得（数秒）
 python3 scripts/build.py       # site/ を生成
@@ -56,7 +61,7 @@ git branch -M main && git push -u origin main
 public でも外から見えません。
 
 - リポジトリの **Settings → Secrets and variables → Actions** に
-  `RAKUTEN_APP_ID` と `RAKUTEN_AFFILIATE_ID` を登録
+  `RAKUTEN_APP_ID` / `RAKUTEN_ACCESS_KEY` / `RAKUTEN_AFFILIATE_ID` を登録
 - 同じ画面の **Variables** に `SITE_BASE_URL`（例 `https://<ユーザー名>.github.io/drops`）
 - **Settings → Pages → Source** を **GitHub Actions** に
 - Actions タブから `update-and-deploy` を手動実行して初回公開
@@ -83,7 +88,20 @@ curl -sL "https://ブランドのドメイン/meta.json" | grep -o '"currency":"
 AURALEE、UNDERCOVER、COOTIE、stein、TOGA、ATTACHMENT、ASICS、Salomon、HOKA、On（いずれもエンドポイント無し）。
 これらは楽天から取ります。
 
-### 注意：`published_at` は発売日ではない
+### Allowed websites（アプリ登録時の欄）
+
+「ここに無いドメインからのAPIリクエストは拒否される」と警告が出る欄です。
+登録したのは以下の2行。`localhost` は形式エラーになるので入れられません。
+
+```
+gunfujn-sys.github.io
+*.github.io
+```
+
+自動更新はGitHubのサーバーから叩くのでドメインを持ちません。
+これで拒否される場合は、アプリの Edit から行を足して対処します。
+
+## 注意：`published_at` は発売日ではない
 
 ストアが再公開した日付です（Stüssyは250点すべてが同じ日付になっていました）。
 新着の判定はあくまで `data/items.json` の `first_seen`（自前の初出記録）で行っています。
@@ -132,6 +150,19 @@ ASPの審査では「運営者情報」「プライバシーポリシー」の�
    提携できると、直リンクが自動でアフィリエイトリンクに変わる
 3. **もしもアフィリエイト** — Amazon + 楽天のW報酬
 4. **A8.net** — BEAMS / UNITED ARROWS など公式ECは料率が一番高い層
+
+## Allowed websites（アプリ登録時の欄）
+
+「ここに無いドメインからのAPIリクエストは拒否される」と警告が出る欄です。
+登録したのは以下の2行。`localhost` は形式エラーになるので入れられません。
+
+```
+gunfujn-sys.github.io
+*.github.io
+```
+
+自動更新はGitHubのサーバーから叩くのでドメインを持ちません。
+これで拒否される場合は、アプリの Edit から行を足して対処します。
 
 ## 注意
 
