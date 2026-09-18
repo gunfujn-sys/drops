@@ -308,7 +308,7 @@ def main():
         "RANKING": ('<section class="strip"><h3>REVIEWS</h3><div class="row grid">%s</div></section>'
                     % "".join(rank_html(x, i) for i, x in enumerate(ranked, 1))) if ranked else "",
         "PICKS": ('<section class="picks" id="picks"><h3>PICKS</h3>'
-                  '<p class="lead">人気ブランドの新着から</p><div class="row grid">%s</div></section>'
+                  '<div class="row grid">%s</div></section>'
                   % "".join(card_html(x) for x in picks)) if picks else "",
         "GRIDHEAD": '<div class="sectionhead">NEW DROP</div>',
         "DATA": payload(subset=top_items, brand_list=top_brands, cat_list=top_cat_list),
