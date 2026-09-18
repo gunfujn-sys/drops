@@ -24,5 +24,22 @@
   },
   "_free_policy_note": "報酬の出ないブランド（公式ストア由来）は、ブランドごとに価格の高い順で top_per_brand 件、かつ min_price 以上のものだけを新着・カテゴリに載せる。ブランド別ページは全件のまま。",
   "select_min_price": 30000,
-  "select_max_items": 300
+  "select_max_items": 300,
+  "featured_brands": [
+    "nike",
+    "newbalance",
+    "adidas",
+    "hoka",
+    "salomon",
+    "thenorthface",
+    "sacai",
+    "stussy",
+    "bape",
+    "neighborhood",
+    "converse",
+    "vans"
+  ],
+  "featured_count": 8,
+  "_featured_note": "トップの一番上に出す『人気ブランド』。ここに書いた順に、報酬の出るものを優先して新着から選ぶ。楽天のレビュー数は件数が少なく指標にならないため手動指定。",
+  "archive_min_age_days": 30
 }

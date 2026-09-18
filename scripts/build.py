@@ -108,8 +108,23 @@ def main():
     browse = lib.mix_ratio(browse, int(site.get("affiliate_boost", 2)),
                            paid=lambda x: bool(x["a"]))
 
+    # 一番上に出す人気ブランドの枠。報酬の出るものを優先して新着から選ぶ
+    fb = site.get("featured_brands") or []
+    picks, used = [], set()
+    for want_paid in (True, False):
+        for bid in fb:
+            if len(picks) >= int(site.get("featured_count", 8)):
+                break
+            for x in browse:
+                if x["b"] == bid and x["k"] not in used and bool(x["a"]) == want_paid:
+                    picks.append(x)
+                    used.add(x["k"])
+                    break
+        if len(picks) >= int(site.get("featured_count", 8)):
+            break
+
     # トップは新着ぶんだけ載せる（全件はブランド別ページに出る）
-    top_items = browse[:site.get("index_max_items", 800)]
+    top_items = [x for x in browse if x["k"] not in used][:site.get("index_max_items", 800)]
     top_counts = collections.Counter(x["b"] for x in top_items)
     top_cats = set(x["c"] for x in top_items)
 
@@ -144,7 +159,8 @@ def main():
         return prefix + path
 
     def footnav(prefix):
-        pairs = [("新着", "index.html"), ("SELECT", "select.html"), ("NEWS", "news.html"),
+        pairs = [("新着", "index.html"), ("SELECT", "select.html"), ("ARCHIVE", "archive.html"),
+                 ("NEWS", "news.html"),
                  ("運営者情報", "about.html"),
                  ("プライバシーポリシー", "privacy.html")]
         return " ".join('<a href="%s">%s</a>' % (link(prefix, p), t) for t, p in pairs)
@@ -185,6 +201,14 @@ def main():
                "name": name, "url": url, "itemListElement": elems}
         return '<script type="application/ld+json">%s</script>' % json.dumps(doc, ensure_ascii=False)
 
+    def card_html(it):
+        return ('<a class="card" href="%s" target="_blank" rel="nofollow sponsored noopener">'
+                '<div class="thumb">%s<img src="%s" alt="%s" loading="lazy" decoding="async"></div>'
+                '<div class="info"><div class="bname">%s</div><div class="tname">%s</div>'
+                '<div class="price">¥%s</div><div class="shop">%s</div></div></a>'
+                % (it["u"], '<span class="badge">NEW</span>' if it["n"] else "",
+                   it["i"], it["t"], it["bn"], it["t"], format(it["p"], ","), it["sh"]))
+
     def news_block(subset, label="ブランド関連の最新記事"):
         if not subset:
             return ""
@@ -214,6 +238,7 @@ def main():
             "HOME": link(prefix, "index.html"),
             "NEWSHREF": link(prefix, "news.html"),
             "SELECTHREF": link(prefix, "select.html"),
+            "ARCHIVEHREF": link(prefix, "archive.html"),
             "ABOUTHREF": link(prefix, "about.html"),
             "PRIVACYHREF": link(prefix, "privacy.html"),
         }
@@ -235,6 +260,10 @@ def main():
         "HEADING": "",
         "INTRO": "",
         "NEWS": "",
+        "PICKS": ('<section class="picks" id="picks"><h3>PICKS</h3>'
+                  '<p class="lead">人気ブランドの新着から</p><div class="row grid">%s</div></section>'
+                  '<div class="sectionhead">NEW ARRIVALS 新着</div>'
+                  % "".join(card_html(x) for x in picks)) if picks else "",
         "DATA": payload(subset=top_items, brand_list=top_brands, cat_list=top_cat_list),
         "JSONLD": jsonld(top_items, site["title"], base or ""),
     })
@@ -253,6 +282,7 @@ def main():
             "INTRO": ('<p class="intro">%s</p>' % esc(copy.get(b["id"], ""))) if copy.get(b["id"]) else "",
             "NEWS": news_block([n for n in news if b["id"] in n.get("brands", [])][:6],
                                "%s 関連の最新記事" % b["name"]),
+            "PICKS": "",
             "DATA": payload(fixed_brand=b["id"], subset=subset),
             "JSONLD": jsonld(subset, title, ""),
             "OGIMAGE": subset[0]["i"] if subset else og,
@@ -271,6 +301,7 @@ def main():
             "HEADING": '<h2 class="pagetitle">%s<span>NEW ARRIVALS</span></h2>' % esc(c["label"]),
             "INTRO": "",
             "NEWS": "",
+            "PICKS": "",
             "DATA": payload(fixed_cat=c["id"], subset=subset),
             "JSONLD": jsonld(subset, title, ""),
             "OGIMAGE": subset[0]["i"] if subset else og,
@@ -297,11 +328,41 @@ def main():
             "INTRO": '<p class="intro">各ブランドの高額なアイテムだけを集めた棚です。'
                      '新着かどうかに関わらず、在庫がある限り掲載しています。</p>',
             "NEWS": "",
+            "PICKS": "",
             "DATA": payload(subset=sel, brand_list=sel_brands, cat_list=sel_catlist),
             "JSONLD": jsonld(sel, "SELECT", ""),
             "OGIMAGE": sel[0]["i"],
         })
         write("select.html", render(tpl, ms))
+
+    # ---- ARCHIVE（新着ではなくなったが、まだ在庫があるもの） ----
+    arch_days = int(site.get("archive_min_age_days", 30))
+    arch_cut = (lib.now_jst() - lib.timedelta(days=arch_days)).strftime("%Y-%m-%d")
+    # 報酬の出るものは全部、出ないものは高額なものだけ（宣伝としての価値があるもの）
+    arch = [x for x in items
+            if x["f"] and x["f"] < arch_cut
+            and (x["a"] or x["p"] >= int(site.get("select_min_price", 30000)))]
+    if arch:
+        ar_counts = collections.Counter(x["b"] for x in arch)
+        ar_cats = set(x["c"] for x in arch)
+        ar_brands = [{"id": b["id"], "name": b["name"], "scene": b["scene"],
+                      "count": ar_counts.get(b["id"], 0)}
+                     for b in conf["brands"] if ar_counts.get(b["id"])]
+        ar_catlist = [{"id": c, "label": label} for c, label, _ in lib.CATEGORIES if c in ar_cats]
+        ma = common("")
+        ma.update({
+            "TITLE": esc("ARCHIVE｜%s" % site["title"]),
+            "DESC": esc("新着からは外れたが、まだ買えるアイテム。%d点。" % len(arch)),
+            "CANONICAL": "%s/archive.html" % base if base else "archive.html",
+            "HEADING": '<h2 class="pagetitle">ARCHIVE<span>%d日以上前のもの</span></h2>' % arch_days,
+            "INTRO": '<p class="intro">新着の期間を過ぎたアイテムです。'
+                     '毎回の取得で在庫が確認できたものだけを残しているので、いま買えるものだけが並びます。</p>',
+            "NEWS": "", "PICKS": "",
+            "DATA": payload(subset=arch, brand_list=ar_brands, cat_list=ar_catlist),
+            "JSONLD": jsonld(arch, "ARCHIVE", ""),
+            "OGIMAGE": arch[0]["i"],
+        })
+        write("archive.html", render(tpl, ma))
 
     # ---- リンク集（SNSのプロフィールに貼る用） ----
     scene_label = dict(SCENES)
@@ -311,6 +372,8 @@ def main():
                    '<span class="sub">%d点・毎日6時と18時に更新</span></a>' % len(items))
     links_body += ('<a href="select.html"><span class="big">SELECT</span>'
                    '<span class="sub">高額な定番だけの棚</span></a>')
+    links_body += ('<a href="archive.html"><span class="big">ARCHIVE</span>'
+                   '<span class="sub">過去に掲載したもの</span></a>')
     links_body += ('<a href="news.html"><span class="big">NEWS</span>'
                    '<span class="sub">ブランド関連の最新記事</span></a>')
     links_body += '</div><div class="scenes">'

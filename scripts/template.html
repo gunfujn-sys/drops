@@ -60,6 +60,21 @@ a{color:inherit;text-decoration:none}
 .sort button[aria-pressed="true"]{color:var(--ink);background:var(--soft);font-weight:700}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:40px 24px;padding-bottom:56px}
+
+/* 人気ブランドの枠（トップ最上部） */
+.picks{margin:0 0 34px}
+.picks h3{font-size:10px;letter-spacing:.2em;color:var(--sub);margin:0 0 3px;font-weight:700}
+.picks p.lead{margin:0 0 14px;font-size:11.5px;color:#9a9a9a}
+.picks .row{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:26px 18px}
+.picks .thumb{aspect-ratio:1/1}
+.picks .tname{-webkit-line-clamp:1;min-height:0}
+.picks .info{padding:9px 2px 0}
+.picks .price{font-size:13px;margin-top:4px}
+.sectionhead{font-size:10px;letter-spacing:.2em;color:var(--sub);font-weight:700;margin:0 0 10px}
+@media(max-width:900px){
+  .picks .row{grid-template-columns:repeat(2,1fr);gap:20px 10px}
+  .picks{margin-bottom:26px}
+}
 .card{display:block}
 .thumb{position:relative;aspect-ratio:4/5;background:var(--soft);overflow:hidden}
 .thumb img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;transition:transform .5s ease}
@@ -139,6 +154,7 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
     <div class="sidefoot">
       <a href="{{HOME}}">新着</a>
       <a href="{{SELECTHREF}}">SELECT 高額の棚</a>
+      <a href="{{ARCHIVEHREF}}">ARCHIVE 過去の掲載</a>
       <a href="{{NEWSHREF}}">NEWS ニュース</a>
       <a href="{{ABOUTHREF}}">運営者情報</a>
       <a href="{{PRIVACYHREF}}">プライバシーポリシー</a>
@@ -150,6 +166,7 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
     {{HEADING}}
     {{INTRO}}
     {{NEWS}}
+    {{PICKS}}
     <div class="bar">
       <span class="count"><b id="count">0</b> items</span>
       <div class="sort">
@@ -277,6 +294,11 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
   function yen(n){ return '¥' + n.toLocaleString('ja-JP'); }
 
   function render(){
+    var picks = document.getElementById('picks');
+    if(picks){
+      var plain = (state.scene==='all' && state.brand==='all' && state.cat==='all');
+      picks.hidden = !plain;
+    }
     var list = filtered();
     document.getElementById('count').textContent = list.length.toLocaleString('ja-JP');
     var slice = list.slice(0, shown);
