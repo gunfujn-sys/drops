@@ -2,6 +2,7 @@
 """data/items.json から静的サイトを生成する。"""
 import html
 import json
+import re
 import os
 import collections
 import shutil
@@ -117,7 +118,7 @@ def main():
         return prefix + path
 
     def footnav(prefix):
-        pairs = [("新着一覧", "index.html"), ("運営者情報", "about.html"),
+        pairs = [("新着一覧", "index.html"), ("NEWS", "news.html"), ("運営者情報", "about.html"),
                  ("プライバシーポリシー", "privacy.html")]
         return " ".join('<a href="%s">%s</a>' % (link(prefix, p), t) for t, p in pairs)
 
@@ -175,6 +176,9 @@ def main():
             "BRANDLINKS": brandlinks(prefix),
             "FOOTNAV": footnav(prefix),
             "HOME": link(prefix, "index.html"),
+            "NEWSHREF": link(prefix, "news.html"),
+            "ABOUTHREF": link(prefix, "about.html"),
+            "PRIVACYHREF": link(prefix, "privacy.html"),
         }
 
     urls = []
@@ -193,7 +197,7 @@ def main():
         "CANONICAL": (base + "/") if base else "index.html",
         "HEADING": "",
         "INTRO": "",
-        "NEWS": news_block(news[:10]),
+        "NEWS": "",
         "DATA": payload(subset=top_items, brand_list=top_brands, cat_list=top_cat_list),
         "JSONLD": jsonld(top_items, site["title"], base or ""),
     })
@@ -208,9 +212,7 @@ def main():
             "TITLE": esc(title),
             "DESC": esc("%s の新着アイテムを毎日自動更新で掲載。現在%d点。" % (b["name"], len(subset))),
             "CANONICAL": "%s/b/%s.html" % (base, b["id"]) if base else "%s.html" % b["id"],
-            "HEADING": '<h2 style="font-size:20px;letter-spacing:.08em;margin:26px 0 0">%s'
-                       '<span style="font-size:11px;color:#6b6b6b;letter-spacing:.14em;margin-left:10px">'
-                       'NEW ARRIVALS</span></h2>' % esc(b["name"]),
+            "HEADING": '<h2 class="pagetitle">%s<span>NEW ARRIVALS</span></h2>' % esc(b["name"]),
             "INTRO": ('<p class="intro">%s</p>' % esc(copy.get(b["id"], ""))) if copy.get(b["id"]) else "",
             "NEWS": news_block([n for n in news if b["id"] in n.get("brands", [])][:6],
                                "%s 関連の最新記事" % b["name"]),
@@ -229,9 +231,7 @@ def main():
             "TITLE": esc(title),
             "DESC": esc("人気ブランドの%sの新着だけを毎日自動更新で掲載。現在%d点。" % (c["label"], len(subset))),
             "CANONICAL": "%s/c/%s.html" % (base, c["id"]) if base else "%s.html" % c["id"],
-            "HEADING": '<h2 style="font-size:20px;letter-spacing:.08em;margin:26px 0 0">%s'
-                       '<span style="font-size:11px;color:#6b6b6b;letter-spacing:.14em;margin-left:10px">'
-                       'NEW ARRIVALS</span></h2>' % esc(c["label"]),
+            "HEADING": '<h2 class="pagetitle">%s<span>NEW ARRIVALS</span></h2>' % esc(c["label"]),
             "INTRO": "",
             "NEWS": "",
             "DATA": payload(fixed_cat=c["id"], subset=subset),
@@ -290,7 +290,22 @@ Cookieを使用することがあります。</p>
 <p>{contact}</p>
 """.format(disclosure=esc(site["ad_disclosure"]), contact=esc(op.get("contact", "")))
 
+    news_rows = []
+    for n in news:
+        d = n.get("date", "")
+        news_rows.append(
+            '<li><a href="%s" target="_blank" rel="noopener nofollow">'
+            '<time>%s</time><span class="src">%s</span><span class="nt">%s</span></a></li>'
+            % (esc(n.get("url", "")), esc(d[5:].replace("-", ".")),
+               esc(n.get("source", "")), esc(n.get("title", ""))))
+    news_body = ('<div class="newspage"><ul>%s</ul></div>' % "".join(news_rows)) if news_rows \
+        else "<p>いま掲載中のブランドに関係する記事はありません。</p>"
+    news_body += ("<p class=\"note\">掲載ブランドの名前が見出しに入っている記事だけを、"
+                  "FASHIONSNAP・Hypebeast・WWD JAPAN・HOUYHNHNM の公開フィードから自動で集めています。"
+                  "見出しと媒体名のみを掲載し、記事本文は転載していません。</p>")
+
     for fname, heading, lead, body in [
+        ("news.html", "NEWS", "掲載ブランドに関係する最新記事", news_body),
         ("about.html", "運営者情報", "このサイトについて／掲載方法／免責事項", about_body),
         ("privacy.html", "プライバシーポリシー", "Cookie・アクセス解析・個人情報の取り扱い", privacy_body),
     ]:
@@ -326,6 +341,17 @@ Cookieを使用することがあります。</p>
             f.write("<url><loc>%s</loc><lastmod>%s</lastmod></url>\n" % (esc(u), updated[:10]))
         f.write("</urlset>\n")
     open(os.path.join(SITE, ".nojekyll"), "w").close()
+
+    # 独自ドメインを使う場合、GitHub Pages は公開物の中の CNAME を見る。
+    # base_url が github.io 以外ならホスト名を書き出す。
+    host = ""
+    m = re.match(r"^https?://([^/]+)", base)
+    if m and not m.group(1).endswith(".github.io"):
+        host = m.group(1)
+    if host:
+        with open(os.path.join(SITE, "CNAME"), "w", encoding="utf-8") as f:
+            f.write(host + "\n")
+        print("CNAME を出力しました:", host)
 
     print("生成完了: 総掲載%d件（トップに%d件）/ news %d / brand %d / category %d / 全%dページ"
           % (len(items), len(top_items), len(news), len(brands), len(cats), len(urls) + 1))
