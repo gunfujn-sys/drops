@@ -36,6 +36,24 @@ main h3{font-size:14px;margin:30px 0 6px;padding-top:18px;border-top:1px solid v
 .newspage .src{flex:0 0 auto;font-size:9.5px;letter-spacing:.06em;color:#fff;background:#bdbdbd;padding:1px 6px;border-radius:2px}
 .newspage .nt{line-height:1.55}
 .note{margin-top:22px;font-size:11px;color:var(--sub);line-height:1.8}
+
+/* リンク集（Instagramのプロフィール用） */
+.links{display:grid;gap:10px;margin:0 0 26px}
+.links a{display:flex;align-items:center;gap:12px;border:1px solid var(--ink);padding:16px 18px;
+  text-decoration:none;transition:.15s}
+.links a:hover{background:var(--ink);color:#fff}
+.links .big{font-size:15px;font-weight:800;letter-spacing:.06em}
+.links .sub{font-size:11px;color:var(--sub);margin-left:auto;text-align:right}
+.links a:hover .sub{color:#cfcfcf}
+.scenes{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:0 0 26px}
+.scenes a{display:block;border:1px solid var(--line);padding:14px 12px;text-align:center;
+  font-size:12px;letter-spacing:.12em;font-weight:700;text-decoration:none}
+.scenes a:hover{border-color:var(--ink)}
+.scenes a span{display:block;font-size:10px;color:var(--sub);font-weight:400;letter-spacing:0;margin-top:3px}
+.brandlist{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 10px}
+.brandlist a{border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:12px;text-decoration:none}
+.brandlist a:hover{border-color:var(--ink);background:var(--soft)}
+.brandlist a small{color:var(--sub);margin-left:5px;font-size:10px}
 @media(max-width:600px){.newspage a{flex-wrap:wrap;gap:6px}.newspage .nt{width:100%}}
 main p,main li{font-size:13.5px}
 main ul{padding-left:1.2em}

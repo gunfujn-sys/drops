@@ -303,6 +303,38 @@ def main():
         })
         write("select.html", render(tpl, ms))
 
+    # ---- リンク集（SNSのプロフィールに貼る用） ----
+    scene_label = dict(SCENES)
+    scene_counts = collections.Counter(x["s"] for x in items)
+    links_body = '<div class="links">'
+    links_body += ('<a href="index.html"><span class="big">新着</span>'
+                   '<span class="sub">%d点・毎日6時と18時に更新</span></a>' % len(items))
+    links_body += ('<a href="select.html"><span class="big">SELECT</span>'
+                   '<span class="sub">高額な定番だけの棚</span></a>')
+    links_body += ('<a href="news.html"><span class="big">NEWS</span>'
+                   '<span class="sub">ブランド関連の最新記事</span></a>')
+    links_body += '</div><div class="scenes">'
+    for sid, slabel in SCENES:
+        if scene_counts.get(sid):
+            links_body += ('<a href="index.html?s=%s">%s<span>%d点</span></a>'
+                           % (sid, slabel, scene_counts[sid]))
+    links_body += '</div><h3>ブランドから探す</h3><div class="brandlist">'
+    for b in brands:
+        links_body += ('<a href="b/%s.html">%s<small>%d</small></a>'
+                       % (b["id"], esc(b["name"]), b["count"]))
+    links_body += '</div>'
+
+    ml = common("")
+    ml.update({
+        "TITLE": esc("リンク｜%s" % site["title"]),
+        "DESC": esc(site["description"]),
+        "CANONICAL": "%s/links.html" % base if base else "links.html",
+        "HEADING": esc(site["title"]),
+        "LEAD": esc(site["tagline"]),
+        "BODY": links_body,
+    })
+    write("links.html", render(ptpl, ml))
+
     # ---- 固定ページ ----
     op = site.get("operator", {})
     catlinks = " ".join('<a href="c/%s.html">%s</a>' % (c["id"], esc(c["label"])) for c in cats)
