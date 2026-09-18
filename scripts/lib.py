@@ -170,7 +170,25 @@ def is_paid(item):
     return "hb.afl.rakuten.co.jp" in (item.get("url") or "")
 
 
-def interleave_weighted(items, ratio=2, key=lambda x: x.get("brand")):
+def mix_ratio(items, ratio, paid):
+    """報酬あり・なしをそれぞれ元の並び（新着順）のまま、全体で ratio:1 に混ぜる。
+    日付ごとに混ぜると、報酬なしの少ない日で比率が崩れるためこちらを使う。"""
+    a = [x for x in items if paid(x)]
+    b = [x for x in items if not paid(x)]
+    out, i, j = [], 0, 0
+    while i < len(a) or j < len(b):
+        for _ in range(ratio):
+            if i < len(a):
+                out.append(a[i]); i += 1
+        if j < len(b):
+            out.append(b[j]); j += 1
+        elif i >= len(a):
+            break
+    return out
+
+
+def interleave_weighted(items, ratio=2, key=lambda x: x.get("brand"),
+                        date=lambda x: x.get("first_seen", ""), paid=None):
     """新着順を保ったまま、同じ初出日の中で『報酬ありを ratio 件：報酬なし 1 件』で混ぜる。
     ratio=1 なら従来どおり均等。報酬なしを消すのではなく、出る位置を下げるだけ。"""
     out = []
@@ -194,9 +212,11 @@ def interleave_weighted(items, ratio=2, key=lambda x: x.get("brand")):
                     order.remove(k)
         return res
 
+    ispaid = paid or is_paid
+
     def flush(rows):
-        paid = rr([r for r in rows if is_paid(r)])
-        free = rr([r for r in rows if not is_paid(r)])
+        paid = rr([r for r in rows if ispaid(r)])
+        free = rr([r for r in rows if not ispaid(r)])
         i = j = 0
         while i < len(paid) or j < len(free):
             for _ in range(ratio):
@@ -208,7 +228,7 @@ def interleave_weighted(items, ratio=2, key=lambda x: x.get("brand")):
                 break
 
     for it in items:
-        day = it.get("first_seen", "")
+        day = date(it)
         if day != current:
             flush(bucket)
             bucket = []

@@ -16,6 +16,13 @@
   },
   "analytics_id": "",
   "index_max_items": 400,
-  "affiliate_boost": 2,
-  "_affiliate_boost_note": "新着順の中で、報酬が出るリンクを何件ごとに1件の割合で先に出すか。1で無効（均等）、2なら2:1、3なら3:1。上げるほど収益寄り、下げるほど新着の忠実さ寄り。"
+  "affiliate_boost": 4,
+  "_affiliate_boost_note": "新着順の中で、報酬が出るリンクを何件ごとに1件の割合で先に出すか。1で無効（均等）、2なら2:1、3なら3:1。上げるほど収益寄り、下げるほど新着の忠実さ寄り。",
+  "free_policy": {
+    "top_per_brand": 25,
+    "min_price": 20000
+  },
+  "_free_policy_note": "報酬の出ないブランド（公式ストア由来）は、ブランドごとに価格の高い順で top_per_brand 件、かつ min_price 以上のものだけを新着・カテゴリに載せる。ブランド別ページは全件のまま。",
+  "select_min_price": 30000,
+  "select_max_items": 300
 }

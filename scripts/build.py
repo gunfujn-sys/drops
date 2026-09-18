@@ -58,8 +58,7 @@ def main():
     brand_by_id = dict((b["id"], b) for b in conf["brands"])
     cutoff = (lib.now_jst() - lib.timedelta(days=site["new_days"])).strftime("%Y-%m-%d")
     raw.sort(key=lambda x: (x.get("first_seen", ""), x.get("id", "")), reverse=True)
-    # 同じ日の中で、ブランドが連続しないように並べつつ、報酬の出るリンクを厚めに混ぜる
-    raw = lib.interleave_weighted(raw, ratio=int(site.get("affiliate_boost", 2)))
+    raw = lib.interleave(raw)  # 同じ日の中でブランドが連続しないようにする
 
     items = []
     counts = {}
@@ -82,14 +81,40 @@ def main():
             "s": b["scene"],
             "sh": esc(it.get("shop", ""))[:28],
             "n": 1 if it.get("first_seen", "") >= cutoff else 0,
+            "a": 1 if lib.is_paid(it) else 0,
+            "k": it.get("id", ""),
+            "f": it.get("first_seen", ""),
         })
 
-    # トップは新着ぶんだけ載せる（全件はブランド別・カテゴリ別ページに出る）
-    top_items = items[:site.get("index_max_items", 800)]
+    # 報酬の出ないブランドは各ブランドの高額な上位だけを新着・カテゴリに載せる
+    fp = site.get("free_policy") or {}
+    top_n = int(fp.get("top_per_brand", 0))
+    free_min = int(fp.get("min_price", 0))
+    if top_n:
+        keep_free = set()
+        per = collections.defaultdict(list)
+        for x in items:
+            if not x["a"] and x["p"] >= free_min:
+                per[x["b"]].append(x)
+        for b, rows in per.items():
+            rows.sort(key=lambda x: -x["p"])
+            for x in rows[:top_n]:
+                keep_free.add(x["k"])
+        browse = [x for x in items if x["a"] or x["k"] in keep_free]
+    else:
+        browse = list(items)
+
+    # 絞り込んだ後に、報酬あり:報酬なし = ratio:1 で混ぜる（双方とも新着順は保つ）
+    browse = lib.mix_ratio(browse, int(site.get("affiliate_boost", 2)),
+                           paid=lambda x: bool(x["a"]))
+
+    # トップは新着ぶんだけ載せる（全件はブランド別ページに出る）
+    top_items = browse[:site.get("index_max_items", 800)]
     top_counts = collections.Counter(x["b"] for x in top_items)
     top_cats = set(x["c"] for x in top_items)
 
     cats = [{"id": c, "label": label} for c, label, _ in lib.CATEGORIES if cat_counts.get(c)]
+
     top_cat_list = [{"id": c, "label": label} for c, label, _ in lib.CATEGORIES if c in top_cats]
     brands = [{"id": b["id"], "name": b["name"], "scene": b["scene"], "count": counts.get(b["id"], 0)}
               for b in conf["brands"] if counts.get(b["id"])]
@@ -119,7 +144,8 @@ def main():
         return prefix + path
 
     def footnav(prefix):
-        pairs = [("新着一覧", "index.html"), ("NEWS", "news.html"), ("運営者情報", "about.html"),
+        pairs = [("新着", "index.html"), ("SELECT", "select.html"), ("NEWS", "news.html"),
+                 ("運営者情報", "about.html"),
                  ("プライバシーポリシー", "privacy.html")]
         return " ".join('<a href="%s">%s</a>' % (link(prefix, p), t) for t, p in pairs)
 
@@ -127,9 +153,18 @@ def main():
         return " ".join('<a href="%sb/%s.html">%s</a>' % (prefix, b["id"], esc(b["name"]))
                         for b in brands)
 
+    def slim(rows):
+        out = []
+        for x in rows:
+            y = dict(x)
+            y.pop("k", None)
+            y.pop("f", None)
+            out.append(y)
+        return out
+
     def payload(fixed_brand=None, fixed_cat=None, subset=None, brand_list=None, cat_list=None):
         return json.dumps({
-            "items": subset if subset is not None else items,
+            "items": slim(subset if subset is not None else items),
             "brands": brand_list if brand_list is not None else brands,
             "cats": cat_list if cat_list is not None else cats,
             "scenes": scenes,
@@ -178,6 +213,7 @@ def main():
             "FOOTNAV": footnav(prefix),
             "HOME": link(prefix, "index.html"),
             "NEWSHREF": link(prefix, "news.html"),
+            "SELECTHREF": link(prefix, "select.html"),
             "ABOUTHREF": link(prefix, "about.html"),
             "PRIVACYHREF": link(prefix, "privacy.html"),
         }
@@ -225,7 +261,7 @@ def main():
 
     # ---- カテゴリ別 ----
     for c in cats:
-        subset = [x for x in items if x["c"] == c["id"]]
+        subset = [x for x in browse if x["c"] == c["id"]]
         title = "%s の新着｜%s" % (c["label"], site["title"])
         mc = common("../")
         mc.update({
@@ -240,6 +276,32 @@ def main():
             "OGIMAGE": subset[0]["i"] if subset else og,
         })
         write("c/%s.html" % c["id"], render(tpl, mc))
+
+    # ---- SELECT（価格の高い常設棚。新着でなくても載る） ----
+    sel_min = int(site.get("select_min_price", 30000))
+    sel = sorted([x for x in items if x["p"] >= sel_min], key=lambda x: -x["p"])
+    sel = sel[:int(site.get("select_max_items", 300))]
+    if sel:
+        sel_counts = collections.Counter(x["b"] for x in sel)
+        sel_cats = set(x["c"] for x in sel)
+        sel_brands = [{"id": b["id"], "name": b["name"], "scene": b["scene"],
+                       "count": sel_counts.get(b["id"], 0)}
+                      for b in conf["brands"] if sel_counts.get(b["id"])]
+        sel_catlist = [{"id": c, "label": label} for c, label, _ in lib.CATEGORIES if c in sel_cats]
+        ms = common("")
+        ms.update({
+            "TITLE": esc("SELECT｜%s" % site["title"]),
+            "DESC": esc("人気ブランドの中から価格の高い定番・名品だけを集めた常設の棚。%d点。" % len(sel)),
+            "CANONICAL": "%s/select.html" % base if base else "select.html",
+            "HEADING": '<h2 class="pagetitle">SELECT<span>価格の高い順</span></h2>',
+            "INTRO": '<p class="intro">各ブランドの高額なアイテムだけを集めた棚です。'
+                     '新着かどうかに関わらず、在庫がある限り掲載しています。</p>',
+            "NEWS": "",
+            "DATA": payload(subset=sel, brand_list=sel_brands, cat_list=sel_catlist),
+            "JSONLD": jsonld(sel, "SELECT", ""),
+            "OGIMAGE": sel[0]["i"],
+        })
+        write("select.html", render(tpl, ms))
 
     # ---- 固定ページ ----
     op = site.get("operator", {})
@@ -354,7 +416,7 @@ Cookieを使用することがあります。</p>
             f.write(host + "\n")
         print("CNAME を出力しました:", host)
 
-    print("生成完了: 総掲載%d件（トップに%d件）/ news %d / brand %d / category %d / 全%dページ"
+    print("生成完了: 総掲載%d件（新着に%d件）/ news %d / brand %d / category %d / 全%dページ"
           % (len(items), len(top_items), len(news), len(brands), len(cats), len(urls) + 1))
     if demo:
         print("! これはダミーデータです。公開前に scripts/update.py で実データに差し替えてください。")

@@ -1,6 +1,6 @@
 {
   "_comment": "ブランド公式ストア（Shopify）の公開商品エンドポイントから新着を取得する。認証不要。件数ではなく期間で切る。",
-  "max_age_days": 60,
+  "max_age_days": 150,
   "per_store": 400,
   "stores": [
     {
