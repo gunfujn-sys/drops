@@ -2,8 +2,9 @@ name: update-and-deploy
 
 on:
   schedule:
-    - cron: '0 21 * * *'   # 毎日 06:00 JST
-    - cron: '0 9 * * *'    # 毎日 18:00 JST
+    # 毎時0分は世界中のジョブが集中して遅延するため、数分ずらしている
+    - cron: '7 21 * * *'   # 毎日 06:07 JST
+    - cron: '7 9 * * *'    # 毎日 18:07 JST
   workflow_dispatch:
   push:
     branches: [main]
