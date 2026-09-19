@@ -147,9 +147,11 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
 .menubtn{display:none}
 @media(max-width:900px){
   .layout{display:block}
-  .menubtn{display:flex;align-items:center;gap:7px;position:fixed;right:12px;bottom:12px;z-index:40;
+  .menubtn{display:flex;align-items:center;gap:7px;position:fixed;left:12px;top:10px;z-index:40;
     border:none;background:var(--ink);color:#fff;font-family:inherit;font-size:12px;letter-spacing:.1em;
-    padding:12px 18px;border-radius:999px;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.25)}
+    padding:10px 16px;border-radius:999px;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.25);
+    opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .18s,transform .18s}
+  body.scrolled .menubtn{opacity:1;pointer-events:auto;transform:none}
   .side{position:fixed;inset:0 auto 0 0;width:78%;max-width:300px;height:100%;z-index:50;background:#fff;
     transform:translateX(-102%);transition:transform .22s ease;box-shadow:0 0 40px rgba(0,0,0,.18)}
   body.navopen .side{transform:none}
@@ -161,8 +163,10 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
   .topbar .d{flex:1;text-align:right;align-self:center;white-space:nowrap;
     font-size:8.5px;letter-spacing:0;line-height:1.4;color:#b0b0b0;margin:0}
   .toptabs{display:flex;flex:0 0 100%;gap:6px;margin-top:8px}
-  .toptabs a{flex:1;text-align:center;border:1px solid var(--line);padding:9px 4px;
-    font-size:11px;font-weight:800;letter-spacing:.06em}
+  .toptabs a,.toptabs .filterbtn{flex:1;text-align:center;border:1px solid var(--line);
+    padding:9px 4px;font-size:11px;font-weight:800;letter-spacing:.06em;
+    font-family:inherit;background:none;color:var(--ink);cursor:pointer;line-height:1.3}
+  .toptabs .filterbtn{flex:0 0 78px;border-color:var(--ink)}
   .toptabs a.on{background:var(--ink);color:#fff;border-color:var(--ink)}
   .main{padding:14px 16px 0}
   .grid{grid-template-columns:repeat(2,1fr);gap:26px 12px}
@@ -178,7 +182,7 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
 <div class="topbar">
   <h1><a href="{{HOME}}">{{SITENAME}}</a></h1><p>{{TAGLINE}}</p>
   <span class="d">{{DISCLOSURE}}</span>
-  <nav class="toptabs">{{TABSFLAT}}</nav>
+  <nav class="toptabs"><button type="button" class="filterbtn" id="filterbtn">絞り込み</button>{{TABSFLAT}}</nav>
 </div>
 
 <div class="layout">
@@ -414,8 +418,15 @@ footer.pagefoot{border-top:1px solid var(--line);padding:20px 0 50px;font-size:1
   });
   var sceneRow = document.getElementById('scenes');
   if(sceneRow) sceneRow.addEventListener('click', function(){ renderBrandChips(); syncChips(); });
+  function openNav(){ document.body.classList.toggle('navopen'); }
   var mb = document.getElementById('menubtn');
-  if(mb) mb.addEventListener('click', function(){ document.body.classList.toggle('navopen'); });
+  if(mb) mb.addEventListener('click', openNav);
+  var fb = document.getElementById('filterbtn');
+  if(fb) fb.addEventListener('click', openNav);
+  // 上部バーが見えている間は浮くボタンを出さない（ロゴと重なるため）
+  window.addEventListener('scroll', function(){
+    document.body.classList.toggle('scrolled', window.scrollY > 120);
+  }, {passive:true});
   document.addEventListener('click', function(e){
     if(document.body.classList.contains('navopen') && !e.target.closest('#side') && !e.target.closest('#menubtn')){
       document.body.classList.remove('navopen');
