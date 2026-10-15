@@ -121,6 +121,17 @@
    "title": "OTW by Vans から Vibram ソールを搭載した Chukka 49 Vibram が登場",
    "url": "https://hypebeast.com/jp/2026/10/otw-by-vans-chukka-49-vibram-vintage-cocoa-oil-green-dress-blue-suede-leather-release-info"
   },
+  "https://hypebeast.com/jp/2026/10/stussy-denim-tears-collabo-collection-release-info": {
+   "brands": [
+    "stussy"
+   ],
+   "date": "2026-10-15",
+   "first_seen": "2026-10-15",
+   "id": "https://hypebeast.com/jp/2026/10/stussy-denim-tears-collabo-collection-release-info",
+   "source": "Hypebeast",
+   "title": "STÜSSY と DENIM TEARS によるコラボコレクションが登場",
+   "url": "https://hypebeast.com/jp/2026/10/stussy-denim-tears-collabo-collection-release-info"
+  },
   "https://hypebeast.com/jp/2026/10/stussy-our-legacy-work-shop-vol-11-release-info": {
    "brands": [
     "stussy"
@@ -1057,17 +1068,6 @@
    "title": "Yohji Yamamoto 2027SS コレクション",
    "url": "https://www.fashionsnap.com/collection/yohji-yamamoto/womens/2027ss/"
   },
-  "https://www.houyhnhnm.jp/news/1169928/": {
-   "brands": [
-    "newbalance"
-   ],
-   "date": "2026-09-17",
-   "first_seen": "2026-09-18",
-   "id": "https://www.houyhnhnm.jp/news/1169928/",
-   "source": "HOUYHNHNM",
-   "title": "ニューバランスの「990v4」、その新色が素敵です。2026年MADE in USA 秋冬コレクションの一足にご注目を。",
-   "url": "https://www.houyhnhnm.jp/news/1169928/"
-  },
   "https://www.houyhnhnm.jp/news/1170570/": {
    "brands": [
     "nanamica"
@@ -1145,6 +1145,17 @@
    "title": "ジュンヤ ワタナベ マン × ニューバランスの新作、間もなく発売開始。その見慣れないフォルムのベースは？",
    "url": "https://www.houyhnhnm.jp/news/1178719/"
   },
+  "https://www.houyhnhnm.jp/news/1180372/": {
+   "brands": [
+    "auralee"
+   ],
+   "date": "2026-10-15",
+   "first_seen": "2026-10-15",
+   "id": "https://www.houyhnhnm.jp/news/1180372/",
+   "source": "HOUYHNHNM",
+   "title": "オーラリーとサロン シー ルンドマン。対話から生まれた純度の高いカプセルコレクションがDSMGにて限定発売。",
+   "url": "https://www.houyhnhnm.jp/news/1180372/"
+  },
   "https://www.wwdjapan.com/articles/2451292": {
    "brands": [
     "newbalance"
@@ -1155,17 +1166,6 @@
    "source": "WWD JAPAN",
    "title": "「ジュンヤ ワタナベ マン」×「ニューバランス」や「フラグメント」×「マムート」など！ 今週発売のファッションアイテム6選【10/12〜10/18】",
    "url": "https://www.wwdjapan.com/articles/2451292"
-  },
-  "https://www.wwdjapan.com/articles/2499148": {
-   "brands": [
-    "asics"
-   ],
-   "date": "2026-09-17",
-   "first_seen": "2026-09-18",
-   "id": "https://www.wwdjapan.com/articles/2499148",
-   "source": "WWD JAPAN",
-   "title": "アシックスは循環型シューズをどうスケールする？ “ニンバスミライ”で見えた課題と次の一手",
-   "url": "https://www.wwdjapan.com/articles/2499148"
   },
   "https://www.wwdjapan.com/articles/2500920": {
    "brands": [
@@ -1653,5 +1653,5 @@
    "url": "https://www.wwdjapan.com/articles/2525918"
   }
  },
- "updated_at": "2026-10-15 08:59"
+ "updated_at": "2026-10-15 23:19"
 }
