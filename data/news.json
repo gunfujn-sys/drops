@@ -517,18 +517,6 @@
    "title": "SUGARHILL のために制作された Converse All Star LGCY HI が登場",
    "url": "https://hypebeast.com/jp/2026/9/sugarhill-converse-all-star-lgcy-hi-sh-release-infosugarhill-converse-all-star-lgcy-hi"
   },
-  "https://hypebeast.com/jp/2026/9/supreme-nike-fall-2026-collection-release-info": {
-   "brands": [
-    "supreme",
-    "nike"
-   ],
-   "date": "2026-09-21",
-   "first_seen": "2026-09-22",
-   "id": "https://hypebeast.com/jp/2026/9/supreme-nike-fall-2026-collection-release-info",
-   "source": "Hypebeast",
-   "title": "Supreme x Nike が2026年秋コレクションを発表",
-   "url": "https://hypebeast.com/jp/2026/9/supreme-nike-fall-2026-collection-release-info"
-  },
   "https://hypebeast.com/jp/2026/9/vans-harris-tweed-collabo-new-collection-release-info": {
    "brands": [
     "vans"
@@ -539,17 +527,6 @@
    "source": "Hypebeast",
    "title": "Vans と Harris Tweed がコラボレーション ── パンクとスケートカルチャーを融合した新作コレクション",
    "url": "https://hypebeast.com/jp/2026/9/vans-harris-tweed-collabo-new-collection-release-info"
-  },
-  "https://hypebeast.com/jp/2026/9/wtaps-shanghai-tang-collabo-release-info": {
-   "brands": [
-    "wtaps"
-   ],
-   "date": "2026-09-21",
-   "first_seen": "2026-09-22",
-   "id": "https://hypebeast.com/jp/2026/9/wtaps-shanghai-tang-collabo-release-info",
-   "source": "Hypebeast",
-   "title": "WTAPS と Shanghai Tang が初のコラボレーションコレクションを発売",
-   "url": "https://hypebeast.com/jp/2026/9/wtaps-shanghai-tang-collabo-release-info"
   },
   "https://www.fashionsnap.com/article/2026-09-22/adidas-adizero-adios-pro-5/": {
    "brands": [
@@ -925,6 +902,28 @@
    "title": "ニューバランスが「侍ジャパン」初のユニフォーム発売 選手と同仕様モデルも",
    "url": "https://www.fashionsnap.com/article/2026-10-20/new-balance-samurai-japan/"
   },
+  "https://www.fashionsnap.com/article/2026-10-21/needles-pendleton-collaboration/": {
+   "brands": [
+    "needles"
+   ],
+   "date": "2026-10-21",
+   "first_seen": "2026-10-21",
+   "id": "https://www.fashionsnap.com/article/2026-10-21/needles-pendleton-collaboration/",
+   "source": "FASHIONSNAP",
+   "title": "ニードルズがペンドルトンと初コラボ ウールシャツやネイティブ柄セーターを発売",
+   "url": "https://www.fashionsnap.com/article/2026-10-21/needles-pendleton-collaboration/"
+  },
+  "https://www.fashionsnap.com/article/2026-10-21/otto958-gel-belarraotto/": {
+   "brands": [
+    "asics"
+   ],
+   "date": "2026-10-21",
+   "first_seen": "2026-10-21",
+   "id": "https://www.fashionsnap.com/article/2026-10-21/otto958-gel-belarraotto/",
+   "source": "FASHIONSNAP",
+   "title": "キコ手掛ける「OTTO 958」 × アシックス、着脱可能なゲイター付きコラボモデルが登場",
+   "url": "https://www.fashionsnap.com/article/2026-10-21/otto958-gel-belarraotto/"
+  },
   "https://www.fashionsnap.com/article/asics-nimbus-mirai-recycling-challenges/": {
    "brands": [
     "asics"
@@ -1155,17 +1154,6 @@
    "source": "WWD JAPAN",
    "title": "「ナイキ」が新作厚底ランニングシューズ“アルファフライ 4”を発表 スピードを維持する1足",
    "url": "https://www.wwdjapan.com/articles/2501943"
-  },
-  "https://www.wwdjapan.com/articles/2502506": {
-   "brands": [
-    "arcteryx"
-   ],
-   "date": "2026-09-21",
-   "first_seen": "2026-09-22",
-   "id": "https://www.wwdjapan.com/articles/2502506",
-   "source": "WWD JAPAN",
-   "title": "「アークテリクス」×「ビームス」、日本の“紅葉”をまとった限定コレクション 名作“シータ AR ジャケット”も復刻",
-   "url": "https://www.wwdjapan.com/articles/2502506"
   },
   "https://www.wwdjapan.com/articles/2502509": {
    "brands": [
@@ -1650,7 +1638,18 @@
    "source": "WWD JAPAN",
    "title": "「アディダス オリジナルス」×ファレル・ウィリアムスの“バージニア アディスター ジェリーフィッシュ”から新色2色が登場",
    "url": "https://www.wwdjapan.com/articles/2530703"
+  },
+  "https://www.wwdjapan.com/articles/2531258": {
+   "brands": [
+    "adidas"
+   ],
+   "date": "2026-10-21",
+   "first_seen": "2026-10-21",
+   "id": "https://www.wwdjapan.com/articles/2531258",
+   "source": "WWD JAPAN",
+   "title": "「アディダス」が第105回全国高校サッカー選手権のオフィシャルウエアサプライヤー契約を締結",
+   "url": "https://www.wwdjapan.com/articles/2531258"
   }
  },
- "updated_at": "2026-10-21 08:55"
+ "updated_at": "2026-10-21 23:36"
 }
