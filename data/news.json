@@ -617,17 +617,6 @@
    "title": "渋谷 PARCO 前に HOKA がトレイル行きのバス停を設置！？",
    "url": "https://hypebeast.com/jp/2026/9/hoka-speedgoat-limited-time-pop-up-shibuya-release-info"
   },
-  "https://hypebeast.com/jp/2026/9/jjjjound-new-balance-990v3-release-date-fw26-info": {
-   "brands": [
-    "newbalance"
-   ],
-   "date": "2026-09-29",
-   "first_seen": "2026-09-30",
-   "id": "https://hypebeast.com/jp/2026/9/jjjjound-new-balance-990v3-release-date-fw26-info",
-   "source": "Hypebeast",
-   "title": "JJJJound x New Balance から 990v3 の新色が登場",
-   "url": "https://hypebeast.com/jp/2026/9/jjjjound-new-balance-990v3-release-date-fw26-info"
-  },
   "https://hypebeast.com/jp/2026/9/nike-air-max-95-big-bubble-cow-print-ir5113-001-official-images": {
    "brands": [
     "nike"
@@ -1222,6 +1211,17 @@
    "title": "進化したデザインと履き心地。ニューバランスから990シリーズの新作が登場します。",
    "url": "https://www.houyhnhnm.jp/news/1183558/"
   },
+  "https://www.houyhnhnm.jp/news/1183681/": {
+   "brands": [
+    "asics"
+   ],
+   "date": "2026-10-28",
+   "first_seen": "2026-10-28",
+   "id": "https://www.houyhnhnm.jp/news/1183681/",
+   "source": "HOUYHNHNM",
+   "title": "ソウシオオツキがつくるスニーカーとは？ アシックスと共作した特別モデルは世界限定50足。",
+   "url": "https://www.houyhnhnm.jp/news/1183681/"
+  },
   "https://www.wwdjapan.com/articles/2451292": {
    "brands": [
     "newbalance"
@@ -1652,5 +1652,5 @@
    "url": "https://www.wwdjapan.com/articles/2536106"
   }
  },
- "updated_at": "2026-10-28 00:25"
+ "updated_at": "2026-10-28 09:30"
 }
