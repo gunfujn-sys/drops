@@ -88,6 +88,17 @@
    "title": "Awake NY と The North Face による50着限定のカスタム版ヌプシジャケットが登場",
    "url": "https://hypebeast.com/jp/2026/10/awake-ny-the-north-face-limited-customized-nuptse-jackets-omi-alehsy-lambo-artists-collaboration-release-info"
   },
+  "https://hypebeast.com/jp/2026/10/bape-performance-all-weather-2026-autumn-winter-collection-release-info": {
+   "brands": [
+    "bape"
+   ],
+   "date": "2026-10-29",
+   "first_seen": "2026-10-30",
+   "id": "https://hypebeast.com/jp/2026/10/bape-performance-all-weather-2026-autumn-winter-collection-release-info",
+   "source": "Hypebeast",
+   "title": "倉石一樹が手掛ける BAPE® Performance All Weather の2026年秋冬コレクションが登場",
+   "url": "https://hypebeast.com/jp/2026/10/bape-performance-all-weather-2026-autumn-winter-collection-release-info"
+  },
   "https://hypebeast.com/jp/2026/10/batoner-tokyo-design-studio-new-balance-fw26-capsule-collection": {
    "brands": [
     "newbalance"
@@ -616,39 +627,6 @@
    "source": "Hypebeast",
    "title": "Yohji Yamamoto POUR HOMME と WESCO が初のホワイトレザーを用いたコラボブーツを発売",
    "url": "https://hypebeast.com/jp/2026/10/yohji-yamamoto-pour-homme-wesco-white-leather-boots-release-info"
-  },
-  "https://hypebeast.com/jp/2026/9/beams-arcteryx-collabo-25-years-aniversaly-now-then-report": {
-   "brands": [
-    "arcteryx"
-   ],
-   "date": "2026-09-30",
-   "first_seen": "2026-10-01",
-   "id": "https://hypebeast.com/jp/2026/9/beams-arcteryx-collabo-25-years-aniversaly-now-then-report",
-   "source": "Hypebeast",
-   "title": "ARC'TERYX x BEAMS 協業25年の軌跡から、次の景色へ ── 特別展示 NOW / THEN を巡る",
-   "url": "https://hypebeast.com/jp/2026/9/beams-arcteryx-collabo-25-years-aniversaly-now-then-report"
-  },
-  "https://hypebeast.com/jp/2026/9/blackpink-jisoo-debut-salomon-campaign-xt-6-whisper-4-og-gore-tex-apparel-shoe-fw26-release-info": {
-   "brands": [
-    "salomon"
-   ],
-   "date": "2026-09-30",
-   "first_seen": "2026-10-01",
-   "id": "https://hypebeast.com/jp/2026/9/blackpink-jisoo-debut-salomon-campaign-xt-6-whisper-4-og-gore-tex-apparel-shoe-fw26-release-info",
-   "source": "Hypebeast",
-   "title": "BLACKPINK のジスが Salomon のキャンペーンに登場",
-   "url": "https://hypebeast.com/jp/2026/9/blackpink-jisoo-debut-salomon-campaign-xt-6-whisper-4-og-gore-tex-apparel-shoe-fw26-release-info"
-  },
-  "https://www.fashionsnap.com/article/2026-10-01/nike-apex/": {
-   "brands": [
-    "nike"
-   ],
-   "date": "2026-10-01",
-   "first_seen": "2026-10-02",
-   "id": "https://www.fashionsnap.com/article/2026-10-01/nike-apex/",
-   "source": "FASHIONSNAP",
-   "title": "ナイキが「ナイキ エイペックス」来年1月発売 エア ズーム ユニットを最大量搭載",
-   "url": "https://www.fashionsnap.com/article/2026-10-01/nike-apex/"
   },
   "https://www.fashionsnap.com/article/2026-10-02/beams-popeye-collaboration/": {
    "brands": [
@@ -1244,17 +1222,6 @@
    "title": "「ジュンヤ ワタナベ マン」×「ニューバランス」や「フラグメント」×「マムート」など！ 今週発売のファッションアイテム6選【10/12〜10/18】",
    "url": "https://www.wwdjapan.com/articles/2451292"
   },
-  "https://www.wwdjapan.com/articles/2511987": {
-   "brands": [
-    "nike"
-   ],
-   "date": "2026-10-01",
-   "first_seen": "2026-10-02",
-   "id": "https://www.wwdjapan.com/articles/2511987",
-   "source": "WWD JAPAN",
-   "title": "「ナイキスキムズ」の新作はレイヤリングとフェミニンさを意識 原宿でポップアップ＆カフェを展開",
-   "url": "https://www.wwdjapan.com/articles/2511987"
-  },
   "https://www.wwdjapan.com/articles/2512456": {
    "brands": [
     "newbalance"
@@ -1650,7 +1617,40 @@
    "source": "WWD JAPAN",
    "title": "「ソウシオオツキ」が「アシックス」とコラボ 浅草の職人が手掛けた世界限定50足のシューズを発売",
    "url": "https://www.wwdjapan.com/articles/2536106"
+  },
+  "https://www.wwdjapan.com/articles/2538556": {
+   "brands": [
+    "nike"
+   ],
+   "date": "2026-10-29",
+   "first_seen": "2026-10-30",
+   "id": "https://www.wwdjapan.com/articles/2538556",
+   "source": "WWD JAPAN",
+   "title": "「パレス スケートボード」×「ナイキ」 マナー プレイスの1周年を記念したカプセルコレクションを発売",
+   "url": "https://www.wwdjapan.com/articles/2538556"
+  },
+  "https://www.wwdjapan.com/articles/2538829": {
+   "brands": [
+    "adidas"
+   ],
+   "date": "2026-10-29",
+   "first_seen": "2026-10-30",
+   "id": "https://www.wwdjapan.com/articles/2538829",
+   "source": "WWD JAPAN",
+   "title": "「アディダス」が新作レースシューズを発売 前モデルから約10g軽量化",
+   "url": "https://www.wwdjapan.com/articles/2538829"
+  },
+  "https://www.wwdjapan.com/articles/2538927": {
+   "brands": [
+    "asics"
+   ],
+   "date": "2026-10-29",
+   "first_seen": "2026-10-30",
+   "id": "https://www.wwdjapan.com/articles/2538927",
+   "source": "WWD JAPAN",
+   "title": "「キコ コスタディノフ」が限定アイテムを発売 「アシックス」の足袋ブーツなど",
+   "url": "https://www.wwdjapan.com/articles/2538927"
   }
  },
- "updated_at": "2026-10-29 09:51"
+ "updated_at": "2026-10-30 01:10"
 }
