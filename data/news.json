@@ -44,17 +44,6 @@
    "title": "adidas Originals とファレル・ウィリアムスによる PW Adistar Jellyfish に新色が登場",
    "url": "https://hypebeast.com/jp/2026/10/adidas-originals-pw-adistar-jellyfish-release-info"
   },
-  "https://hypebeast.com/jp/2026/10/amine-new-balance-made-in-usa-992-release-info": {
-   "brands": [
-    "newbalance"
-   ],
-   "date": "2026-10-01",
-   "first_seen": "2026-10-01",
-   "id": "https://hypebeast.com/jp/2026/10/amine-new-balance-made-in-usa-992-release-info",
-   "source": "Hypebeast",
-   "title": "アミーネ & New Balance Made in USA 992 の国内発売情報が解禁",
-   "url": "https://hypebeast.com/jp/2026/10/amine-new-balance-made-in-usa-992-release-info"
-  },
   "https://hypebeast.com/jp/2026/10/auralee-salon-c-lundman-first-collabo-release-info": {
    "brands": [
     "auralee"
@@ -362,6 +351,28 @@
    "source": "Hypebeast",
    "title": "NIGO® x Nike Air Force 1 より BTS j-hope を迎えたトリプルコラボモデルが登場",
    "url": "https://hypebeast.com/jp/2026/10/nike-nigo-j-hope-air-force-1-release-info"
+  },
+  "https://hypebeast.com/jp/2026/10/nike-our-legacy-sport-shop-nyc-procell-pop-up-info": {
+   "brands": [
+    "nike"
+   ],
+   "date": "2026-10-30",
+   "first_seen": "2026-10-30",
+   "id": "https://hypebeast.com/jp/2026/10/nike-our-legacy-sport-shop-nyc-procell-pop-up-info",
+   "source": "Hypebeast",
+   "title": "Nike x Our Legacy が限定ピースを展開するポップアップを開催",
+   "url": "https://hypebeast.com/jp/2026/10/nike-our-legacy-sport-shop-nyc-procell-pop-up-info"
+  },
+  "https://hypebeast.com/jp/2026/10/nike-ovolo-2-0-first-look-info": {
+   "brands": [
+    "nike"
+   ],
+   "date": "2026-10-30",
+   "first_seen": "2026-10-30",
+   "id": "https://hypebeast.com/jp/2026/10/nike-ovolo-2-0-first-look-info",
+   "source": "Hypebeast",
+   "title": "Nike のアーカイブモデルを再解釈したハイブリッドスニーカー Ovolo 2.0 が初公開",
+   "url": "https://hypebeast.com/jp/2026/10/nike-ovolo-2-0-first-look-info"
   },
   "https://hypebeast.com/jp/2026/10/nike-to-limit-air-jordan-retro-supply-moving-forward": {
    "brands": [
@@ -1222,17 +1233,6 @@
    "title": "「ジュンヤ ワタナベ マン」×「ニューバランス」や「フラグメント」×「マムート」など！ 今週発売のファッションアイテム6選【10/12〜10/18】",
    "url": "https://www.wwdjapan.com/articles/2451292"
   },
-  "https://www.wwdjapan.com/articles/2512456": {
-   "brands": [
-    "newbalance"
-   ],
-   "date": "2026-10-02",
-   "first_seen": "2026-10-03",
-   "id": "https://www.wwdjapan.com/articles/2512456",
-   "source": "WWD JAPAN",
-   "title": "「ニューバランス」の“メイド イン USA”とアミーネがコラボ“992”を発表 幼少期の記憶をデザイン",
-   "url": "https://www.wwdjapan.com/articles/2512456"
-  },
   "https://www.wwdjapan.com/articles/2516037": {
    "brands": [
     "yohji"
@@ -1637,7 +1637,7 @@
    "first_seen": "2026-10-30",
    "id": "https://www.wwdjapan.com/articles/2538829",
    "source": "WWD JAPAN",
-   "title": "「アディダス」が新作レースシューズを発売 前モデルから約10g軽量化",
+   "title": "「アディダス」が新作レースシューズを発売 前モデルから約20g軽量化",
    "url": "https://www.wwdjapan.com/articles/2538829"
   },
   "https://www.wwdjapan.com/articles/2538927": {
@@ -1652,5 +1652,5 @@
    "url": "https://www.wwdjapan.com/articles/2538927"
   }
  },
- "updated_at": "2026-10-30 01:10"
+ "updated_at": "2026-10-30 09:52"
 }
