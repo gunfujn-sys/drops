@@ -519,6 +519,17 @@
    "title": "Converse が Slam Jam とのコラボレーションシューズを発売",
    "url": "https://hypebeast.com/jp/2026/11/converse-slam-jam-collabo-shoes-release-info"
   },
+  "https://hypebeast.com/jp/2026/11/engineered-garments-midorikawa-first-collabo-release-info": {
+   "brands": [
+    "engineeredgarments"
+   ],
+   "date": "2026-11-12",
+   "first_seen": "2026-11-12",
+   "id": "https://hypebeast.com/jp/2026/11/engineered-garments-midorikawa-first-collabo-release-info",
+   "source": "Hypebeast",
+   "title": "ENGINEERED GARMENTS と Midorikawa が初のコラボプロダクトを発売",
+   "url": "https://hypebeast.com/jp/2026/11/engineered-garments-midorikawa-first-collabo-release-info"
+  },
   "https://hypebeast.com/jp/2026/11/engineered-garments-x-chrome-collaboration-bag-info": {
    "brands": [
     "engineeredgarments"
@@ -1170,17 +1181,6 @@
    "title": "アシックスの循環型シューズ、初代モデルの回収は現状60足 再資源化の難しさ明かす",
    "url": "https://www.fashionsnap.com/article/asics-nimbus-mirai-recycling-challenges/"
   },
-  "https://www.houyhnhnm.jp/news/1181305/": {
-   "brands": [
-    "newbalance"
-   ],
-   "date": "2026-10-19",
-   "first_seen": "2026-10-20",
-   "id": "https://www.houyhnhnm.jp/news/1181305/",
-   "source": "HOUYHNHNM",
-   "title": "バトナーと東京デザインスタジオ ニューバランスの協業が再び。スポーツユニフォームを着想源にニットウェア2型をつくりました。",
-   "url": "https://www.houyhnhnm.jp/news/1181305/"
-  },
   "https://www.houyhnhnm.jp/news/1182730/": {
    "brands": [
     "cdg"
@@ -1658,5 +1658,5 @@
    "url": "https://www.wwdjapan.com/articles/2550081"
   }
  },
- "updated_at": "2026-11-12 02:11"
+ "updated_at": "2026-11-12 11:19"
 }
