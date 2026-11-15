@@ -806,17 +806,6 @@
    "title": "ナイキスキムズがブランド初のアウターを発売 クランチー ナイロン素材を採用",
    "url": "https://www.fashionsnap.com/article/2026-10-22/nike-skims-new-items/"
   },
-  "https://www.fashionsnap.com/article/2026-10-22/vans-store-shibuya-parco/": {
-   "brands": [
-    "vans"
-   ],
-   "date": "2026-10-22",
-   "first_seen": "2026-10-22",
-   "id": "https://www.fashionsnap.com/article/2026-10-22/vans-store-shibuya-parco/",
-   "source": "FASHIONSNAP",
-   "title": "「ヴァンズ」渋谷PARCOのポップアップ好評を受け常設化 最上位ラインなど販売",
-   "url": "https://www.fashionsnap.com/article/2026-10-22/vans-store-shibuya-parco/"
-  },
   "https://www.fashionsnap.com/article/2026-10-23/new-balance-990v7/": {
    "brands": [
     "newbalance"
@@ -1292,6 +1281,17 @@
    "title": "20周年を迎えたビューティ&ユース。アシックス スポーツスタイルへの別注は、ユニセックスなスモーキーピンクです。",
    "url": "https://www.houyhnhnm.jp/news/1188775/"
   },
+  "https://www.houyhnhnm.jp/news/1189105/": {
+   "brands": [
+    "vans"
+   ],
+   "date": "2026-11-15",
+   "first_seen": "2026-11-16",
+   "id": "https://www.houyhnhnm.jp/news/1189105/",
+   "source": "HOUYHNHNM",
+   "title": "ウィングチップの “Authentic” ってなんだ？ ヴァンズのABCマート限定モデルが気になります。",
+   "url": "https://www.houyhnhnm.jp/news/1189105/"
+  },
   "https://www.wwdjapan.com/articles/2451305": {
    "brands": [
     "newbalance"
@@ -1658,5 +1658,5 @@
    "url": "https://www.wwdjapan.com/articles/2552971"
   }
  },
- "updated_at": "2026-11-15 00:52"
+ "updated_at": "2026-11-16 01:25"
 }
