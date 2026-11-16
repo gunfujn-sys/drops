@@ -795,17 +795,6 @@
    "title": "コム デ ギャルソンの神出鬼没なショップが福岡に アーカイヴアイテムなど販売",
    "url": "https://www.fashionsnap.com/article/2026-10-22/comme-des-garcons-guerrilla-store-fukuoka/"
   },
-  "https://www.fashionsnap.com/article/2026-10-22/nike-skims-new-items/": {
-   "brands": [
-    "nike"
-   ],
-   "date": "2026-10-22",
-   "first_seen": "2026-10-22",
-   "id": "https://www.fashionsnap.com/article/2026-10-22/nike-skims-new-items/",
-   "source": "FASHIONSNAP",
-   "title": "ナイキスキムズがブランド初のアウターを発売 クランチー ナイロン素材を採用",
-   "url": "https://www.fashionsnap.com/article/2026-10-22/nike-skims-new-items/"
-  },
   "https://www.fashionsnap.com/article/2026-10-23/new-balance-990v7/": {
    "brands": [
     "newbalance"
@@ -1602,6 +1591,17 @@
    "title": "ヒューマンメイドも個人情報漏えいの可能性 カレーブランドのEC購入者のデータ",
    "url": "https://www.wwdjapan.com/articles/2550081"
   },
+  "https://www.wwdjapan.com/articles/2551894": {
+   "brands": [
+    "salomon"
+   ],
+   "date": "2026-11-16",
+   "first_seen": "2026-11-16",
+   "id": "https://www.wwdjapan.com/articles/2551894",
+   "source": "WWD JAPAN",
+   "title": "「サロモン」が阪急メンズ東京に新店舗をオープン 「パス ノーマル スタジオ」とのコラボアイテムやノベルティーなど",
+   "url": "https://www.wwdjapan.com/articles/2551894"
+  },
   "https://www.wwdjapan.com/articles/2552039": {
    "brands": [
     "yohji"
@@ -1658,5 +1658,5 @@
    "url": "https://www.wwdjapan.com/articles/2552971"
   }
  },
- "updated_at": "2026-11-16 01:25"
+ "updated_at": "2026-11-16 10:01"
 }
