@@ -1,16 +1,5 @@
 {
  "items": {
-  "https://hypebeast.com/jp/2026/10/7-eleven-ends-lawsuit-against-nike-over-air-max-95": {
-   "brands": [
-    "nike"
-   ],
-   "date": "2026-10-23",
-   "first_seen": "2026-10-23",
-   "id": "https://hypebeast.com/jp/2026/10/7-eleven-ends-lawsuit-against-nike-over-air-max-95",
-   "source": "Hypebeast",
-   "title": "セブン-イレブンが Nike への訴訟を取り下げ ── セブンカラーの Air Max 95 発売の可能性が浮上",
-   "url": "https://hypebeast.com/jp/2026/10/7-eleven-ends-lawsuit-against-nike-over-air-max-95"
-  },
   "https://hypebeast.com/jp/2026/10/adidas-originals-by-wales-bonner-fall-winter-2026-collection-campaigns-release-info": {
    "brands": [
     "adidas"
@@ -608,6 +597,17 @@
    "title": "Nike が GORE-TEX® と Vibram を搭載した Air Force 1 の新色を展開",
    "url": "https://hypebeast.com/jp/2026/11/nike-gore-tex-vibram-air-force-1-new-color-release-info"
   },
+  "https://hypebeast.com/jp/2026/11/nike-thirs-series-book-3-fragment-release-info": {
+   "brands": [
+    "nike"
+   ],
+   "date": "2026-11-18",
+   "first_seen": "2026-11-18",
+   "id": "https://hypebeast.com/jp/2026/11/nike-thirs-series-book-3-fragment-release-info",
+   "source": "Hypebeast",
+   "title": "Nike がデビン・ブッカーのシグネチャーモデル第3弾 Book 3 を発表 ── fragment とのコラボモデルも登場",
+   "url": "https://hypebeast.com/jp/2026/11/nike-thirs-series-book-3-fragment-release-info"
+  },
   "https://hypebeast.com/jp/2026/11/one-block-down-nike-air-max-95-lux-italy-release-info": {
    "brands": [
     "nike"
@@ -773,16 +773,17 @@
    "title": "Vans と GUCCIMAZE によるコラボレーション第2弾が登場",
    "url": "https://hypebeast.com/jp/2026/11/vans-guccimaze-2nd-release-info"
   },
-  "https://www.fashionsnap.com/article/2026-10-24/forse-club-umamusume/": {
+  "https://hypebeast.com/jp/2026/11/wtaps-hoka-speedgoat-ts-release-info": {
    "brands": [
-    "humanmade"
+    "wtaps",
+    "hoka"
    ],
-   "date": "2026-10-24",
-   "first_seen": "2026-10-25",
-   "id": "https://www.fashionsnap.com/article/2026-10-24/forse-club-umamusume/",
-   "source": "FASHIONSNAP",
-   "title": "フォースクラブとウマ娘のコラボアイテム発売 HUMAN MADEが製造を担当",
-   "url": "https://www.fashionsnap.com/article/2026-10-24/forse-club-umamusume/"
+   "date": "2026-11-18",
+   "first_seen": "2026-11-18",
+   "id": "https://hypebeast.com/jp/2026/11/wtaps-hoka-speedgoat-ts-release-info",
+   "source": "Hypebeast",
+   "title": "WTAPS® x HOKA が Speedgoat TS を発表 ── アーマーを思わせるプロテクティブなデザインに",
+   "url": "https://hypebeast.com/jp/2026/11/wtaps-hoka-speedgoat-ts-release-info"
   },
   "https://www.fashionsnap.com/article/2026-10-26/auralee-tekla-2nd-collaboration/": {
    "brands": [
@@ -1093,6 +1094,18 @@
    "title": "ナイキ、BTSとのカスタマイズサービスに対象ボディを追加 「ナイキ スタジオ フリース」",
    "url": "https://www.fashionsnap.com/article/2026-11-17/nike-studio-bts/"
   },
+  "https://www.fashionsnap.com/article/2026-11-18/needles-otw-vans/": {
+   "brands": [
+    "needles",
+    "vans"
+   ],
+   "date": "2026-11-18",
+   "first_seen": "2026-11-18",
+   "id": "https://www.fashionsnap.com/article/2026-11-18/needles-otw-vans/",
+   "source": "FASHIONSNAP",
+   "title": "ニードルズ、ヴァンズの最上級ラインとコラボ トレイルシューズやトラックジャケットなど",
+   "url": "https://www.fashionsnap.com/article/2026-11-18/needles-otw-vans/"
+  },
   "https://www.fashionsnap.com/article/asics-michigan-innovation-interview/": {
    "brands": [
     "asics"
@@ -1291,17 +1304,6 @@
    "source": "WWD JAPAN",
    "title": "「ギャップ」×ヘイリー・ビーバー再販や「ニューバランス」の最新メイド イン USAなど！ 来週発売のファッションアイテム11選【11/2〜11/8】",
    "url": "https://www.wwdjapan.com/articles/2451305"
-  },
-  "https://www.wwdjapan.com/articles/2533932": {
-   "brands": [
-    "on"
-   ],
-   "date": "2026-10-25",
-   "first_seen": "2026-10-25",
-   "id": "https://www.wwdjapan.com/articles/2533932",
-   "source": "WWD JAPAN",
-   "title": "「オン」が「アトモス」とのコラボスニーカー“クラウドモンスター 1 WP アトモス”を発売 “枯山水”を都会的に再解釈",
-   "url": "https://www.wwdjapan.com/articles/2533932"
   },
   "https://www.wwdjapan.com/articles/2534708": {
    "brands": [
@@ -1658,5 +1660,5 @@
    "url": "https://www.wwdjapan.com/articles/2553181"
   }
  },
- "updated_at": "2026-11-18 03:36"
+ "updated_at": "2026-11-18 11:56"
 }
