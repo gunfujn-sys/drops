@@ -243,18 +243,6 @@
    "title": "SOSHIOTSUKI と ASICS が世界限定50足のコラボシューズを発表",
    "url": "https://hypebeast.com/jp/2026/10/soshiotsuki-asics-50-shoes-exclusive-model-release-info"
   },
-  "https://hypebeast.com/jp/2026/10/supreme-nike-air-force-1-low-olive-camo-first-look-cu9225-900-release-info": {
-   "brands": [
-    "supreme",
-    "nike"
-   ],
-   "date": "2026-10-26",
-   "first_seen": "2026-10-27",
-   "id": "https://hypebeast.com/jp/2026/10/supreme-nike-air-force-1-low-olive-camo-first-look-cu9225-900-release-info",
-   "source": "Hypebeast",
-   "title": "Supreme x Nike Air Force 1 Low “Olive Camo” のファーストルックが浮上",
-   "url": "https://hypebeast.com/jp/2026/10/supreme-nike-air-force-1-low-olive-camo-first-look-cu9225-900-release-info"
-  },
   "https://hypebeast.com/jp/2026/10/travis-scott-nike-cpfm-flea-1-cactus-jack-ix7250-200-rumored-release-info": {
    "brands": [
     "nike"
@@ -441,6 +429,17 @@
    "source": "Hypebeast",
    "title": "HOMERUN と Nike による最新コラボモデル Air Trainer SC Low が公開",
    "url": "https://hypebeast.com/jp/2026/11/homerun-nyc-nike-air-trainer-sc-low-reek"
+  },
+  "https://hypebeast.com/jp/2026/11/kith-asics-star-wars-gel-lyte-iii-vader-release-info": {
+   "brands": [
+    "asics"
+   ],
+   "date": "2026-11-19",
+   "first_seen": "2026-11-19",
+   "id": "https://hypebeast.com/jp/2026/11/kith-asics-star-wars-gel-lyte-iii-vader-release-info",
+   "source": "Hypebeast",
+   "title": "Kith x『スター・ウォーズ』x ASICS によるトリプルコラボモデル GEL-LYTE III “Vader” が発売",
+   "url": "https://hypebeast.com/jp/2026/11/kith-asics-star-wars-gel-lyte-iii-vader-release-info"
   },
   "https://hypebeast.com/jp/2026/11/kith-new-balance-monuments-collection-release-info": {
    "brands": [
@@ -807,17 +806,6 @@
    "source": "Hypebeast",
    "title": "WTAPS® x HOKA が Speedgoat TS を発表 ── アーマーを思わせるプロテクティブなデザインに",
    "url": "https://hypebeast.com/jp/2026/11/wtaps-hoka-speedgoat-ts-release-info"
-  },
-  "https://www.fashionsnap.com/article/2026-10-26/auralee-tekla-2nd-collaboration/": {
-   "brands": [
-    "auralee"
-   ],
-   "date": "2026-10-26",
-   "first_seen": "2026-10-27",
-   "id": "https://www.fashionsnap.com/article/2026-10-26/auralee-tekla-2nd-collaboration/",
-   "source": "FASHIONSNAP",
-   "title": "オーラリーがテクラとコラボ ウールカシミヤ素材を使用したニットウェアなど発売",
-   "url": "https://www.fashionsnap.com/article/2026-10-26/auralee-tekla-2nd-collaboration/"
   },
   "https://www.fashionsnap.com/article/2026-10-27/undercover-studio-valentin-loellmann/": {
    "brands": [
@@ -1659,7 +1647,18 @@
    "source": "WWD JAPAN",
    "title": "「サカイ」が2027年春夏“クラシックス”コレクションを発売 新作ブルゾンやモッズコート、スカートが登場",
    "url": "https://www.wwdjapan.com/articles/2553181"
+  },
+  "https://www.wwdjapan.com/articles/2555377": {
+   "brands": [
+    "nike"
+   ],
+   "date": "2026-11-19",
+   "first_seen": "2026-11-19",
+   "id": "https://www.wwdjapan.com/articles/2555377",
+   "source": "WWD JAPAN",
+   "title": "「ナイキ」がスポーツウエアの新たな可能性を提示 革新的なテクノロジーを搭載した3アイテムを公開",
+   "url": "https://www.wwdjapan.com/articles/2555377"
   }
  },
- "updated_at": "2026-11-19 03:06"
+ "updated_at": "2026-11-19 11:35"
 }
