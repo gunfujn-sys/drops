@@ -166,17 +166,6 @@
    "title": "Nike のアーカイブモデルを再解釈したハイブリッドスニーカー Ovolo 2.0 が初公開",
    "url": "https://hypebeast.com/jp/2026/10/nike-ovolo-2-0-first-look-info"
   },
-  "https://hypebeast.com/jp/2026/10/palace-nike-manor-place-collection-release-info": {
-   "brands": [
-    "nike"
-   ],
-   "date": "2026-10-27",
-   "first_seen": "2026-10-27",
-   "id": "https://hypebeast.com/jp/2026/10/palace-nike-manor-place-collection-release-info",
-   "source": "Hypebeast",
-   "title": "PALACE x Nike が Manor Place 1周年を記念したコレクションを発表",
-   "url": "https://hypebeast.com/jp/2026/10/palace-nike-manor-place-collection-release-info"
-  },
   "https://hypebeast.com/jp/2026/10/travis-scott-nike-cpfm-flea-1-cactus-jack-ix7250-200-rumored-release-info": {
    "brands": [
     "nike"
@@ -1294,6 +1283,17 @@
    "title": "ウィングチップの “Authentic” ってなんだ？ ヴァンズのABCマート限定モデルが気になります。",
    "url": "https://www.houyhnhnm.jp/news/1189105/"
   },
+  "https://www.houyhnhnm.jp/news/1191130/": {
+   "brands": [
+    "newbalance"
+   ],
+   "date": "2026-11-20",
+   "first_seen": "2026-11-20",
+   "id": "https://www.houyhnhnm.jp/news/1191130/",
+   "source": "HOUYHNHNM",
+   "title": "ニューバランスの製品化されなかったロストプロト、現代に甦る。その名は「991v1 Made in Japan」。",
+   "url": "https://www.houyhnhnm.jp/news/1191130/"
+  },
   "https://www.wwdjapan.com/articles/2451305": {
    "brands": [
     "newbalance"
@@ -1660,5 +1660,5 @@
    "url": "https://www.wwdjapan.com/articles/2556244"
   }
  },
- "updated_at": "2026-11-20 03:19"
+ "updated_at": "2026-11-20 11:19"
 }
