@@ -1262,6 +1262,17 @@
    "title": "ニューバランスの製品化されなかったロストプロト、現代に甦る。その名は「991v1 Made in Japan」。",
    "url": "https://www.houyhnhnm.jp/news/1191130/"
   },
+  "https://www.houyhnhnm.jp/news/1191421/": {
+   "brands": [
+    "wtaps"
+   ],
+   "date": "2026-11-21",
+   "first_seen": "2026-11-22",
+   "id": "https://www.houyhnhnm.jp/news/1191421/",
+   "source": "HOUYHNHNM",
+   "title": "ホカ×WTAPS、再び。名品「スピードゴート」に加え、ザックやキャップもラインナップ。",
+   "url": "https://www.houyhnhnm.jp/news/1191421/"
+  },
   "https://www.wwdjapan.com/articles/2451305": {
    "brands": [
     "newbalance"
@@ -1284,17 +1295,6 @@
    "source": "WWD JAPAN",
    "title": "「コム デ ギャルソン・オム」×「ニューバランス」 上質なエプロンアッパーを採用した“1890A”発売",
    "url": "https://www.wwdjapan.com/articles/2535546"
-  },
-  "https://www.wwdjapan.com/articles/2538556": {
-   "brands": [
-    "nike"
-   ],
-   "date": "2026-10-29",
-   "first_seen": "2026-10-30",
-   "id": "https://www.wwdjapan.com/articles/2538556",
-   "source": "WWD JAPAN",
-   "title": "「パレス スケートボード」×「ナイキ」 マナー プレイスの1周年を記念したカプセルコレクションを発売",
-   "url": "https://www.wwdjapan.com/articles/2538556"
   },
   "https://www.wwdjapan.com/articles/2539637": {
    "brands": [
@@ -1661,5 +1661,5 @@
    "url": "https://www.wwdjapan.com/articles/2557601"
   }
  },
- "updated_at": "2026-11-21 11:10"
+ "updated_at": "2026-11-22 01:51"
 }
