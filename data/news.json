@@ -1,61 +1,5 @@
 {
  "items": {
-  "https://hypebeast.com/jp/2026/10/adidas-originals-tttmsw-collabo-collection-release-info": {
-   "brands": [
-    "adidas"
-   ],
-   "date": "2026-10-30",
-   "first_seen": "2026-10-31",
-   "id": "https://hypebeast.com/jp/2026/10/adidas-originals-tttmsw-collabo-collection-release-info",
-   "source": "Hypebeast",
-   "title": "adidas Originals x TTTMSW による初のコラボコレクションが登場",
-   "url": "https://hypebeast.com/jp/2026/10/adidas-originals-tttmsw-collabo-collection-release-info"
-  },
-  "https://hypebeast.com/jp/2026/10/comme-des-garcons-homme-x-new-balance-1890a": {
-   "brands": [
-    "cdg",
-    "newbalance"
-   ],
-   "date": "2026-10-30",
-   "first_seen": "2026-10-31",
-   "id": "https://hypebeast.com/jp/2026/10/comme-des-garcons-homme-x-new-balance-1890a",
-   "source": "Hypebeast",
-   "title": "COMME des GARÇONS HOMME x New Balance の最新作 1890A が到着",
-   "url": "https://hypebeast.com/jp/2026/10/comme-des-garcons-homme-x-new-balance-1890a"
-  },
-  "https://hypebeast.com/jp/2026/10/fragment-v-a-converse-special-model-release-info": {
-   "brands": [
-    "converse"
-   ],
-   "date": "2026-10-30",
-   "first_seen": "2026-10-31",
-   "id": "https://hypebeast.com/jp/2026/10/fragment-v-a-converse-special-model-release-info",
-   "source": "Hypebeast",
-   "title": "fragment x V.A. x Converse によるスペシャルエディションモデルが発売",
-   "url": "https://hypebeast.com/jp/2026/10/fragment-v-a-converse-special-model-release-info"
-  },
-  "https://hypebeast.com/jp/2026/10/nike-dunk-low-union-natural-selection-collaboration-capsule-collection-fatigue-if7380-200-eclipse-if7380-001-hide-ix2929-200-release-info": {
-   "brands": [
-    "nike"
-   ],
-   "date": "2026-10-30",
-   "first_seen": "2026-10-31",
-   "id": "https://hypebeast.com/jp/2026/10/nike-dunk-low-union-natural-selection-collaboration-capsule-collection-fatigue-if7380-200-eclipse-if7380-001-hide-ix2929-200-release-info",
-   "source": "Hypebeast",
-   "title": "UNION x Nike による Dunk Low “Natural Selection” コレクションが登場",
-   "url": "https://hypebeast.com/jp/2026/10/nike-dunk-low-union-natural-selection-collaboration-capsule-collection-fatigue-if7380-200-eclipse-if7380-001-hide-ix2929-200-release-info"
-  },
-  "https://hypebeast.com/jp/2026/10/nike-our-legacy-sport-shop-nyc-procell-pop-up-info": {
-   "brands": [
-    "nike"
-   ],
-   "date": "2026-10-30",
-   "first_seen": "2026-10-30",
-   "id": "https://hypebeast.com/jp/2026/10/nike-our-legacy-sport-shop-nyc-procell-pop-up-info",
-   "source": "Hypebeast",
-   "title": "Nike x Our Legacy が限定ピースを展開するポップアップを開催",
-   "url": "https://hypebeast.com/jp/2026/10/nike-our-legacy-sport-shop-nyc-procell-pop-up-info"
-  },
   "https://hypebeast.com/jp/2026/11/adidas-rick-owens-springblade-new-collection-release-info": {
    "brands": [
     "adidas"
@@ -99,6 +43,17 @@
    "source": "Hypebeast",
    "title": "Brain Dead x adidas Originals が2000年代の Adventure ラインを再解釈した新作コレクションを発表",
    "url": "https://hypebeast.com/jp/2026/11/brain-dead-adidas-originals-full-collection-collaboration-release-info"
+  },
+  "https://hypebeast.com/jp/2026/11/cactus-plant-flea-market-x-nike-flea-1-cave-purple-release-info": {
+   "brands": [
+    "nike"
+   ],
+   "date": "2026-11-25",
+   "first_seen": "2026-11-25",
+   "id": "https://hypebeast.com/jp/2026/11/cactus-plant-flea-market-x-nike-flea-1-cave-purple-release-info",
+   "source": "Hypebeast",
+   "title": "Cactus Plant Flea Market x Nike によるコラボモデル Flea 1 に新色 “Cave Purple” が登場",
+   "url": "https://hypebeast.com/jp/2026/11/cactus-plant-flea-market-x-nike-flea-1-cave-purple-release-info"
   },
   "https://hypebeast.com/jp/2026/11/carhartt-wip-nike-8-collaboration-air-max-goadome-low-wip": {
    "brands": [
@@ -1131,6 +1086,17 @@
    "title": "下北沢でチャリティイベント開催、オーラリーやアンダーカバーなど22ブランドがフリマ出店",
    "url": "https://www.fashionsnap.com/article/2026-11-24/hope-and-love-tokyo/"
   },
+  "https://www.fashionsnap.com/article/2026-11-24/ssstein-fritz-hansen/": {
+   "brands": [
+    "stein"
+   ],
+   "date": "2026-11-24",
+   "first_seen": "2026-11-25",
+   "id": "https://www.fashionsnap.com/article/2026-11-24/ssstein-fritz-hansen/",
+   "source": "FASHIONSNAP",
+   "title": "シュタインがフリッツ・ハンセンと初コラボ、限定仕様の「セブンチェア」など発売",
+   "url": "https://www.fashionsnap.com/article/2026-11-24/ssstein-fritz-hansen/"
+  },
   "https://www.fashionsnap.com/article/asics-michigan-innovation-interview/": {
    "brands": [
     "asics"
@@ -1660,7 +1626,40 @@
    "source": "WWD JAPAN",
    "title": "「アシックス」がランニングイベント“サウンズ バイ”を開催 ランニングシューズの試着やグループランを実施",
    "url": "https://www.wwdjapan.com/articles/2559255"
+  },
+  "https://www.wwdjapan.com/articles/2560281": {
+   "brands": [
+    "cdg"
+   ],
+   "date": "2026-11-25",
+   "first_seen": "2026-11-25",
+   "id": "https://www.wwdjapan.com/articles/2560281",
+   "source": "WWD JAPAN",
+   "title": "「マリメッコ」と「コム デ ギャルソン」のコラボトートが12月1日に発売 ホリデー向けのカラフルな4デザイン",
+   "url": "https://www.wwdjapan.com/articles/2560281"
+  },
+  "https://www.wwdjapan.com/articles/2560293": {
+   "brands": [
+    "asics"
+   ],
+   "date": "2026-11-25",
+   "first_seen": "2026-11-25",
+   "id": "https://www.wwdjapan.com/articles/2560293",
+   "source": "WWD JAPAN",
+   "title": "「キス」と映画「スター・ウォーズ」がシス・オーダーのコレクションを発表 「アシックス」とのトリプルコラボも",
+   "url": "https://www.wwdjapan.com/articles/2560293"
+  },
+  "https://www.wwdjapan.com/articles/2560371": {
+   "brands": [
+    "stein"
+   ],
+   "date": "2026-11-25",
+   "first_seen": "2026-11-25",
+   "id": "https://www.wwdjapan.com/articles/2560371",
+   "source": "WWD JAPAN",
+   "title": "「シュタイン」と「フリッツ・ハンセン」がコラボ “セブンチェア”“ドットスツール”をピーター・サヴィルの生地やヌバックで",
+   "url": "https://www.wwdjapan.com/articles/2560371"
   }
  },
- "updated_at": "2026-11-25 05:13"
+ "updated_at": "2026-11-25 13:10"
 }
