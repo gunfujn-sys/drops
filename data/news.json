@@ -436,7 +436,7 @@
     "undercover",
     "nike"
    ],
-   "date": "2026-11-24",
+   "date": "2026-11-25",
    "first_seen": "2026-11-24",
    "id": "https://hypebeast.com/jp/2026/11/nike-jun-takahashi-gyakusou-official-return-announcement",
    "source": "Hypebeast",
@@ -720,17 +720,6 @@
    "source": "Hypebeast",
    "title": "WTAPS® x HOKA が Speedgoat TS を発表 ── アーマーを思わせるプロテクティブなデザインに",
    "url": "https://hypebeast.com/jp/2026/11/wtaps-hoka-speedgoat-ts-release-info"
-  },
-  "https://www.fashionsnap.com/article/2026-10-31/cdg-popup-shibuyaparco/": {
-   "brands": [
-    "vans"
-   ],
-   "date": "2026-10-31",
-   "first_seen": "2026-11-01",
-   "id": "https://www.fashionsnap.com/article/2026-10-31/cdg-popup-shibuyaparco/",
-   "source": "FASHIONSNAP",
-   "title": "CDGが渋谷パルコでポップアップ、人気の「ヴァンズ」コラボなど先行販売",
-   "url": "https://www.fashionsnap.com/article/2026-10-31/cdg-popup-shibuyaparco/"
   },
   "https://www.fashionsnap.com/article/2026-11-04/play-comme-des-garcons-new-t-shirt/": {
    "brands": [
@@ -1097,6 +1086,28 @@
    "title": "シュタインがフリッツ・ハンセンと初コラボ、限定仕様の「セブンチェア」など発売",
    "url": "https://www.fashionsnap.com/article/2026-11-24/ssstein-fritz-hansen/"
   },
+  "https://www.fashionsnap.com/article/2026-11-25/gyakusou/": {
+   "brands": [
+    "nike"
+   ],
+   "date": "2026-11-25",
+   "first_seen": "2026-11-26",
+   "id": "https://www.fashionsnap.com/article/2026-11-25/gyakusou/",
+   "source": "FASHIONSNAP",
+   "title": "ナイキ「GYAKUSOU」が5年ぶり復活 ロゴを配したアルファフライなど発売",
+   "url": "https://www.fashionsnap.com/article/2026-11-25/gyakusou/"
+  },
+  "https://www.fashionsnap.com/article/2026-11-25/salomon-takao-renewal/": {
+   "brands": [
+    "salomon"
+   ],
+   "date": "2026-11-25",
+   "first_seen": "2026-11-26",
+   "id": "https://www.fashionsnap.com/article/2026-11-25/salomon-takao-renewal/",
+   "source": "FASHIONSNAP",
+   "title": "サロモンが高尾店をリニューアル コミュニティスペース「ヤマトビラ サロモン」併設",
+   "url": "https://www.fashionsnap.com/article/2026-11-25/salomon-takao-renewal/"
+  },
   "https://www.fashionsnap.com/article/asics-michigan-innovation-interview/": {
    "brands": [
     "asics"
@@ -1129,17 +1140,6 @@
    "source": "FASHIONSNAP",
    "title": "Suica新キャラクターが決定、ナイキがF1とパートナーシップ締結…【5分でわかる主要ニュース 11/15〜11/21】",
    "url": "https://www.fashionsnap.com/article/roundup-november-21/"
-  },
-  "https://www.houyhnhnm.jp/news/1184887/": {
-   "brands": [
-    "salomon"
-   ],
-   "date": "2026-11-02",
-   "first_seen": "2026-11-03",
-   "id": "https://www.houyhnhnm.jp/news/1184887/",
-   "source": "HOUYHNHNM",
-   "title": "【50年目のビームス、15のヒトモノコト】Vol.2 山の機能美がストリートで花咲く。東京の感性で磨かれたサロモンのテックギア。",
-   "url": "https://www.houyhnhnm.jp/news/1184887/"
   },
   "https://www.houyhnhnm.jp/news/1185436/": {
    "brands": [
@@ -1252,39 +1252,16 @@
    "title": "険しい道をゆく人にナイキ ACGを。新しいトレイルシューズが来年店頭に登場。",
    "url": "https://www.houyhnhnm.jp/news/1191580/"
   },
-  "https://www.wwdjapan.com/articles/2451305": {
+  "https://www.houyhnhnm.jp/news/1193038/": {
    "brands": [
-    "newbalance"
+    "nike"
    ],
-   "date": "2026-10-31",
-   "first_seen": "2026-11-01",
-   "id": "https://www.wwdjapan.com/articles/2451305",
-   "source": "WWD JAPAN",
-   "title": "「ギャップ」×ヘイリー・ビーバー再販や「ニューバランス」の最新メイド イン USAなど！ 来週発売のファッションアイテム11選【11/2〜11/8】",
-   "url": "https://www.wwdjapan.com/articles/2451305"
-  },
-  "https://www.wwdjapan.com/articles/2540646": {
-   "brands": [
-    "asics"
-   ],
-   "date": "2026-10-31",
-   "first_seen": "2026-11-01",
-   "id": "https://www.wwdjapan.com/articles/2540646",
-   "source": "WWD JAPAN",
-   "title": "アシックス富永社長「ピックルボール市場」に期待大 丸の内に専用コート設置",
-   "url": "https://www.wwdjapan.com/articles/2540646"
-  },
-  "https://www.wwdjapan.com/articles/2541654": {
-   "brands": [
-    "neighborhood",
-    "converse"
-   ],
-   "date": "2026-11-02",
-   "first_seen": "2026-11-03",
-   "id": "https://www.wwdjapan.com/articles/2541654",
-   "source": "WWD JAPAN",
-   "title": "「ネイバーフッド」と「コンバース」が約7年ぶりにコラボ エイジング加工を施した“オールスター レガシー ハイ”を発売",
-   "url": "https://www.wwdjapan.com/articles/2541654"
+   "date": "2026-11-25",
+   "first_seen": "2026-11-26",
+   "id": "https://www.houyhnhnm.jp/news/1193038/",
+   "source": "HOUYHNHNM",
+   "title": "ナイキ ギャクソウが復活。5年の時を経て紡ぎ出される、魅惑のランニングコレクションが登場。",
+   "url": "https://www.houyhnhnm.jp/news/1193038/"
   },
   "https://www.wwdjapan.com/articles/2542599": {
    "brands": [
@@ -1627,6 +1604,28 @@
    "title": "「アシックス」がランニングイベント“サウンズ バイ”を開催 ランニングシューズの試着やグループランを実施",
    "url": "https://www.wwdjapan.com/articles/2559255"
   },
+  "https://www.wwdjapan.com/articles/2559479": {
+   "brands": [
+    "veja"
+   ],
+   "date": "2026-11-25",
+   "first_seen": "2026-11-26",
+   "id": "https://www.wwdjapan.com/articles/2559479",
+   "source": "WWD JAPAN",
+   "title": "「ヴェジャ」が新作“アルマダ”を発売 ミリタリートレーニングシューズを再解釈",
+   "url": "https://www.wwdjapan.com/articles/2559479"
+  },
+  "https://www.wwdjapan.com/articles/2559635": {
+   "brands": [
+    "yohji"
+   ],
+   "date": "2026-11-25",
+   "first_seen": "2026-11-26",
+   "id": "https://www.wwdjapan.com/articles/2559635",
+   "source": "WWD JAPAN",
+   "title": "「ブルーブルー」×ヨウジヤマモトの“ワイルドサイド“第2弾 ブラックデニムのウエスタンシャツを発売",
+   "url": "https://www.wwdjapan.com/articles/2559635"
+  },
   "https://www.wwdjapan.com/articles/2560281": {
    "brands": [
     "cdg"
@@ -1661,5 +1660,5 @@
    "url": "https://www.wwdjapan.com/articles/2560371"
   }
  },
- "updated_at": "2026-11-25 13:10"
+ "updated_at": "2026-11-26 04:16"
 }
